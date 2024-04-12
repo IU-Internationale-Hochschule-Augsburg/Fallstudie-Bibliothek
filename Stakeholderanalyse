@@ -3,12 +3,14 @@ Annahme:
 - Bibliotheken werden häufig vom Bund, Ländern oder Gemeinden finanziert. Dazu kommen Träger wie Stiftungen öffentlichen Rechts und Körperschaften des öffentlichen Rechts.
 
 Stakeholder:
-- Finanzierer und Träger von Bibliotheken
-- Die Öffentlichkeit
-- Bibliotheksleitung
-- Bibliotheksmitarbeiter
-- Bibliotheksbenutzer
 
-- Geschäftsführung Bibliothekssoftware
-- IT Team Bibliothekssoftware
-- Dienstleister/Lieferanten 
+- Geschäftsführung Bibliothekssoftware: Ist für die Software verantwortlich und dafür dass diese vertrieben wird. 
+- IT Team Bibliothekssoftware: Das Team entwickelt die Software und implementiert Anforderungen, führt Tests durch und arbeitet anfangs am meisten mit der Software. 
+- Dienstleister/Lieferanten:  Mögliche Dienstleister oder Lieferanten die beim entwickeln oder vertreiben der Software helfen. 
+
+- Finanzierer und Träger von Bibliotheken: Finanzieren die Bibliothek und tragen eine Verantwortung für diese. Sie haben Interesse am Erfolg der Software. 
+- Die Öffentlichkeit: Profitiert von den Dienstleistungen einer Bibliothek und sind indirekt von der Effizienz und Wirksamkeit der Bibliothekssoftware betroffen sind. 
+- Bibliotheksleitung: Verantwortlich für die gesamte Bibliothek und für die Software, damit alles reibungslos funktioniert. 
+- Bibliotheksmitarbeiter: Verwendet die Software täglich, um Bücher zu verwalten, Ausleihen durchzuführen und Buchrückgaben zu verarbeiten. 
+- Bibliotheksbenutzer: Diese leihen Bücher aus und nutzen die Software um bspw. Verfügbarkeiten von Büchern zu erfahren oder Leihfristen zu checken. 
+
