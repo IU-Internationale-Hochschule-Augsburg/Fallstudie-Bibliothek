@@ -1,2 +1,10 @@
-Bücher einpflegen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,)
+Bücher einpflegen/bearbeiten/entfernen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID)
 Katalog (Datenbank ausgeben lassen)
+Suche (Filter)
+Benutzer anlegen/bearbeiten/entfernen (Name, Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer, Bankverbindung)
+Ausleihprozess (Auswahl des Benutzers, Einscannen der Bücher-ID)
+(Zeit, Mahnung, Frist)
+
+
+Notiz:
+- Zahlen der Kunden entfällt (nicht relevant)
