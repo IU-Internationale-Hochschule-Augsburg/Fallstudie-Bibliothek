@@ -1,10 +1,28 @@
-Bücher einpflegen/bearbeiten/entfernen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID)
+Bücher einpflegen/bearbeiten/entfernen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID, Status)
 Katalog (Datenbank ausgeben lassen)
 Suche (Filter)
 Benutzer anlegen/bearbeiten/entfernen (Name, Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer, Bankverbindung)
-Ausleihprozess (Auswahl des Benutzers, Einscannen der Bücher-ID)
+Ausleihprozess (Auswahl des Benutzers, Einscannen der Bücher-ID, Zeit)
 (Zeit, Mahnung, Frist)
 
 
 Notiz:
 - Zahlen der Kunden entfällt (nicht relevant)
+-  Zugriffsrechte (nicht relevant)
+
+
+
+
+Benutzerfreundliche Oberfläche: Einfach zu navigierende Benutzeroberfläche sowohl für das Personal als auch für die Nutzer.
+Bücher einpflegen: Funktion zum Hinzufügen neuer Bücher mit detaillierten Informationen.
+Katalogansicht: Übersichtliche Darstellung der verfügbaren Bücher mit Such- und Filteroptionen.
+Benutzerkonten erstellen: Möglichkeit, neue Benutzerkonten für Bibliothekare und Besucher anzulegen.
+Benutzerkonten editieren: Funktion zum Bearbeiten der Benutzerinformationen und Zugriffsrechte.
+Benutzerkonten löschen: Möglichkeit zum Entfernen von Benutzerkonten, falls nötig.
+Ausleih- und Rückgabeprozesse: Verwaltung der Ausleihe von Büchern einschließlich Rückgabeverfolgung.
+Reservierungssystem: System, das es Benutzern erlaubt, Bücher zu reservieren und die Reservierung zu verwalten.
+Verlängerungsfunktion: Option für Benutzer und Personal, die Ausleihdauer von Büchern zu verlängern.
+Mahnwesen: Automatisches System für die Verfolgung und Benachrichtigung bei überfälligen Büchern.
+Suchfunktion erweitern: Erweiterte Suchfunktionen, die es ermöglichen, Bücher nach verschiedenen Kriterien wie Schlagworten, Erscheinungsjahr etc. zu suchen.
+Bestandsverwaltung erweitern: Detailgenaue Verfolgung von Buchbewegungen, Bestandszählungen und Bestellung neuer Bücher.
+Berichte und Statistiken: Erstellen von Berichten über Ausleihaktivitäten, Nutzungsstatistiken und beliebte Bücher.
