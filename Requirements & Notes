@@ -1,4 +1,4 @@
-Softwareanforderungen
+Requirements:
 
 Bücher einpflegen/bearbeiten/entfernen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID, Status)
 Katalog (Datenbank ausgeben lassen)
@@ -15,10 +15,10 @@ Verlängerungsprozess
 
 
 
-Notiz:
+Notes:
 - Zahlen der Kunden entfällt (nicht relevant)
--  Zugriffsrechte (nicht relevant)
-
+- Zugriffsrechte (nicht relevant)
+- Bearbeitung der Buchdaten entfällt (zu komplex)
 
 
 
