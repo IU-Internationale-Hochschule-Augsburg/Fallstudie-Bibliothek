@@ -1,14 +1,14 @@
+Teams:
+Team 1 (Frontend):   Flo, Julia, Angelo
+Team 2 (Backend):    Tobias, Marinela, Volodymir
+
 Aufgaben:
 1. Team 1 entwickelt eine Benutzeroberfläche für Bibliotheksmitarbeiter (Layout, Design, Anlegen der Website mit Grundstrucktur)
-2. Team 1 erstellt die Datenbankstruktur (Funktionen, etc)
-
-
-Teams:
-Team 1 (Frontend): Flo, Julia, Angelo
-Team 2 (Backend): Tobias, Marinela, Volodymir
+2. Team 2 erstellt die Datenbankstruktur (Funktionen, etc)
 
 Programmiersprachen:
-- 
+Frontend:  html, css, javaskript
+Backend:  
 
 Organisationstool
 - Programmieroberfläche: IntelliJ (Java), Visual Studio (HTML, Javascript, SQL)
