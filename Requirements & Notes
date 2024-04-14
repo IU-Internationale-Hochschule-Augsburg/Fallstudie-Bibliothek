@@ -1,6 +1,6 @@
 Requirements:
 
-- Bücher einpflegen/entfernen ( Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID, Status)
+- Bücher einpflegen/entfernen ( Titel, Autor, ISB, Genre, Auflage, Seitenzahl, Verfügbarkeit/Bestand,ID, Status)
 - Katalog einsehen (Datenbank ausgeben lassen)
 - Suche benutzen (Filter)
 - Benutzer anlegen/bearbeiten/entfernen (Name, Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer, Bankverbindung)
