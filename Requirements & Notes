@@ -9,7 +9,7 @@ Requirements:
 - Rückgabeprozess verwalten (Einscannen der Bücher-ID, Status, Mahnung)
 - Reservierungssystem verwalten (Vorab Reservierung, Status)
 - Verlängerungsprozess verwalten (Zeit, Status)
-
+- Vorbestellung verwalten (Name des Buches, Anzahl der Bücher)
 
 Notes:
 - Zahlen der Kunden entfällt (nicht relevant)
