@@ -6,7 +6,7 @@ Requirements:
 - Benutzer anlegen/bearbeiten/entfernen (Name, Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer, Bankverbindung)
 - Datenbank für Benutzer anlegen
 - Ausleihprozess verwalten (Auswahl des Benutzers, Einscannen der Bücher-ID, Zeit)
-- Rückgabeprozess verwalten (Einscannen der Bücher-ID, Status)
+- Rückgabeprozess verwalten (Einscannen der Bücher-ID, Status, Mahnung)
 - Reservierungssystem verwalten (Vorab Reservierung, Status)
 - Verlängerungsprozess verwalten (Zeit, Status)
 
@@ -18,33 +18,24 @@ Notes:
 
 
 
-
-
-
-
-
-
 Hier sind einige User Stories basierend auf den angegebenen Anforderungen:
 
-1. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, neue Bücher in die Datenbank einzupflegen, einschließlich Titel, Autor, ISBN, Genre, Auflage damit Kunden sie ausleihen können.
-Auschluss: Buchdaten soll nicht bearbeitet werden. 
+1. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, neue Bücher in die Datenbank einzupflegen, einschließlich Titel, Autor,
+ISBN, Genre, Auflage damit Kunden sie ausleihen können.
+2. Als Bibliotheksmitarbeiter möchte ich die Fähigkeit haben, Bücher aus der Datenbank zu entfernen, wenn sie nicht mehr verfügbar 
+sind oder aus anderen Gründen aus dem Bestand genommen werden müssen.
+4. Ein Katalog soll automatisch erstellt werden, der alle verfügbaren Bücher in der Datenbank auflistet, damit die Mitarbeiter sie
+durchsuchen können.
+5. Als Bibliotheksbenutzer möchte ich die Möglichkeit haben, nach Büchern im Katalog zu suchen und dabei Filter anzuwenden, um die 
+Ergebnisse nach Titel, Autor, ISB, Genre, Auflage, Verfügbarkeit/Bestand,ID, und Status einzugrenzen.
+6. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, Benutzerkonten anzulegen, zu bearbeiten oder zu entfernen, um die 
+Mitgliedschaft in der Bibliothek zu verwalten.
+7. Als Bibliotheksmitarbeiter möchte ich die notwendigen Informationen über Benutzer speichern können, einschließlich Namen, 
+Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer und Bankverbindung.
+8. Als Bibliotheksbenutzer möchte ich Bücher ausleihen können, indem ich meinen Benutzer auswähle, die Bücher-ID einscanne und die 
+Ausleihzeit festlege.
+9. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, Ausleihfristen zu verwalten und bei Bedarf Mahnungen zu erstellen, um die
+rechtzeitige Rückgabe von Büchern sicherzustellen.
+10. Als Bibliotheksbenutzer möchte ich Bücher zurückgeben können, um sie aus dem einzelnen Benutzer Konto zu entfernen und sie für 
+andere Benutzer verfügbar zu machen.
 
-2. Als Bibliotheksmitarbeiter möchte ich die Fähigkeit haben, Bücher aus der Datenbank zu entfernen, wenn sie nicht mehr verfügbar sind oder aus anderen Gründen aus dem Bestand genommen werden müssen.
-
-4. Ein Katalog soll automatisch erstellt werden, der alle verfügbaren Bücher in der Datenbank auflistet, damit der Mitarbeiter sie durchsuchen können.
-
-5. Als Bibliotheksbenutzer möchte ich die Möglichkeit haben, nach Büchern im Katalog zu suchen und dabei Filter anzuwenden, um die Ergebnisse nach Titel, Autor, Genre usw. einzugrenzen.
-
-6. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, Benutzerkonten anzulegen, zu bearbeiten oder zu entfernen, um die Mitgliedschaft in der Bibliothek zu verwalten.
-
-7. Als Bibliotheksmitarbeiter möchte ich die notwendigen Informationen über Benutzer speichern können, einschließlich Name, Nachname, Geburtsdatum, Adresse, E-Mail, Kundennummer und Bankverbindung.
-
-8. Als Bibliotheksbenutzer möchte ich Bücher ausleihen können, indem ich meinen Benutzer auswähle, die Bücher-ID einscanne und die Ausleihzeit festlege.
-
-9. Als Bibliotheksmitarbeiter möchte ich in der Lage sein, Ausleihfristen zu verwalten und bei Bedarf Mahnungen zu erstellen, um die rechtzeitige Rückgabe von Büchern sicherzustellen.
-
-10. Als Bibliotheksbenutzer möchte ich Bücher zurückgeben können, um sie aus meinem Konto zu entfernen und sie für andere Benutzer verfügbar zu machen.
-
-11. Als Bibliotheksbenutzer möchte ich die Möglichkeit haben, Bücher zu reservieren, die derzeit nicht verfügbar sind, um sicherzustellen, dass ich sie später ausleihen kann.
-
-12. Als Bibliotheksbenutzer möchte ich die Option haben, die Ausleihfrist für Bücher zu verlängern, wenn ich sie länger behalten muss.
