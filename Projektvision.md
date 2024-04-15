@@ -1,6 +1,6 @@
 # Teams:
-Team 1 (Frontend):   Flo, Julia, Angelo
-Team 2 (Backend):    Tobias, Marinela, Volodymir
+- Team 1 (Frontend):   Flo, Julia, Angelo
+- Team 2 (Backend):    Tobias, Marinela, Volodymir
 
 # Aufgaben:
 1. Team 1 entwickelt eine Benutzeroberfläche für Bibliotheksmitarbeiter, um Bücher hinzuzufügen,auszuleihen und zurückzugeben.(Layout, Design, Anlegen der Website mit Grundstrucktur)
