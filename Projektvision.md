@@ -1,6 +1,6 @@
 # Teams:
-- Team 1 (Frontend):   Flo Lichtenberger, Julia Sadlo, Angelo Vienibene
-- Team 2 (Backend):    Tobias Bruckmeier, Marinela Keller, Volodymir Teperyk
+- Team 1 (Frontend):   Florian Lichtenberger, Julia Sadlo, Angelo Vienibene
+- Team 2 (Backend):    Tobias Bruckmeier, Marinela Keller, Volodymyr Teperyk
 
 # Aufgaben:
 1. Team 1 entwickelt eine Benutzeroberfläche für Bibliotheksmitarbeiter, um Bücher hinzuzufügen,auszuleihen und zurückzugeben.(Layout, Design, Anlegen der Website mit Grundstrucktur)
