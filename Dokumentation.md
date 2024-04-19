@@ -1,5 +1,13 @@
 # Dokumentation
 
+
+## Erklärungen
+### User
+User bezeichnet die Bibliotheks-Mitarbeitenden. Diese sind die Anwender der Software. 
+
+### Mitglied
+Mitglied bezeichnet die Kunden der Bibliothek. Ein Mitglied kann Bücher ausleihen und zurückgeben. Mitglieder werden von einem User angelegt.
+
 ## Seiten
 - Login Seite?
 - Startseite
@@ -66,7 +74,7 @@ Anforderung | Issues | Milestone
 Frist-Verlängerung   | Issues   | Milestone
 
 ### Edit Tabelle
-Anforderung | Issues
+Anforderung | Issues | Milestone
 -------- | -------- | --------
 Anforderung   | Issues   | Milestone
 
