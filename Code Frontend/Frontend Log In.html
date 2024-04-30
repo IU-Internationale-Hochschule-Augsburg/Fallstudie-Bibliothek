@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> /* Größe wird an Gerät angepasst */
+    <title>Log In</title> /* Text der Oben im Tab angezeigt wird */
+    <style> /*Das Aussehen der verschiedenen Componenten wird beschrieben*/
         body {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Componenten werden Rechts und Links Mittig plaziert*/
+            align-items: center; /* Componenten werden Oben und Unten Mittig plaziert*/
             height: 100vh;
-            margin: 0;
+            margin: 0; /* Zuständig für die Abstände von Rand*/
             overflow: hidden; /* Verhindert das Scrollen der Seite */
             background-color: #444; /* Dunkelgraue Hintergrundfarbe */
             position: relative; /* Relative Positionierung für das Overlay */
         }
         .container {
-            text-align: center;
+            text-align: center; /* Der Text wird in der Mitte der Seite angezeigt*/
             position: relative; /* Relative Positionierung für das Overlay */
             z-index: 1; /* Stellt sicher, dass der Inhalt über dem Overlay liegt */
-            color: #000000; /* Textfarbe auf Weiß setzen */
+            color: #000000; /* Textfarbe auf schwarz setzen */
         }
         .button {
-            padding: 15px;
-            margin-top: 10px; 
+            padding: 15px; /*Größe des Buttons*/
+            margin-top: 10px; /*Abstand zum Vorherigen Element*/
         }
         input {
-            padding: 6px;
+            padding: 6px; /*Größe des Input Felds*/
         }
         .fit-picture {
             max-width: 100%;
@@ -36,9 +36,9 @@
         }
         .stacked {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px; 
+            flex-direction: column; /*Die Input Boxen werden übereinander angezeigt*/
+            align-items: center; /*Die Input Boxen werden in der Mitte angezeigt*/
+            gap: 15px; /*Die Input Boxen haben einen Abstand voneinander*/
         }
         .login-text {
             font-size: 40px; /* Größere Schriftgröße für den Log In Text */
@@ -46,7 +46,7 @@
             top: -15%; /* 10% Abstand zum oberen Rand */
             left: 50%; /* Links mittig positionieren */
             transform: translateX(-50%); /* Text horizontal zentrieren */
-            gap: 15px; 
+            
         }
         .overlay {
             position: absolute;
@@ -54,7 +54,7 @@
             left: 50px; /* Abstand zum linken Rand */
             width: calc(100% - 100px); /* Breite abzüglich des doppelten Abstands */
             height: calc(100% - 100px); /* Höhe abzüglich des doppelten Abstands */
-            background-color: #ddd; /* Hellgraue Hintergrundfarbe */
+            background-color: #bdbdbd; /* Hellgraue Hintergrundfarbe */
             z-index: 0; /* Stellt sicher, dass das Overlay hinter dem Inhalt liegt */
             display: flex;
             justify-content: center;
@@ -62,16 +62,16 @@
         }
     </style>
 </head>
-<body>
-    <div class="overlay">
+<body> /*Die Verschiedenen Componenten werden hinzugefügt*/
+    <div class="overlay"> /*Der zweite Hintergrund (Die Hellgraue Fläche)*/
         <div class="container">
-            <img class="fit-picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIM_-ALM6Bdf_nG45MtE2jeO-oq2K1nDoIAg&s" alt="PersonaIcon" />
-            <label class="login-text">Log In</label>
+            <img class="fit-picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIM_-ALM6Bdf_nG45MtE2jeO-oq2K1nDoIAg&s" alt="PersonaIcon" /> /*Das Persona Icon*/
+            <label class="login-text">Log In</label> /*Der Text "Log In"*/
             <div class="stacked">
-                <input class="input1" placeholder="Username">
-                <input class="input2" type="password" placeholder="Password">
+                <input class="input1" placeholder="Username"> /*Das Input Feld "Username"*/
+                <input class="input2" type="password" placeholder="Password"> /*Das Input Feld "Passwort"*/
             </div>
-            <button class="button">SIGN IN</button>
+            <button class="button">SIGN IN</button> /*Der Button "SIGN IN"*/
         </div>
     </div>
 </body>
