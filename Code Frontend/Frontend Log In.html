@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Verhindert das Scrollen der Seite */
+            background-color: #444; /* Dunkelgraue Hintergrundfarbe */
+            position: relative; /* Relative Positionierung für das Overlay */
+        }
+        .container {
+            text-align: center;
+            position: relative; /* Relative Positionierung für das Overlay */
+            z-index: 1; /* Stellt sicher, dass der Inhalt über dem Overlay liegt */
+            color: #000000; /* Textfarbe auf Weiß setzen */
+        }
+        .button {
+            padding: 15px;
+            margin-top: 10px; 
+        }
+        input {
+            padding: 6px;
+        }
+        .fit-picture {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Das Bild als Blockelement anzeigen */
+            margin: 0 auto; /* Das Bild zentrieren */
+        }
+        .stacked {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; 
+        }
+        .login-text {
+            font-size: 40px; /* Größere Schriftgröße für den Log In Text */
+            position: Start; /* Absolute Positionierung für den Log In Text */
+            top: -15%; /* 10% Abstand zum oberen Rand */
+            left: 50%; /* Links mittig positionieren */
+            transform: translateX(-50%); /* Text horizontal zentrieren */
+            gap: 15px; 
+        }
+        .overlay {
+            position: absolute;
+            top: 50px; /* Abstand zum oberen Rand */
+            left: 50px; /* Abstand zum linken Rand */
+            width: calc(100% - 100px); /* Breite abzüglich des doppelten Abstands */
+            height: calc(100% - 100px); /* Höhe abzüglich des doppelten Abstands */
+            background-color: #ddd; /* Hellgraue Hintergrundfarbe */
+            z-index: 0; /* Stellt sicher, dass das Overlay hinter dem Inhalt liegt */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <img class="fit-picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIM_-ALM6Bdf_nG45MtE2jeO-oq2K1nDoIAg&s" alt="PersonaIcon" />
+            <label class="login-text">Log In</label>
+            <div class="stacked">
+                <input class="input1" placeholder="Username">
+                <input class="input2" type="password" placeholder="Password">
+            </div>
+            <button class="button">SIGN IN</button>
+        </div>
+    </div>
+</body>
+</html>
