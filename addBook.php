@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO buecher (titel, autor) VALUES ('$titel', '$autor')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Neues Buch erfolgreich hinzugefügt!";
+        echo "Neues Buch erfolgreich hinzugefügt.";
     } else {
         echo "Fehler: " . $sql . "<br>" . $conn->error;
     }

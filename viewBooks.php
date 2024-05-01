@@ -9,7 +9,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Überprüfen der Verbindung
 if ($conn->connect_error) {
-    die("Verbindung fehlgeschlagen:  " . $conn->connect_error);
+    die("Verbindung fehlgeschlagen: " . $conn->connect_error);
 }
 
 // SQL-Abfrage, um Daten aus der Tabelle 'buecher' zu holen
