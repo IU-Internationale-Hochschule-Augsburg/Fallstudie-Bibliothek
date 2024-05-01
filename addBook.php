@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Überprüfen Sie die Verbindung
     if ($conn->connect_error) {
-        die("Verbindung fehlgeschlagen:  " . $conn->connect_error);
+        die("Verbindung fehlgeschlagen: " . $conn->connect_error);
     }
 
     // Daten aus dem Formular erhalten
