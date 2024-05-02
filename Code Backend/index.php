@@ -1,3 +1,84 @@
+<?php
+
+class Book {
+    public $id;
+    public $title;
+    public $author;
+    public $isbn;
+    public $genre;
+
+    public function __construct($id, $title, $author, $isbn, $genre) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->author = $author;
+        $this->isbn = $isbn;
+        $this->genre = $genre;
+    }
+}
+
+class BookList {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function addBookManually($title, $author, $isbn, $genre) {
+        $stmt = $this->conn->prepare("INSERT INTO books (title, author, isbn, genre) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $title, $author, $isbn, $genre);
+        $stmt->execute();
+        $stmt->close();
+        echo "Book added successfully!";
+    }
+
+    public function getAllBooks() {
+        $result = $this->conn->query("SELECT * FROM books");
+        if ($result->num_rows > 0) {
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["book_id"] . "</td>";
+                echo "<td>" . $row["title"] . "</td>";
+                echo "<td>" . $row["author"] . "</td>";
+                echo "<td>" . $row["isbn"] . "</td>";
+                echo "<td>" . $row["genre"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "No books added yet.";
+        }
+    }
+}
+
+// MySQL server information
+$servername = "localhost"; // Standard-Hostname für die lokale MySQL-Verbindung
+$username = "root"; // Standardbenutzername für MySQL
+$password = ""; // Standardpasswort für MySQL, leer lassen für keine Authentifizierung
+$dbname = "library"; // Name der Datenbank, in der Ihre Bücher gespeichert werden
+
+// Versuchen, eine Verbindung zur MySQL-Datenbank herzustellen
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Überprüfen Sie die Verbindung auf Fehler
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$bookList = new BookList($conn);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST["title"];
+    $author = $_POST["author"];
+    $isbn = $_POST["isbn"];
+    $genre = $_POST["genre"];
+    
+    $bookList->addBookManually($title, $author, $isbn, $genre);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,91 +110,11 @@
     </form>
 
     <h2>Book List</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>ISBN</th>
-            <th>Genre</th>
-        </tr>
-        <?php
-        $bookList = new BookList();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $title = $_POST["title"];
-            $author = $_POST["author"];
-            $isbn = $_POST["isbn"];
-            $genre = $_POST["genre"];
-            
-            $bookList->addBookManually($title, $author, $isbn, $genre);
-        }
-
-        $bookList->displayBookTable();
-        ?>
-    </table>
+    <?php $bookList->getAllBooks(); ?>
 </body>
 </html>
 
 <?php
-
-class Book {
-    public $id;
-    public $title;
-    public $author;
-    public $isbn;
-    public $genre;
-
-    public function __construct($id, $title, $author, $isbn, $genre) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->author = $author;
-        $this->isbn = $isbn;
-        $this->genre = $genre;
-    }
-}
-
-class BookList {
-    private $books = [];
-    private $nextId = 1; // Starting ID
-    private $filename = 'books.txt';
-
-    public function __construct() {
-        if (file_exists($this->filename)) {
-            $this->loadFromFile();
-        }
-    }
-
-    public function addBookManually($title, $author, $isbn, $genre) {
-        $id = $this->nextId++;
-        $book = new Book($id, $title, $author, $isbn, $genre);
-        $this->books[] = $book;
-        $this->saveToFile();
-    }
-
-    public function displayBookTable() {
-        if (empty($this->books)) {
-            echo "<tr><td colspan='5'>No books added yet.</td></tr>";
-        } else {
-            foreach ($this->books as $book) {
-                echo "<tr>";
-                echo "<td>" . $book->id . "</td>";
-                echo "<td>" . $book->title . "</td>";
-                echo "<td>" . $book->author . "</td>";
-                echo "<td>" . $book->isbn . "</td>";
-                echo "<td>" . $book->genre . "</td>";
-                echo "</tr>";
-            }
-        }
-    }
-
-    private function saveToFile() {
-        file_put_contents($this->filename, serialize($this->books));
-    }
-
-    private function loadFromFile() {
-        $data = file_get_contents($this->filename);
-        $this->books = unserialize($data);
-    }
-}
+// Schließen Sie die MySQL-Verbindung am Ende
+$conn->close();
 ?>
