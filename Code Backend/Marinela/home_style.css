@@ -1,0 +1,16 @@
+/* Other styles for the home page */
+
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #6e6a6a;
+}

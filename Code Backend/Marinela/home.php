@@ -56,7 +56,7 @@ class BookList {
 $servername = "localhost"; // Standard-Hostname für die lokale MySQL-Verbindung
 $username = "root"; // Standardbenutzername für MySQL
 $password = ""; // Standardpasswort für MySQL, leer lassen für keine Authentifizierung
-$dbname = "library"; // Name der Datenbank, in der Ihre Bücher gespeichert werden
+$dbname = "users"; // Name der Datenbank, in der Ihre Bücher gespeichert werden
 
 // Versuchen, eine Verbindung zur MySQL-Datenbank herzustellen
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -82,8 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book List</title>
+    <title>Library Management System</title>
     <style>
+        body {
+            background-color: #ffffff;
+            
+        }
         table {
             border-collapse: collapse;
             width: 100%;
@@ -93,6 +97,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 8px;
             text-align: left;
         }
+        .logout-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0a0a0a;
+        color: #ffffff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+    .logout-button:hover {
+    background-color: #6e6a6a;
+    }
     </style>
 </head>
 <body>
@@ -110,7 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <h2>Book List</h2>
-    <?php $bookList->getAllBooks(); ?>
+    <?php $bookList->getAllBooks(); ?><br>
+    <a href="logout.php" class="logout-button">Logout</a>
 </body>
 </html>
 
