@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <img class="fit-picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIM_-ALM6Bdf_nG45MtE2jeO-oq2K1nDoIAg&s" alt="PersonaIcon" />
+            <label class="login-text">Log In</label>
+            <form action="login.php" method="post"> <!-- Modified to send form data to login.php -->
+                <div class="stacked">
+                    <input class="input1" type="text" name="username" placeholder="Username"> <!-- Added name attribute -->
+                    <input class="input2" type="password" name="password" placeholder="Password"> <!-- Added name attribute -->
+                </div>
+                <button class="button" type="submit">SIGN IN</button> <!-- Modified to submit the form -->
+            </form>
+        </div>
+    </div>
+</body>
+</html>
