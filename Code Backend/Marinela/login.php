@@ -1,16 +1,5 @@
 <?php
-// Establish database connection
-$servername = "sql11.freesqldatabase.com"; // Change this to your database server
-$username = "sql11703805"; // Change this to your database username
-$password = "l15w7cSPgl"; // Change this to your database password
-$dbname = "sql11703805"; // Change this to your database name
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include "db_conn.php";
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
