@@ -23,9 +23,10 @@
     </form>
 
     <br>
-    <button onclick="window.location.href='home.php'">Home</button>
+    <button onclick="window.location.href='home.php'">Home</button> <!-- Navigate up two levels -->
     <br>
-    <a href="logout.php" class="logout-button">Logout</a>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Navigate up two levels -->
+
 
 </body>
 </html>

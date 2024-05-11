@@ -21,7 +21,8 @@
     <button onclick="window.location.href='book_list.php'">Book List</button><br>
     <button onclick="window.location.href='member_management.php'">Member Management</button><br>
     <button onclick="window.location.href='member_list.php'">Member List</button><br>
-    <button onclick="window.location.href='user_management.php'">User Mangagement</button><br>
+    <button onclick="window.location.href='user_management.php'">User Management</button><br>
+
 
 
     <br>
