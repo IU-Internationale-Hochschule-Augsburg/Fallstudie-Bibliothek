@@ -1,7 +1,9 @@
 <?php
 include "db_conn.php";
 
-$message = "";
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookId = $_POST["book_id"];
@@ -18,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updateBookStatusQuery = "UPDATE books SET status = 'available' WHERE book_id = $bookId";
         $conn->query($updateBookStatusQuery);
         
-        $message = "Book returned successfully!";
+        echo "Book returned successfully!";
     } else {
         // Book has not been issued, cannot return
-        $message = "Book has not been issued.";
+        echo "Book has not been issued.";
     }
 }
 
