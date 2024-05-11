@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Issue Book</title>
     <link rel="stylesheet" type="text/css" href="home_style.css">
+    <style>
+        button {
+            margin-bottom: 10px; /* Add space below each button */
+        }
+    </style>
 </head>
 <body>
 
@@ -18,7 +23,8 @@
     </form>
 
     <br>
-    <a href="home.php" class="back-button">Home</a>
+    <button onclick="window.location.href='home.php'">Home</button>
+    <br>
     <a href="logout.php" class="logout-button">Logout</a>
 
 </body>

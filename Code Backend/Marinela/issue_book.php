@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->query($insertIssueQuery);
         
         // Update the status of the book to 'issued' in the books table
-        $updateBookStatusQuery = "UPDATE books SET status = 'issued' WHERE book_id = $bookId";
+        $updateBookStatusQuery = "UPDATE books SET status = 'Issued' WHERE book_id = $bookId";
         $conn->query($updateBookStatusQuery);
         
         echo "Book issued successfully!";
