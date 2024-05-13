@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Frontend_styles.css">
+    <meta name="description" content="Eine kurze Beschreibung der Webseite">
+    <meta name="author" content="Max Mustermann">
+</head>
+
+</head>
+
+
+<body>
+    <button class="button_house"></button>
+    <button class="button_equals"></button>
+    <button class="button_booklist"></button>
+    <button class="button_userlist"></button>
+    <button class="button_reminder"></button>
+    <button class="button_lend"></button>
+    <button class="button_settings"></button>
+    <div class="sidebar"></div>
+
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="#">Startseite</a></li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Dienstleistungen</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </div>   
+    <script src="script.js"></script>
+    <script>
+        // Hier ist dein JavaScript-Code
+        function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.classList.toggle("active");
+    }
+    </script>
+
+
+</body>

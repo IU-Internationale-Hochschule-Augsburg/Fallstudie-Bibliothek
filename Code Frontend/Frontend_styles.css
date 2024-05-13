@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #888888; /* hellgrauer Hintergrund */
+    overflow: hidden;
+}
+
+.sidebar {
+    position: absolute;
+    top: 45px;
+    left: 55px;
+    right: 0; /* Änderung: Rechts bündig mit der Seite */
+    bottom: 0; /* Änderung: Unten bündig mit der Seite */
+    background-color: #404040; /* dunkelgrauer Hintergrund */
+    z-index: 1;
+    padding: 20px;
+}
+
+.button_house {
+        background-image: url('button_house.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 35px; 
+        max-width: 35px;
+        height: 35px; 
+        margin: 10px;
+        margin-top:45px;
+        padding-left: 20px;
+        padding-top: 35px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button_equals {
+        background-image: url('button_equals.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 26px; 
+        max-width: 26px;
+        height: 26px; 
+        margin: 13px;
+        margin-top:-85px;
+        padding-left: 10px;
+        padding-top: 26px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button_booklist {
+        background-image: url('button_booklist.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 40px; 
+        max-width: 40px;
+        height: 32px; 
+        margin: 8px;
+        margin-top: 62px;
+        padding-left: 10px;
+        padding-top: 32px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button_userlist {
+        background-image: url('button_userlist.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 45px; 
+        max-width: 45px;
+        height: 45px; 
+        margin: 6px;
+        margin-top:-2px;
+        padding-left: 10px;
+        padding-top: 32px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button_reminder {
+        background-image: url('button_reminder.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 45px; 
+        max-width: 45px;
+        height: 45px; 
+        margin: 6px;
+        margin-top:-5px;
+        padding-left: 10px;
+        padding-top: 32px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+    .button_lend {
+        background-image: url('button_lend.png');
+        background-size: cover;
+        background-color: #888888;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 42px; 
+        max-width: 42px;
+        height: 42px; 
+        margin: 8px;
+        margin-top:15px;
+        padding-left: 10px;
+        padding-top: 32px; 
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+    .button_settings {
+        background-image: url('button_settings.png');
+        background-size: cover;
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 42px;
+        height: 42px;
+        bottom: 5;
+        left: 5;
+        display: block;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .menu {
+        display: none;
+    }
+    
+    .menu.active {
+        display: block;
+    }
