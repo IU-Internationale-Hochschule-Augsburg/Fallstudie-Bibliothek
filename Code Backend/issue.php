@@ -1,7 +1,10 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Issue Book</title>
     <link rel="stylesheet" type="text/css" href="home_style.css">
@@ -14,6 +17,12 @@
 <body>
 
     <h2>Issue Book</h2>
+    <?php
+    if (isset($_SESSION["message"])) {
+        echo '<p>' . $_SESSION["message"] . '</p>';
+        unset($_SESSION["message"]); // remove it after displaying
+    }
+    ?>
     <form action="issue_book.php" method="post">
         <label for="book_id">Book ID:</label><br>
         <input type="text" id="book_id" name="book_id"><br>
@@ -27,7 +36,5 @@
     <br>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Navigate up two levels -->
 
-
 </body>
 </html>
-

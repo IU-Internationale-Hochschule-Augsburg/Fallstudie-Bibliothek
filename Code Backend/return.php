@@ -1,13 +1,16 @@
 <?php
+session_start();
 include "db_conn.php";
 
-$message = "";
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookId = $_POST["book_id"];
     
     // Check if the book has been issued
-    $checkIssuedQuery = "SELECT * FROM issues WHERE book_id = ? AND return_date > NOW()";
+    $checkIssuedQuery = "SELECT * FROM issues WHERE book_id = ? AND status = 'open'";
     
     $stmt = $conn->prepare($checkIssuedQuery);
     $stmt->bind_param("i", $bookId);
@@ -16,29 +19,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // Book has been issued, proceed with return
-        $updateReturnDateQuery = "UPDATE issues SET return_date = NOW() WHERE book_id = ? AND return_date > NOW()";
+        $updateReturnDateQuery = "UPDATE issues SET status = 'closed', return_date = NOW() WHERE book_id = ? AND status = 'open'";
         
         $stmt = $conn->prepare($updateReturnDateQuery);
         $stmt->bind_param("i", $bookId);
         
         if ($stmt->execute()) {
             // Update book status to 'available'
-            $updateBookStatusQuery = "UPDATE books SET status = 'available' WHERE book_id = ?";
+            $updateBookStatusQuery = "UPDATE books SET status = 'Available' WHERE book_id = ?";
             
             $stmt = $conn->prepare($updateBookStatusQuery);
             $stmt->bind_param("i", $bookId);
             
             if ($stmt->execute()) {
-                $message = "Book returned successfully!";
+                $_SESSION["message"] = "Book returned successfully!";
             } else {
-                $message = "Error updating book status: " . $conn->error;
+                $_SESSION["message"] = "Error updating book status: " . $stmt->error;
             }
         } else {
-            $message = "Error updating return date: " . $conn->error;
+            $_SESSION["message"] = "Error updating issue status: " . $stmt->error;
         }
     } else {
-        // Book has not been issued, cannot return
-        $message = "Book has not been issued.";
+        $_SESSION["message"] = "This book is not issued!";
     }
 }
 
@@ -60,16 +62,19 @@ $conn->close();
 </head>
 <body>
     <h2>Return Book</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="book_id">Book ID:</label><br>
-        <input type="text" id="book_id" name="book_id"><br><br>
-        <input type="submit" value="Return Book">
-    </form>
+    <?php
+    if (isset($_SESSION["message"])) {
+        echo $_SESSION["message"];
+        unset($_SESSION["message"]); // remove it after displaying
+    }
+    ?>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <label for="book_id">Book ID:</label><br>
+    <input type="text" id="book_id" name="book_id"><br><br>
+    <input type="submit" value="Return Book">
+</form>
     <br>
     <button onclick="window.location.href='home.php'">Home</button>
     <br>
-    <?php echo $message; ?>
-    <br>
-    
 </body>
 </html>
