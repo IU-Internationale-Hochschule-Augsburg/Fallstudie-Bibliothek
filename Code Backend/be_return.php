@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // Book has been issued, proceed with return
-        $updateReturnDateQuery = "UPDATE issues SET status = 'closed', return_date = NOW() WHERE book_id = ? AND status = 'open'";
+        $updateReturnDateQuery = "UPDATE issues SET status = 'Returned', return_date = NOW() WHERE book_id = ? AND status = 'open'";
         
         $stmt = $conn->prepare($updateReturnDateQuery);
         $stmt->bind_param("i", $bookId);

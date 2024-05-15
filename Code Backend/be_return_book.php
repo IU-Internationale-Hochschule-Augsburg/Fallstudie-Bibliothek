@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // Book has been issued, proceed with return
-        $updateIssueStatusQuery = "UPDATE issues SET status = 'closed' WHERE book_id = ? AND status = 'open'";
+        $updateIssueStatusQuery = "UPDATE issues SET status = 'Returned' WHERE book_id = ? AND status = 'open'";
         $stmt = $conn->prepare($updateIssueStatusQuery);
         $stmt->bind_param("i", $bookId);
         

@@ -46,7 +46,60 @@
     ?>
 
     <br>
-    <button onclick="window.location.href='be_home.php'">Home</button>
+    <button onclick="window.location.href='be_home.php'">Home</button><br><br>
+    <button onclick="window.location.href='be_loan.php'">Loan Book</button>
+    <button onclick="window.location.href='be_return.php'">Return Book</button>
+    <button onclick="window.location.href='be_loan_list.php'">Loan List</button>
+    <button onclick="window.location.href='be_book_management.php'">Book Management</button>
+    <button onclick="window.location.href='be_book_list.php'">Book List</button>
+    <button onclick="window.location.href='be_member_management.php'">Member Management</button>
+    <button onclick="window.location.href='be_member_list.php'">Member List</button>
+    <button onclick="window.location.href='be_user_management.php'">User Management</button>
+    <button onclick="window.location.href='overview.php'">Overview</button>
+    <br>
+    <br>
+
+    
+
+    <?php
+    // Fetch the 5 most recent issues from the database
+    
+    
+    $sqlIssues = "
+    SELECT issues.issue_id, books.title, members.first_name, members.last_name, issues.issue_date, issues.return_date, issues.status 
+    FROM issues 
+    INNER JOIN books ON issues.book_id = books.book_id 
+    INNER JOIN members ON issues.member_id = members.member_id 
+    ORDER BY issues.issue_date DESC, issues.issue_id DESC 
+    LIMIT 5";
+
+    $resultIssues = $conn->query($sqlIssues);
+
+    echo "<h3>Recent Issues</h3>";
+    if ($resultIssues !== false && $resultIssues->num_rows > 0) {
+        echo "<table>";
+      
+    echo "<tr><th>Issue ID</th><th>Book Title</th><th>Member Name</th><th>Issue Date</th><th>Return Date</th><th>Status</th></tr>";
+    while ($row = $resultIssues->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["issue_id"] . "</td>";
+        echo "<td>" . $row["title"] . "</td>";
+        echo "<td>" . $row["first_name"] . " " . $row["last_name"] . "</td>";
+        echo "<td>" . $row["issue_date"] . "</td>";
+        echo "<td>" . $row["return_date"] . "</td>";
+        echo "<td>" . $row["status"] . "</td>";
+        echo "</tr>";
+}
+
+        echo "</table>";
+    } else {
+        echo "No issues found.";
+    }
+    ?>
+
+    <br>
+    <button onclick="window.location.href='be_loan_list.php'">Loan List</button>
+    <button onclick="window.location.href='be_loan.php'">Loan Book</button>
     <br>
     <br>
 
@@ -78,37 +131,6 @@
     <br>
     <button onclick="window.location.href='be_book_list.php'">Book List</button>
     <button onclick="window.location.href='be_book_management.php'">Book Management</button>
-    <br>
-    <br>
-
-    <?php
-    // Fetch the 5 most recent issues from the database
-    $sqlIssues = "SELECT * FROM issues ORDER BY issue_date DESC LIMIT 5";
-    $resultIssues = $conn->query($sqlIssues);
-
-    echo "<h3>Recent Issues</h3>";
-    if ($resultIssues !== false && $resultIssues->num_rows > 0) {
-        echo "<table>";
-        echo "<tr><th>Issue ID</th><th>Book ID</th><th>Member ID</th><th>Issue Date</th><th>Return Date</th><th>Status</th></tr>";
-        while ($row = $resultIssues->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["issue_id"] . "</td>";
-            echo "<td>" . $row["book_id"] . "</td>";
-            echo "<td>" . $row["member_id"] . "</td>";
-            echo "<td>" . $row["issue_date"] . "</td>";
-            echo "<td>" . $row["return_date"] . "</td>";
-            echo "<td>" . $row["status"] . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "No issues found.";
-    }
-    ?>
-
-    <br>
-    <button onclick="window.location.href='be_loan_list.php'">Loan List</button>
-    <button onclick="window.location.href='be_loan.php'">Loan Book</button>
     <br>
     <br>
 

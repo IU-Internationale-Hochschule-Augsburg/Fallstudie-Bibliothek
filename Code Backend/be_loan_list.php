@@ -24,40 +24,41 @@
     <br>
     <br>
     <?php
-    include "be_db_conn.php";
+include "be_db_conn.php";
 
-    // Check if the connection to the database is successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+// Check if the connection to the database is successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Perform a query to fetch all books from the database
+$sql = "
+    SELECT issues.issue_id, books.title, members.first_name, members.last_name, issues.issue_date, issues.return_date, issues.status 
+    FROM issues 
+    INNER JOIN books ON issues.book_id = books.book_id 
+    INNER JOIN members ON issues.member_id = members.member_id 
+    ORDER BY issues.issue_id DESC";
+$result = $conn->query($sql);
+
+// Check if the query was successful and if there are any rows returned
+if ($result !== false && $result->num_rows > 0) {
+    // Display the table header and iterate through the fetched results
+    echo "<table>";
+    echo "<tr><th>Issue ID</th><th>Book Title</th><th>Member Name</th><th>Issue Date</th><th>Return Date</th><th>Status</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["issue_id"] . "</td>";
+        echo "<td>" . $row["title"] . "</td>";
+        echo "<td>" . $row["first_name"] . " " . $row["last_name"] . "</td>";
+        echo "<td>" . $row["issue_date"] . "</td>";
+        echo "<td>" . $row["return_date"] . "</td>";
+        echo "<td>" . $row["status"] . "</td>";
+        echo "</tr>";
     }
-
-    // Perform a query to fetch all books from the database
-    $sql = "SELECT * FROM issues ORDER BY issue_id DESC";
-    $result = $conn->query($sql);
-
-    // Check if the query was successful and if there are any rows returned
-    if ($result !== false && $result->num_rows > 0) {
-        // Display the table header and iterate through the fetched results
-        echo "<table>";
-        echo "<tr><th>Issue ID</th><th>Book ID</th><th>Member ID</th><th>Issue Date</th><th>Return Date</th><th>Status</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["issue_id"] . "</td>";
-            echo "<td>" . $row["book_id"] . "</td>";
-            echo "<td>" . $row["member_id"] . "</td>";
-            echo "<td>" . $row["issue_date"] . "</td>";
-            echo "<td>" . $row["return_date"] . "</td>";
-            echo "<td>" . $row["status"] . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        // If no books are found, display a message
-        echo "No loans found.";
-    }
-
-    // Close the database connection
-    $conn->close();
-    ?>
+    echo "</table>";
+} else {
+    echo "No issues found.";
+}
+?>
 </body>
 </html>
