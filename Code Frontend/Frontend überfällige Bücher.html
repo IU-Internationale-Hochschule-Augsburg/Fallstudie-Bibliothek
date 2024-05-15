@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Website</title>
+    <title>Overdue Books</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #888888; /* hellgrauer Hintergrund */
+            background-color: #888888; /* Hellgrauer Hintergrund */
             overflow: hidden;
         }
         
@@ -16,8 +16,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0; /* Änderung: Rechts bündig mit der Seite */
-            bottom: 0; /* Änderung: Unten bündig mit der Seite */
+            right: 0; /* Rechts bündig mit der Seite */
+            bottom: 0; /* Unten bündig mit der Seite */
             background-color: #888888; /* Hellgrauer Hintergrund */
         }
 
@@ -25,17 +25,26 @@
             position: absolute;
             top: 50px;
             left: 70px;
-            right: 0; /* Änderung: Rechts bündig mit der Seite */
-            bottom: 0; /* Änderung: Unten bündig mit der Seite */
-            background-color: #404040; /* dunkelgrauer Hintergrund */
+            right: 0; /* Rechts bündig mit der Seite */
+            bottom: 0; /* Unten bündig mit der Seite */
+            background-color: #404040; /* Dunkelgrauer Hintergrund */
             z-index: 1;
             padding: 20px;
+            border-radius: 10px;
         }
+
+        .container3  {
+            background-color: white; /* Weißer Hintergrund */
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
         .icon {
             padding-left: 10px;
-            padding-top: 50px; /* Erhöht auf 90px */
+            padding-top: 50px; /* Erhöht auf 50px */
             width: 50px; /* Breite der Icons */
-            max-width: 50px; /* Maximale breite der Icons */
+            max-width: 50px; /* Maximale Breite der Icons */
             height: 50px; /* Höhe der Icons */
             display: block;
             background-size: contain;
@@ -45,6 +54,49 @@
             cursor: pointer;
             margin: 10px;
         }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 40px 60px;
+            cursor: pointer;
+            border: 1px solid #888;
+            background-color: #ccc;
+            margin-left: 200px;
+            margin-right: 400px;
+            margin-bottom: 40px;
+            margin-top: 40px;
+            border-radius: 10px; /* Ecken abrunden */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px; /* Ecken abrunden */
+            overflow: hidden; /* Abgerundete Ecken anzeigen */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        h2 {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border-radius: 10px 10px 0 0; /* Obere Ecken abrunden */
+        }
     </style>
 </head>
 <body>
@@ -52,42 +104,66 @@
         <button class="icon" style="background-image: url('https://imgs.search.brave.com/XNf-Zk9fjNt-K_KvuBwg7Bh2Yc24R-ruYwiafMu-wWw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzAzLzM2Lzc5/LzM2MF9GXzEwMzM2/NzkwMF9BeXVUMjNm/ZWg4cWtNTnc4TWlG/dTNaTUZ1VnBnV2Zp/WC5qcGc')" onclick="console.log('Icon 1 clicked')"></button>
         <button class="icon" style="background-image: url('https://imgs.search.brave.com/WKVs_Ebb1tRWGn2b32oqKTNR8aN-jp2ns9CcYewF3CE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzI3LzE1Lzg5/LzM2MF9GXzEyNzE1/ODkzM19jRFpBNHN1/TVhzeDJuMExRMDNG/enBYNTBSN2ZCYVV4/Mi5qcGc')" onclick="console.log('Icon 2 clicked')"></button>
         <button class="icon" style="background-image: url('https://imgs.search.brave.com/6vUmDW9XUDsEz9M1K8nKliZYUzMHVY57Pu_m3SEgKDc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzU0LzM2/LzM2MF9GXzI5NTU0/MzYzNV9zcllkbWFH/VVRFV2hjb2hFYXFu/UFIxbVZhRDV2VUJr/RC5qcGc')" onclick="console.log('Icon 3 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/n-lhXaKgFaOvLrA8Y6Ne0h9M0c851-bzZZsorBNSy1g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVrdG9yZW4tcHJl/bWl1bS9nZWZhaHJ3/YXJuc2NoaWxkLW1p/dC1laW5lbS1hdWYt/d2Vpc3NlbS1oaW50/ZXJncnVuZC1pc29s/aWVydGVuLWF1c3J1/ZmV6ZWljaGVuLXN5/bWJvbC1pbi1laW5m/YWNoZW0tc3RpbF85/NjMxOC0xNzgwOC5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw')" onclick="console.log('Icon 4 clicked')"></button>
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/n-lhXaKgFaOvLrA8Y6Ne0h9M0c851-bzZZsorBNSy1g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVrdG9yZW4tcHJl/bWl1bS1nZWZhaHJ3/YXJuc2NoaWxkLW1p/dC1laW5lbS1hdWYt/d2Vpc3NlbS1oaW50/ZXJncnVuZC1pc29s/aWVydGVuLWF1c3J1/ZmV6ZWljaGVuLXN5/bWJvbC1pbi1laW5m/YWNoZW0tc3RpbF85/NjMxOC0xNzgwOC5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw')" onclick="console.log('Icon 4 clicked')"></button>
         <button class="icon" style="background-image: url('https://imgs.search.brave.com/a5rGpUR2hiHwHlPGxZAjrR8NXwacKqouHAwkFcniFpQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC81MC8wMC9z/YW5kLWhvdXJnbGFz/cy1pY29uLXZlY3Rv/ci0yODE1NTAwMC5q/cGc')" onclick="console.log('Icon 5 clicked')"></button>
     </div>
     <div class="container2">
-        <h2>Bücher verwalten</h2>
-        
-        <table border="1">
-            <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Buch ID</th>
-                <th>Titel</th>
-                <th>Überfällig (Tage)</th>
-                <th>Status</th>
-                <th>Gebühr</th>
-            </tr>
-            <tr>
-                <td>123</td>
-                <td>Max Mustermann</td>
-                <td>456</td>
-                <td>Harry Potter</td>
-                <td>5</td>
-                <td>Ausgeliehen</td>
-                <td>3.50€</td>
-            </tr>
-            <!-- Weitere Zeilen für weitere Buchausleihen -->
-        </table>
+        <div class="buttons">
+            <button>Extend Book</button>
+            <button>Return Book</button>
+        </div>
 
-        <br>
-        <form action="verlaengern.php" method="post">
-            <input type="submit" name="verlaengern" value="Buch verlängern">
-        </form>
-
-        <form action="zurueckgeben.php" method="post">
-            <input type="submit" name="zurueckgeben" value="Buch zurückgeben">
-        </form>
+        <div class="container3">
+            <h2>Overdue Books</h2>
+            <table>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Book ID</th>
+                    <th>Book Titel</th>
+                    <th>Overdue</th>
+                    <th>Status</th>
+                    <th>Fine</th>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Max Mustermann</td>
+                    <td>456</td>
+                    <td>Book of Life</td>
+                    <td>5 Days</td>
+                    <td>Delayed (5 Days)</td>
+                    <td>2€</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Max Mustermann</td>
+                    <td>456</td>
+                    <td>Book of Life</td>
+                    <td>5 Days</td>
+                    <td>Delayed (5 Days)</td>
+                    <td>2€</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Max Mustermann</td>
+                    <td>456</td>
+                    <td>Book of Life</td>
+                    <td>5 Days</td>
+                    <td>Delayed (5 Days)</td>
+                    <td>2€</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Max Mustermann</td>
+                    <td>456</td>
+                    <td>Book of Life</td>
+                    <td>5 Days</td>
+                    <td>Delayed (5 Days)</td>
+                    <td>2€</td>
+                </tr>
+                <!-- Weitere Zeilen für weitere Buchausleihen -->
+            </table>
+        </div>
     </div>
 </body>
 </html>
