@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overdue Books</title>
+    <title>Extend Book</title>
     <style>
         body {
             margin: 0;
@@ -33,10 +33,10 @@
             border-radius: 10px;
         }
 
-        .container3  {
+        .container3 {
             background-color: white; /* Weißer Hintergrund */
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 100px;
             border-radius: 10px;
         }
 
@@ -58,6 +58,7 @@
         .buttons {
             display: flex;
             gap: 10px;
+            justify-content: center;
         }
 
         .buttons button {
@@ -65,17 +66,17 @@
             cursor: pointer;
             border: 1px solid #888;
             background-color: #ccc;
-            margin-left: 200px;
+            margin-left: 400px;
             margin-right: 400px;
             margin-bottom: 40px;
-            margin-top: 40px;
+            margin-top: 70px;
             border-radius: 10px; /* Ecken abrunden */
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 40px;
             border-radius: 10px; /* Ecken abrunden */
             overflow: hidden; /* Abgerundete Ecken anzeigen */
         }
@@ -97,6 +98,18 @@
             background-color: #f2f2f2;
             border-radius: 10px 10px 0 0; /* Obere Ecken abrunden */
         }
+
+        input[type="text"], input[type="date"] {
+            width: 90%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            width: 50%; /* Gleiche Breite für beide Seiten */
+        }
     </style>
 </head>
 <body>
@@ -108,62 +121,45 @@
         <button class="icon" style="background-image: url('https://imgs.search.brave.com/a5rGpUR2hiHwHlPGxZAjrR8NXwacKqouHAwkFcniFpQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC81MC8wMC9z/YW5kLWhvdXJnbGFz/cy1pY29uLXZlY3Rv/ci0yODE1NTAwMC5q/cGc')" onclick="console.log('Icon 5 clicked')"></button>
     </div>
     <div class="container2">
-        <div class="buttons">
-            <button>Extend Book</button>
-            <button>Return Book</button>
-        </div>
-
         <div class="container3">
-            <h2>Overdue Books</h2>
+            <h2>Extend Book</h2>
             <table>
                 <tr>
-                    <th>User ID</th>
-                    <th>User Name</th>
-                    <th>Book ID</th>
-                    <th>Book Titel</th>
-                    <th>Overdue</th>
-                    <th>Status</th>
-                    <th>Fine</th>
+                    <td><b>User ID</b></td>
+                    <td><input type="text" name="user_id" placeholder="Enter User ID"></td>
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>Max Mustermann</td>
-                    <td>456</td>
-                    <td>Book of Life</td>
-                    <td>5 Days</td>
-                    <td>Delayed (5 Days)</td>
-                    <td>2€</td>
+                    <td><b>Book ID</b></td>
+                    <td><input type="text" name="book_id" placeholder="Enter Book ID"></td>
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>Max Mustermann</td>
-                    <td>456</td>
-                    <td>Book of Life</td>
-                    <td>5 Days</td>
-                    <td>Delayed (5 Days)</td>
-                    <td>2€</td>
-                </tr>
-                <tr>
-                    <td>123</td>
-                    <td>Max Mustermann</td>
-                    <td>456</td>
-                    <td>Book of Life</td>
-                    <td>5 Days</td>
-                    <td>Delayed (5 Days)</td>
-                    <td>2€</td>
-                </tr>
-                <tr>
-                    <td>123</td>
-                    <td>Max Mustermann</td>
-                    <td>456</td>
-                    <td>Book of Life</td>
-                    <td>5 Days</td>
-                    <td>Delayed (5 Days)</td>
-                    <td>2€</td>
+                    <td><b>Max. return Date</b></td>
+                    <td><input type="date" id="issue_date"></td>
                 </tr>
                 <!-- Weitere Zeilen für weitere Buchausleihen -->
             </table>
+            <div class="buttons">
+                <button>Extend Book</button>
+            </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var issueDate = document.getElementById('issue_date');
+            var today = new Date();
+            var maxDate = new Date();
+            maxDate.setMonth(maxDate.getMonth() + 4);
+
+            var day = ('0' + today.getDate()).slice(-2);
+            var month = ('0' + (today.getMonth() + 1)).slice(-2);
+            var year = today.getFullYear();
+            issueDate.min = year + '-' + month + '-' + day;
+
+            day = ('0' + maxDate.getDate()).slice(-2);
+            month = ('0' + (maxDate.getMonth() + 1)).slice(-2);
+            year = maxDate.getFullYear();
+            issueDate.max = year + '-' + month + '-' + day;
+        });
+    </script>
 </body>
 </html>
