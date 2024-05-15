@@ -1,40 +1,34 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Frontend_styles.css">
-    <meta name="description" content="Eine kurze Beschreibung der Webseite">
-    <meta name="author" content="Max Mustermann">
+    <script src="Frontend_script.js"></script>
+    <meta name="need a name" content="Eine kurze Beschreibung der Webseite">
 </head>
 
 </head>
-
 
 <body>
-    <button class="button_house"></button>
-    <button class="button_equals"></button>
-    <button class="button_booklist"></button>
-    <button class="button_userlist"></button>
-    <button class="button_reminder"></button>
-    <button class="button_lend"></button>
-    <button class="button_settings"></button>
-    <div class="sidebar"></div>
-
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    <div class="menu" id="menu">
+    <div class="background"></div> <!-- adding background -->
+    <div class="topbar"><!-- adding topbar -->
+        <button class="button_profile">Admin</button>
+    </div> 
+    <div class="sidebar"> <!-- adding sidebar and buttons -->
+        <button class="button_house"></button>
+        <button class="button_equals" onclick="toggleMenu()" id="button_equals"></button>
+        <button class="button_booklist"></button>
+        <button class="button_userlist"></button>
+        <button class="button_reminder"></button>
+        <button class="button_lend"></button>
+        <button class="button_settings"></button>
+    </div>
+    <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#">Startseite</a></li>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">Dienstleistungen</a></li>
-            <li><a href="#">Kontakt</a></li>
+            <li><a href="#" id="Dashboard">Dashboard</a></li>
+            <li><a href="#" id="Books">Books</a></li>
+            <li><a href="#" id="Users">Users</a></li>
+            <li><a href="#" id="Reminder">Reminder</a></li>
+            <li><a href="#" id="Lending">Lending</a></li>
         </ul>
-    </div>   
-    <script src="script.js"></script>
-    <script>
-        // Hier ist dein JavaScript-Code
-        function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.classList.toggle("active");
-    }
-    </script>
-
-
+    </div>
 </body>
+
