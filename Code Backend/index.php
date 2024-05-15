@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="be_style.css">
 </head>
 <body>
     <div class="overlay">
@@ -29,7 +29,7 @@
    
    
    <?php
-   include "db_conn.php";
+   include "be_db_conn.php";
 
     // Handle form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -52,7 +52,7 @@
             if ($result->num_rows == 1) {
                 // Login successful
                 // Redirect to home page
-                header("Location: home.php"); // Change "home.php" to the URL of your home page
+                header("Location: be_home.php"); // Change "home.php" to the URL of your home page
                 exit(); // Ensure that script execution stops after redirection
             } else {
                 header("Location: index.php?error=Incorrect Username or Password");

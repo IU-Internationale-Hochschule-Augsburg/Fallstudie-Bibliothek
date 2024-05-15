@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php"; // Adjust the path if necessary
+include "be_db_conn.php"; // Adjust the path if necessary
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book = $result->fetch_assoc();
 
     if ($book['status'] == 'issued') {
-        $_SESSION["message"] = "Book is already issued!";
+        $_SESSION["message"] = "Book is already loaned!";
     } else {
         // Create issue record
         $insertIssueQuery = $conn->prepare("INSERT INTO issues (member_id, book_id, issue_date, return_date, status) 
@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateBookStatusQuery->bind_param("s", $bookId);
             $updateBookStatusQuery->execute();
             
-            $_SESSION["message"] = "Book issued successfully!"; // Save the message to the variable
+            $_SESSION["message"] = "Book loaned successfully!"; // Save the message to the variable
         } else {
-            $_SESSION["message"] = "Error issuing book: " . $conn->error; // Save the error message to the variable
+            $_SESSION["message"] = "Error loaning book: " . $conn->error; // Save the error message to the variable
         }
     }
 
     $conn->close();
-    header("Location: issue.php"); // Redirect back to the issue form
+    header("Location: be_loan.php"); // Redirect back to the issue form
     exit();
 }
 ?>

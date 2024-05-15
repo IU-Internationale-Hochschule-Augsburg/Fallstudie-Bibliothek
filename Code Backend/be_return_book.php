@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+include "be_db_conn.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookId = $_POST["book_id"];
@@ -26,21 +26,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($stmt->execute()) {
                 $_SESSION["message"] = "Book returned successfully!";
-                header('Location: return_book.php'); // redirect back to your page
+                header('Location: be_return_book.php'); // redirect back to your page
                 exit();
             } else {
                 $_SESSION["message"] = "Error updating book status: " . $stmt->error;
-                header('Location: return_book.php'); // redirect back to your page
+                header('Location: be_return_book.php'); // redirect back to your page
                 exit();
             }
         } else {
             $_SESSION["message"] = "Error updating issue status: " . $stmt->error;
-            header('Location: return_book.php'); // redirect back to your page
+            header('Location: be_return_book.php'); // redirect back to your page
             exit();
         }
     } else {
         $_SESSION["message"] = "This book is not issued!";
-        header('Location: return_book.php'); // redirect back to your page
+        header('Location: be_return_book.php'); // redirect back to your page
         exit();
     }
 }

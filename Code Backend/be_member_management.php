@@ -1,5 +1,5 @@
 <?php
-include "db_conn.php";
+include "be_db_conn.php";
 
 class Member {
     public $id;
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Library Management System - Member Management</title>
-    <link rel="stylesheet" type="text/css" href="management.css">
+    <link rel="stylesheet" type="text/css" href="be_style_management.css">
 </head>
 <body>
     <h2>Add a New Member</h2>
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h2>Member List</h2>
     <?php $memberList->getAllMembers(); ?><br>
-    <button onclick="window.location.href='home.php'">Home</button>
+    <button onclick="window.location.href='be_home.php'">Home</button>
 </body>
 </html>
 

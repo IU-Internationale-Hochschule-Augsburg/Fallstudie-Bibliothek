@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+include "be_db_conn.php";
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -53,7 +53,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return Book</title>
-    <link rel="stylesheet" type="text/css" href="home_style.css">
+    <link rel="stylesheet" type="text/css" href="be_style_home.css">
     <style>
         button {
             margin-bottom: 10px; /* Add space below each button */
@@ -74,7 +74,7 @@ $conn->close();
     <input type="submit" value="Return Book">
 </form>
     <br>
-    <button onclick="window.location.href='home.php'">Home</button>
+    <button onclick="window.location.href='be_home.php'">Home</button>
     <br>
 </body>
 </html>
