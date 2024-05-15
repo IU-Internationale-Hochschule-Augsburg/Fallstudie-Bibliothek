@@ -85,7 +85,7 @@ body {
         cursor: pointer;
     }
 
-    .button_userlist {
+    .button_memberlist {
         background-image: url('button_userlist.png');
         background-size: cover;
         background-color: #888888;
@@ -120,7 +120,7 @@ body {
         border: none;
         cursor: pointer;
     }
-    .button_lend {
+    .button_loans {
         background-image: url('button_lend.png');
         background-size: cover;
         background-color: #888888;
@@ -185,7 +185,7 @@ body {
         transform: scale(1.1); 
     }
 
-    .button_userlist:hover {
+    .button_memberlist:hover {
         transform: scale(1.1); 
     }
 
@@ -193,7 +193,7 @@ body {
         transform: scale(1.1); 
     }
 
-    .button_lend:hover {
+    .button_loans:hover {
         transform: scale(1.1); 
     }
 
