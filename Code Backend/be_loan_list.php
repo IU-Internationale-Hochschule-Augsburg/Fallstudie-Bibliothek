@@ -32,7 +32,7 @@
     }
 
     // Perform a query to fetch all books from the database
-    $sql = "SELECT * FROM issues";
+    $sql = "SELECT * FROM issues ORDER BY issue_id DESC";
     $result = $conn->query($sql);
 
     // Check if the query was successful and if there are any rows returned

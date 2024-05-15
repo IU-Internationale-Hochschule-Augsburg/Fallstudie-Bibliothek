@@ -6,17 +6,28 @@ session_start();
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Book</title>
+    <title>Loan Books</title>
     <link rel="stylesheet" type="text/css" href="be_style_home.css">
     <style>
         button {
             margin-bottom: 10px; /* Add space below each button */
         }
     </style>
+    <script>
+        function addBookField() {
+            var container = document.getElementById('bookFieldsContainer');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'book_ids[]'; // Use an array name
+            input.placeholder = 'Enter Book ID';
+            container.appendChild(input);
+            container.appendChild(document.createElement('br'));
+        }
+    </script>
 </head>
 <body>
 
-    <h2>Issue Book</h2>
+    <h2>Loan Books</h2>
     <?php
     if (isset($_SESSION["message"])) {
         echo '<p>' . $_SESSION["message"] . '</p>';
@@ -24,17 +35,20 @@ session_start();
     }
     ?>
     <form action="be_loan_book.php" method="post">
-        <label for="book_id">Book ID:</label><br>
-        <input type="text" id="book_id" name="book_id"><br>
         <label for="member_id">Member ID:</label><br>
-        <input type="text" id="member_id" name="member_id"><br><br>
-        <input type="submit" value="Loan Book" name="loan_book">
+        <input type="text" id="member_id" name="member_id" required><br><br>
+        <div id="bookFieldsContainer">
+            <label for="book_ids[]">Book IDs:</label><br>
+            <input type="text" name="book_ids[]" placeholder="Enter Book ID"><br>
+        </div>
+        <button type="button" onclick="addBookField()">Add Another Book</button><br><br>
+        <input type="submit" value="Loan Books" name="loan_books">
     </form>
 
     <br>
-    <button onclick="window.location.href='be_home.php'">Home</button> <!-- Navigate up two levels -->
+    <button onclick="window.location.href='be_home.php'">Home</button>
     <br>
-    <a href="be_logout.php" class="logout-button">Logout</a> <!-- Navigate up two levels -->
+    <a href="be_logout.php" class="logout-button">Logout</a>
 
 </body>
 </html>
