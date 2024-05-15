@@ -86,7 +86,7 @@ body {
     }
 
     .button_memberlist {
-        background-image: url('button_userlist.png');
+        background-image: url('button_memberlist.png');
         background-size: cover;
         background-color: #888888;
         background-position: center;
@@ -121,7 +121,7 @@ body {
         cursor: pointer;
     }
     .button_loans {
-        background-image: url('button_lend.png');
+        background-image: url('button_loans.png');
         background-size: cover;
         background-color: #888888;
         background-position: center;
@@ -241,3 +241,18 @@ body {
 .menu.active {
     display: block;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* .button_house:hover+.menu #Dashboard {
+        font-size: 105%; /* Vergrößere die Schriftgröße um 5% 
+    }
+*/
