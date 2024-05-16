@@ -1,150 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Issued Books</title>
+    <meta charset="UTF-8"> <!-- Zeichencodierung auf UTF-8 setzen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Design Meta-Tag -->
+    <title>Issued Books</title> <!-- Titel der Webseite -->
     <style>
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; /*Entfernt Standardabstand der Seite */
+            padding: 0; /* Entfernt Standardinnenabstand der Seite */
             background-color: #888888; /* Hellgrauer Hintergrund */
-            overflow: hidden;
+            overflow: hidden; /* Die Seite ist nicht Scrollbar */
         }
         
         .container1 {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: absolute; /* Absolute Positionierung*/
+            top: 0; /* Oben bündig mit der Seite */
+            left: 0; /* Links bündig mit der Seite */
             right: 0; /* Rechts bündig mit der Seite */
             bottom: 0; /* Unten bündig mit der Seite */
             background-color: #888888; /* Hellgrauer Hintergrund */
         }
 
         .container2 {
-            position: absolute;
-            top: 50px;
-            left: 70px;
+            position: absolute; /* Absolute Positionierung */
+            top: 50px; /* Abstand von oben */
+            left: 70px; /* Abstand von links */
             right: 0; /* Rechts bündig mit der Seite */
             bottom: 0; /* Unten bündig mit der Seite */
             background-color: #404040; /* Dunkelgrauer Hintergrund */
-            z-index: 1;
-            padding: 20px;
-            border-radius: 10px;
+            z-index: 1; /* Überlappungsebene */
+            padding: 20px; /* Innenabstand */
+            border-radius: 10px; /* Abgerundete Ecken */
         }
 
         .container3 {
             background-color: white; /* Weißer Hintergrund */
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 10px;
+            padding: 20px; /* Innenabstand */
+            margin-top: 20px; /* Abstand oben */
+            border-radius: 10px; /* Abgerundete Ecken */
         }
 
         .icon {
-            padding-left: 10px;
-            padding-top: 50px; /* Erhöht auf 50px */
+            padding-left: 10px; /* Innenabstand links */
+            padding-top: 50px; /* Innenabstand oben */
             width: 50px; /* Breite der Icons */
             max-width: 50px; /* Maximale Breite der Icons */
             height: 50px; /* Höhe der Icons */
-            display: block;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
+            display: block; /* Block-Element */
+            background-size: contain; /* Hintergrundbild anpassen */
+            background-position: center; /* Hintergrundbild zentrieren */
+            background-repeat: no-repeat; /* Hintergrundbild nicht wiederholen */
+            border: none; /* Kein Rahmen */
+            cursor: pointer; /* Mauszeiger als Hand */
+            margin: 10px; /* Außenabstand */
         }
 
         .buttons {
-            display: flex;
-            gap: 10px;
+            display: flex; /* Flexbox Layout */
+            gap: 10px; /* Abstand zwischen Elementen */
         }
 
         .buttons button {
-            padding: 40px 60px;
-            cursor: pointer;
-            border: 1px solid #888;
-            background-color: #ccc;
-            margin-left: 200px;
-            margin-right: 400px;
-            margin-bottom: 40px;
-            margin-top: 40px;
-            border-radius: 10px; /* Ecken abrunden */
+            padding: 40px 60px; /* Innenabstand */
+            cursor: pointer; /* Mauszeiger als Hand */
+            border: 1px solid #888; /* Rahmen mit Farbe */
+            background-color: #ccc; /* Hintergrundfarbe */
+            margin-left: 200px; /* Außenabstand links */
+            margin-right: 400px; /* Außenabstand rechts */
+            margin-bottom: 40px; /* Außenabstand unten */
+            margin-top: 40px; /* Außenabstand oben */
+            border-radius: 10px; /* Abgerundete Ecken */
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            border-radius: 10px; /* Ecken abrunden */
+            width: 100%; /* Breite des Tisches */
+            border-collapse: collapse; /* Ränder zusammenführen */
+            margin-top: 30px; /* Abstand oben */
+            border-radius: 10px; /* Abgerundete Ecken */
             overflow: hidden; /* Abgerundete Ecken anzeigen */
         }
 
         th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ccc;
+            padding: 10px; /* Innenabstand */
+            text-align: left; /* Linksbündige Ausrichtung */
+            border: 1px solid #ccc; /* Rahmen mit Farbe */
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #f2f2f2; /* Hintergrundfarbe für Tabellenüberschrift */
         }
         
         h2 {
-            margin: 0;
-            padding: 10px;
-            text-align: center;
-            background-color: #f2f2f2;
-            border-radius: 10px 10px 0 0; /* Obere Ecken abrunden */
+            margin: 0; /* Kein Außenabstand */
+            padding: 10px; /* Innenabstand */
+            text-align: center; /* Zentrierte Ausrichtung */
+            background-color: #f2f2f2; /* Hintergrundfarbe*/
+            border-radius: 10px 10px 0 0; /*Obere Ecken abrunden*/
         }
     </style>
 </head>
 <body>
     <div class="container1">
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/XNf-Zk9fjNt-K_KvuBwg7Bh2Yc24R-ruYwiafMu-wWw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzAzLzM2Lzc5/LzM2MF9GXzEwMzM2/NzkwMF9BeXVUMjNm/ZWg4cWtNTnc4TWlG/dTNaTUZ1VnBnV2Zp/WC5qcGc')" onclick="console.log('Icon 1 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/WKVs_Ebb1tRWGn2b32oqKTNR8aN-jp2ns9CcYewF3CE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzI3LzE1Lzg5/LzM2MF9GXzEyNzE1/ODkzM19jRFpBNHN1/TVhzeDJuMExRMDNG/enBYNTBSN2ZCYVV4/Mi5qcGc')" onclick="console.log('Icon 2 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/6vUmDW9XUDsEz9M1K8nKliZYUzMHVY57Pu_m3SEgKDc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzU0LzM2/LzM2MF9GXzI5NTU0/MzYzNV9zcllkbWFH/VVRFV2hjb2hFYXFu/UFIxbVZhRDV2VUJr/RC5qcGc')" onclick="console.log('Icon 3 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/n-lhXaKgFaOvLrA8Y6Ne0h9M0c851-bzZZsorBNSy1g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVrdG9yZW4tcHJl/bWl1bS1nZWZhaHJ3/YXJuc2NoaWxkLW1p/dC1laW5lbS1hdWYt/d2Vpc3NlbS1oaW50/ZXJncnVuZC1pc29s/aWVydGVuLWF1c3J1/ZmV6ZWljaGVuLXN5/bWJvbC1pbi1laW5m/YWNoZW0tc3RpbF85/NjMxOC0xNzgwOC5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw')" onclick="console.log('Icon 4 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/a5rGpUR2hiHwHlPGxZAjrR8NXwacKqouHAwkFcniFpQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC81MC8wMC9z/YW5kLWhvdXJnbGFz/cy1pY29uLXZlY3Rv/ci0yODE1NTAwMC5q/cGc')" onclick="console.log('Icon 5 clicked')"></button>
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/XNf-Zk9fjNt-K_KvuBwg7Bh2Yc24R-ruYwiafMu-wWw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzAzLzM2Lzc5/LzM2MF9GXzEwMzM2/NzkwMF9BeXVUMjNm/ZWg4cWtNTnc4TWlG/dTNaTUZ1VnBnV2Zp/WC5qcGc')" onclick="console.log('Icon 1 clicked')"></button> <!-- Erstes Icon mit Klick-Event -->
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/WKVs_Ebb1tRWGn2b32oqKTNR8aN-jp2ns9CcYewF3CE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzI3LzE1Lzg5/LzM2MF9GXzEyNzE1/ODkzM19jRFpBNHN1/TVhzeDJuMExRMDNG/enBYNTBSN2ZCYVV4/Mi5qcGc')" onclick="console.log('Icon 2 clicked')"></button> <!-- Zweites Icon mit Klick-Event -->
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/6vUmDW9XUDsEz9M1K8nKliZYUzMHVY57Pu_m3SEgKDc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzU0LzM2/LzM2MF9GXzI5NTU0/MzYzNV9zcllkbWFH/VVRFV2hjb2hFYXFu/UFIxbVZhRDV2VUJr/RC5qcGc')" onclick="console.log('Icon 3 clicked')"></button> <!-- Drittes Icon mit Klick-Event -->
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/n-lhXaKgFaOvLrA8Y6Ne0h9M0c851-bzZZsorBNSy1g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVrdG9yZW4tcHJl/bWl1bS1nZWZhaHJ3/YXJuc2NoaWxkLW1p/dC1laW5lbS1hdWYt/d2Vpc3NlbS1oaW50/ZXJncnVuZC1pc29s/aWVydGVuLWF1c3J1/ZmV6ZWljaGVuLXN5/bWJvbC1pbi1laW5m/YWNoZW0tc3RpbF85/NjMxOC0xNzgwOC5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw')" onclick="console.log('Icon 4 clicked')"></button> <!-- Viertes Icon mit Klick-Event -->
+        <button class="icon" style="background-image: url('https://imgs.search.brave.com/a5rGpUR2hiHwHlPGxZAjrR8NXwacKqouHAwkFcniFpQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC81MC8wMC9z/YW5kLWhvdXJnbGFz/cy1pY29uLXZlY3Rv/ci0yODE1NTAwMC5q/cGc')" onclick="console.log('Icon 5 clicked')"></button> <!-- Fünftes Icon mit Klick-Event -->
     </div>
     <div class="container2">
         <div class="buttons">
-            <button>Issue Book</button>
-            <button>Return Book</button>
+            <button>Issue Book</button> <!-- Button zum Ausleihen eines Buches -->
+            <button>Return Book</button> <!-- Button zum Zurückgeben eines Buches -->
         </div>
 
         <div class="container3">
-            <h2>Issued Books</h2>
+            <h2>Issued Books</h2> <!-- Titel für den Bereich der ausgeliehenen Bücher -->
             <table>
                 <tr>
-                    <th>User ID</th>
-                    <th>Book ID</th>
-                    <th>Issue Date</th>
-                    <th>Return Date</th>
+                    <th>User ID</th> <!-- Tabellenüberschrift: Benutzer-ID -->
+                    <th>Book ID</th> <!-- Tabellenüberschrift: Buch-ID -->
+                    <th>Issue Date</th> <!-- Tabellenüberschrift: Ausleihdatum -->
+                    <th>Return Date</th> <!-- Tabellenüberschrift: Rückgabedatum -->
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>456</td>
-                    <td>05.04.2024</td>
-                    <td>27.05.2024</td>
+                    <td>123</td> <!-- Benutzer-ID -->
+                    <td>456</td> <!-- Buch-ID -->
+                    <td>05.04.2024</td> <!-- Ausleihdatum -->
+                    <td>27.05.2024</td> <!-- Rückgabedatum -->
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>456</td>
-                    <td>05.04.2024</td>
-                    <td>27.05.2024</td>
+                    <td>123</td> <!-- Benutzer-ID -->
+                    <td>456</td> <!-- Buch-ID -->
+                    <td>05.04.2024</td> <!-- Ausleihdatum -->
+                    <td>27.05.2024</td> <!-- Rückgabedatum -->
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>456</td>
-                    <td>05.04.2024</td>
-                    <td>27.05.2024</td>
+                    <td>123</td> <!-- Benutzer-ID -->
+                    <td>456</td> <!-- Buch-ID -->
+                    <td>05.04.2024</td> <!-- Ausleihdatum -->
+                    <td>27.05.2024</td> <!-- Rückgabedatum -->
                 </tr>
                 <tr>
-                    <td>123</td>
-                    <td>456</td>
-                    <td>05.04.2024</td>
-                    <td>27.05.2024</td>
+                    <td>123</td> <!-- Benutzer-ID -->
+                    <td>456</td> <!-- Buch-ID -->
+                    <td>05.04.2024</td> <!-- Ausleihdatum -->
+                    <td>27.05.2024</td> <!-- Rückgabedatum -->
                 </tr>
                 <!-- Weitere Zeilen für weitere Buchausleihen -->
             </table>
