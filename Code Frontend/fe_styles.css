@@ -20,6 +20,36 @@ body {
     padding: 20px;
 }
 
+.logo { /* declare logo */
+    z-index: 1000;
+}
+
+.logo_name { 
+    font-size: 13px; 
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 25px; 
+    transform: translateY(-50%); 
+    left: 120px;
+    z-index: 1000;
+}
+
+.logo_pic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; /* Ändere die Breite entsprechend der Größe deines Bildes */
+    height: auto; /* Skaliere die Höhe automatisch basierend auf der Breite */
+    background-image: url('Pfad/zum/deinem/Bild/logo_pic.png'); /* Passe den Pfad entsprechend dem tatsächlichen Pfad zu deinem Bild an */
+    background-size: contain; /* Das Bild wird so skaliert, dass es komplett im Container enthalten ist */
+    background-repeat: no-repeat; /* Das Bild wird nicht wiederholt */
+    z-index: 1000; /* Stelle sicher, dass das Bild über anderen Elementen liegt */
+}
+
 .sidebar { /* declare sidebar */
     position: absolute;
     top: 0px;
