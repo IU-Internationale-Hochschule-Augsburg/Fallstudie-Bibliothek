@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($insertLoanQuery->execute() === TRUE) {
                 // Update book status to 'loaned'
-                $updateBookStatusQuery = $conn->prepare("UPDATE books SET status = 'loaned' WHERE book_id = ?");
+                $updateBookStatusQuery = $conn->prepare("UPDATE books SET status = 'On loan' WHERE book_id = ?");
                 $updateBookStatusQuery->bind_param("s", $bookId);
                 $updateBookStatusQuery->execute();
                 
