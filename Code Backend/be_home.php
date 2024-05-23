@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <script src="script.js"></script>
     <title>Dashboard</title>
     <style>
         table {
@@ -168,6 +170,8 @@
     <button onclick="window.location.href='be_member_management.php'">Member Management</button>
     <br>
     <br>
+    <br>
+    <a href="be_logout.php" class="logout-button">Logout</a>
 
     <?php
     // Close the database connection
