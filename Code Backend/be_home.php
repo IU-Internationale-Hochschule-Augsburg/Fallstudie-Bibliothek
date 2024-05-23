@@ -63,6 +63,7 @@
     <button onclick="window.location.href='be_member_list.php'">Member List</button>
     <button onclick="window.location.href='be_user_management.php'">User Management</button>
     <button onclick="window.location.href='overview.php'">Overview</button>
+    <button onclick="window.location.href='../Code Frontend/fe_template_background.html'">Frontend</button>
     <br>
     <br>
 
