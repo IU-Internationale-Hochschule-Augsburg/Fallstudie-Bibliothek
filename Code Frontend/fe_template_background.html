@@ -8,32 +8,33 @@
 
 
 <body>
-    <div class="background">
-        
-    </div> <!-- adding background -->
+    <div class="background">  <!-- adding background -->       
+    </div>
     <div class="logo"> <!-- add logo -->
-        <div class="logo_name" onclick="window.location.href='fe_Libriofact.html'"><p>LibrioFact</p></div>
+        <div class="logo_name"><p>LibrioFact</p></div>
+        <div class="logo_picture"><img src="logo_pic.png"></div>
     </div>
     <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile"onclick="window.location.href='fe_profile.html'">Admin</button></div>
-        <div class="logo_pic"></div>
+        <div> <button class="button_profile">Mitarbeiter_1</button></div>
     </div> 
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
-        <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
-        <button class="button_equals" onclick="toggleMenu()"></button>
-        <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-        <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
-        <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
-        <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
-        <button class="button_settings"onclick="window.location.href='fe_settings.html'"></button>
+        <div class="buttons">
+            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
+            <button class="button_equals" onclick="toggleMenu()"></button>
+            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
+            <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
+            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
+            <button class="button_settings"></button>
+        </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
-            <li><a href="#" id="Reminder"onclick="window.location.href='fe_loans.html'">Reminder</a></li>
-            <li><a href="#" id="Loans"onclick="window.location.href='fe_settings.html'">Loans</a></li>
+            <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
+            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
         </ul>
     </div>
 </body>

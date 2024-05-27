@@ -2,12 +2,18 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: #404040;
 }
 
 .background { /* declare and background */
-    background-color: #404040; /* dark gray background */
-    height: 100%; 
-    z-index: -1;
+    background-color: #404040; /* Dunkler grauer Hintergrund */
+    position: absolute; /* Absolute Positionierung */
+    top: 50px; /* Abstand von oben, um unter der Topbar zu bleiben */
+    left: 75px; /* Abstand von links, um neben der Sidebar zu bleiben */
+    width: calc(100% - 55px); /* Berechnung der Breite */
+    height: calc(100% - 50px); /* Berechnung der Höhe */
+    z-index: -1; /* Hintergrund hinter den anderen Elementen */
+    transition: transform 0.3s ease;
 }
 
 .topbar { /* declare topbar */
@@ -24,7 +30,7 @@ body {
     z-index: 1000;
 }
 
-.logo_name { 
+.logo_name { /* declare logo name */
     font-size: 13px; 
     font-family: Arial, sans-serif;
     text-transform: uppercase;
@@ -35,19 +41,17 @@ body {
     transform: translateY(-50%); 
     left: 120px;
     z-index: 1000;
+    cursor: default;
 }
 
-.logo_pic {
+.logo_picture {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px; /* Ändere die Breite entsprechend der Größe deines Bildes */
-    height: auto; /* Skaliere die Höhe automatisch basierend auf der Breite */
-    background-image: url('Pfad/zum/deinem/Bild/logo_pic.png'); /* Passe den Pfad entsprechend dem tatsächlichen Pfad zu deinem Bild an */
-    background-size: contain; /* Das Bild wird so skaliert, dass es komplett im Container enthalten ist */
-    background-repeat: no-repeat; /* Das Bild wird nicht wiederholt */
-    z-index: 1000; /* Stelle sicher, dass das Bild über anderen Elementen liegt */
+    top: 12px; 
+    left: 95px; 
+    width: 50px; 
+    max-width: 35px;
+    height: auto; 
+    z-index: 1000;
 }
 
 .sidebar { /* declare sidebar */
@@ -203,27 +207,7 @@ body {
         transform: scale(1.06); 
     }
 
-    .button_house:hover {
-        transform: scale(1.1); 
-    }
-
     .button_equals:hover {
-        transform: scale(1.1); 
-    }
-
-    .button_booklist:hover {
-        transform: scale(1.1); 
-    }
-
-    .button_memberlist:hover {
-        transform: scale(1.1); 
-    }
-
-    .button_reminder:hover {
-        transform: scale(1.1); 
-    }
-
-    .button_loans:hover {
         transform: scale(1.1); 
     }
 
@@ -234,6 +218,11 @@ body {
  /* Increase the width of the sidebar by 150px */   
  .sidebar.active {
     width: calc(30px + 150px); 
+}
+
+ /* Increase the width of the sidebar by 150px */  
+.background-active {
+    transform: translateX(+145px);
 }
 
 /* adding a menu */ 
@@ -271,18 +260,3 @@ body {
 .menu.active {
     display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* .button_house:hover+.menu #Dashboard {
-        font-size: 105%; /* Vergrößere die Schriftgröße um 5% 
-    }
-*/
