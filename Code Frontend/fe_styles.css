@@ -6,14 +6,78 @@ body {
 }
 
 .background { /* declare and background */
-    background-color: #404040; /* Dunkler grauer Hintergrund */
-    position: absolute; /* Absolute Positionierung */
-    top: 50px; /* Abstand von oben, um unter der Topbar zu bleiben */
-    left: 75px; /* Abstand von links, um neben der Sidebar zu bleiben */
-    width: calc(100% - 55px); /* Berechnung der Breite */
-    height: calc(100% - 50px); /* Berechnung der Höhe */
-    z-index: -1; /* Hintergrund hinter den anderen Elementen */
+    background-color: #404040; 
+    position: absolute; 
+    top: 50px;
+    left: 75px; 
+    width: calc(100% - 55px); 
+    height: calc(100% - 50px); 
+    z-index: -1; 
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* declare white square */
+.white-square {
+    background-color: rgb(235, 235, 235);
+    width: 1700px;
+    height: 670px;
+    border-radius: 20px;
+}
+
+/* declare buttons edit book and add book */
+.button_edit_book, .button_add_book {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px; /* Add margin to separate buttons */
+    position: absolute;
+    top: 25px; 
+    color: #000000; 
+    cursor: pointer; 
+    z-index: 999; 
+}
+
+.button_edit_book {
+    left: 50px; 
+}
+
+.button_add_book {
+    right: 50px; 
+}
+
+.search-bar {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 400px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: text; /* Ensure cursor changes to text cursor */
+}
+
+/* Ensure the input inside the search bar is editable */
+.search-bar input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
 }
 
 .topbar { /* declare topbar */
@@ -144,6 +208,7 @@ body {
         border: none;
         cursor: pointer;
     }
+
     .button_loans {
         background-image: url('button_loans.png');
         background-size: cover;
@@ -161,6 +226,7 @@ body {
         border: none;
         cursor: pointer;
     }
+
     .button_settings {
         background-image: url('button_settings.png');
         background-size: cover;
@@ -185,18 +251,13 @@ body {
         padding: 10px 40px; 
         border: none; 
         border-radius: 20px; 
-        background-color: #acacac; 
+        background-color: #cacaca;
         color: #000000; 
         cursor: pointer; 
         z-index: 999; 
-        transition: all 0.3s;
     }
 
 /* Enlarge buttons by 10% on hover */
-    .button_profile:hover {
-        transform: scale(1.06); 
-    }
-
     .button_equals:hover {
         transform: scale(1.1); 
     }
