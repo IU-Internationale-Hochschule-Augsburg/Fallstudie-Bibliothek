@@ -1,166 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Issue Book</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #888888; /* Hellgrauer Hintergrund */
-            overflow: hidden;
-        }
-        
-        .container1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0; /* Rechts bündig mit der Seite */
-            bottom: 0; /* Unten bündig mit der Seite */
-            background-color: #888888; /* Hellgrauer Hintergrund */
-        }
-
-        .container2 {
-            position: absolute;
-            top: 50px;
-            left: 70px;
-            right: 0; /* Rechts bündig mit der Seite */
-            bottom: 0; /* Unten bündig mit der Seite */
-            background-color: #404040; /* Dunkelgrauer Hintergrund */
-            z-index: 1;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .container3 {
-            background-color: white; /* Weißer Hintergrund */
-            padding: 20px;
-            margin-top: 100px;
-            border-radius: 10px;
-        }
-
-        .icon {
-            padding-left: 10px;
-            padding-top: 50px; /* Erhöht auf 50px */
-            width: 50px; /* Breite der Icons */
-            max-width: 50px; /* Maximale Breite der Icons */
-            height: 50px; /* Höhe der Icons */
-            display: block;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .buttons button {
-            padding: 40px 60px;
-            cursor: pointer;
-            border: 1px solid #888;
-            background-color: #ccc;
-            margin-left: 400px;
-            margin-right: 400px;
-            margin-bottom: 40px;
-            margin-top: 70px;
-            border-radius: 10px; /* Ecken abrunden */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 40px;
-            border-radius: 10px; /* Ecken abrunden */
-            overflow: hidden; /* Abgerundete Ecken anzeigen */
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ccc;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        h2 {
-            margin: 0;
-            padding: 10px;
-            text-align: center;
-            background-color: #f2f2f2;
-            border-radius: 10px 10px 0 0; /* Obere Ecken abrunden */
-        }
-
-        input[type="text"], input[type="date"] {
-            width: 90%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        td:first-child {
-            font-weight: bold;
-            width: 50%; /* Gleiche Breite für beide Seiten */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="fe_styles.css">
+    <script src="fe_script.js"></script>
+    <meta name="LibroFact" content="Library of Books">
 </head>
 <body>
-    <div class="container1">
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/XNf-Zk9fjNt-K_KvuBwg7Bh2Yc24R-ruYwiafMu-wWw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzAzLzM2Lzc5/LzM2MF9GXzEwMzM2/NzkwMF9BeXVUMjNm/ZWg4cWtNTnc4TWlG/dTNaTUZ1VnBnV2Zp/WC5qcGc')" onclick="console.log('Icon 1 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/WKVs_Ebb1tRWGn2b32oqKTNR8aN-jp2ns9CcYewF3CE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzI3LzE1Lzg5/LzM2MF9GXzEyNzE1/ODkzM19jRFpBNHN1/TVhzeDJuMExRMDNG/enBYNTBSN2ZCYVV4/Mi5qcGc')" onclick="console.log('Icon 2 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/6vUmDW9XUDsEz9M1K8nKliZYUzMHVY57Pu_m3SEgKDc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzk1LzU0LzM2/LzM2MF9GXzI5NTU0/MzYzNV9zcllkbWFH/VVRFV2hjb2hFYXFu/UFIxbVZhRDV2VUJr/RC5qcGc')" onclick="console.log('Icon 3 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/n-lhXaKgFaOvLrA8Y6Ne0h9M0c851-bzZZsorBNSy1g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVrdG9yZW4tcHJl/bWl1bS1nZWZhaHJ3/YXJuc2NoaWxkLW1p/dC1laW5lbS1hdWYt/d2Vpc3NlbS1oaW50/ZXJncnVuZC1pc29s/aWVydGVuLWF1c3J1/ZmV6ZWljaGVuLXN5/bWJvbC1pbi1laW5m/YWNoZW0tc3RpbF85/NjMxOC0xNzgwOC5q/cGc_c2l6ZT02MjYm/ZXh0PWpwZw')" onclick="console.log('Icon 4 clicked')"></button>
-        <button class="icon" style="background-image: url('https://imgs.search.brave.com/a5rGpUR2hiHwHlPGxZAjrR8NXwacKqouHAwkFcniFpQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC81MC8wMC9z/YW5kLWhvdXJnbGFz/cy1pY29uLXZlY3Rv/ci0yODE1NTAwMC5q/cGc')" onclick="console.log('Icon 5 clicked')"></button>
-    </div>
-    <div class="container2">
-        <div class="container3">
-            <h2>Issue Book</h2>
-            <form>
-                <tr>
-                    <td><b>User ID</b></td>
-                    <td><input type="text" name="user_id" placeholder="Enter User ID"></td>
-                </tr>
-                <tr>
-                    <td><b>Book ID</b></td>
-                    <td><input type="text" name="book_id" placeholder="Enter Book ID"></td>
-                </tr>
-                <tr>
-                    <td><b>Max. return Date</b></td>
-                    <td><input type="date" id="issue_date"></td>
-                </tr>
-                <!-- Weitere Zeilen für weitere Buchausleihen -->
-            </table>
-            <div class="buttons">
-                <button>Issue Book</button>
+    <div class="background">
+        <div class="container2">
+            <div class="container3">
+                <h2>Loan Book</h2>
+                <form>
+                    <tr>
+                        <td><b>User ID</b></td>
+                        <td><input type="text" name="user_id" placeholder="Enter User ID"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Book ID</b></td>
+                        <td><input type="text" name="book_id" placeholder="Enter Book ID"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Max. return Date</b></td>
+                        <td><input type="date" id="issue_date"></td>
+                    </tr>
+                    <!-- Weitere Zeilen für weitere Buchausleihen -->
+                </table>
+                <div class="buttons">
+                    <button>Loan Book</button>
+                </div>
             </div>
         </div>
+        <!-- Datepicker -->
+        <script> 
+            document.addEventListener('DOMContentLoaded', function() {
+                var issueDate = document.getElementById('issue_date');
+                var today = new Date();
+                var maxDate = new Date();
+                maxDate.setMonth(maxDate.getMonth() + 4);
+    
+                var day = ('0' + today.getDate()).slice(-2);
+                var month = ('0' + (today.getMonth() + 1)).slice(-2);
+                var year = today.getFullYear();
+                issueDate.min = year + '-' + month + '-' + day;
+    
+                day = ('0' + maxDate.getDate()).slice(-2);
+                month = ('0' + (maxDate.getMonth() + 1)).slice(-2);
+                year = maxDate.getFullYear();
+                issueDate.max = year + '-' + month + '-' + day;
+            });
+        </script>  <!-- adding background -->       
     </div>
-    <!-- Datepicker -->
-    <script> 
-        document.addEventListener('DOMContentLoaded', function() {
-            var issueDate = document.getElementById('issue_date');
-            var today = new Date();
-            var maxDate = new Date();
-            maxDate.setMonth(maxDate.getMonth() + 4);
-
-            var day = ('0' + today.getDate()).slice(-2);
-            var month = ('0' + (today.getMonth() + 1)).slice(-2);
-            var year = today.getFullYear();
-            issueDate.min = year + '-' + month + '-' + day;
-
-            day = ('0' + maxDate.getDate()).slice(-2);
-            month = ('0' + (maxDate.getMonth() + 1)).slice(-2);
-            year = maxDate.getFullYear();
-            issueDate.max = year + '-' + month + '-' + day;
-        });
-    </script>
+    <div class="logo"> <!-- add logo -->
+        <div class="logo_name"><p>LibrioFact</p></div>
+    </div>
+    <div class="topbar"><!-- adding topbar,profile button -->
+        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    </div> 
+    <div class="sidebar"> <!-- adding sidebar, buttons and links -->
+        <div class="buttons">
+            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
+            <button class="button_equals" onclick="toggleMenu()"></button>
+            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
+            <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
+            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
+            <button class="button_settings"></button>
+        </div>
+    </div>
+    <div class="menu" id="menu"> <!-- adding menu with bullet points -->
+        <ul>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
+            <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
+            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
+            <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
+            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
+        </ul>
+    </div>
 </body>
-</html>
+</html> 
