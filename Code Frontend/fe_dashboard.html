@@ -125,7 +125,7 @@
         color: white;
     }
     /* Stil für die Nutzerliste und Bücherliste */
-    .user-list, .book-list {
+    .user-list, .book-list, .overdue-list, .issued-list {
         margin-top: 20px;
         background-color: grey;
         color: white;
@@ -134,17 +134,17 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     /* Stil für Überschriften der Listen */
-    .user-list h2, .book-list h2 {
+    .user-list h2, .book-list h2, .overdue-list h2, .issued-list h2 {
         font-size: 25px;
         margin-bottom: 10px;
     }
     /* Stil für die Nutzerliste-Tabelle */
-    .user-list table, .book-list table {
+    .user-list table, .book-list table, .overdue-list table, .issued-list table {
         width: 100%;
         border-collapse: collapse;
     }
     /* Stil für Tabellenüberschriften */
-    .user-list th, .book-list th {
+    .user-list th, .book-list th, .overdue-list th, .issued-list th {
         background-color: #333;
         color: white;
         padding: 10px;
@@ -152,7 +152,7 @@
         text-align: center;
     }
     /* Stil für Tabellenzellen */
-    .user-list td, .book-list td {
+    .user-list td, .book-list td, .overdue-list td, .issued-list td {
         background-color: #555;
         color: white;
         padding: 10px;
@@ -271,6 +271,60 @@
                         <td>Verfügbar</td>
                     </tr>
                     <!-- Weitere Buchzeilen hier einfügen -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Überfällige Bücher -->
+        <div class="overdue-list">
+            <h2>Überfällige Bücher</h2>
+            <!-- Tabelle für überfällige Bücher -->
+            <table>
+                <!-- Tabellenkopf -->
+                <thead>
+                    <tr>
+                        <th>Autorname</th>
+                        <th>Name des Buches</th>
+                        <th>Fälligkeitsdatum</th>
+                        <th>User-ID</th>
+                    </tr>
+                </thead>
+                <!-- Tabelleninhalt -->
+                <tbody>
+                    <!-- Beispielzeile für ein überfälliges Buch -->
+                    <tr>
+                        <td>J.K. Rowling</td>
+                        <td>Harry Potter und der Stein der Weisen</td>
+                        <td>2023-05-10</td>
+                        <td>1</td>
+                    </tr>
+                    <!-- Weitere überfällige Buchzeilen hier einfügen -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Ausgegebene Bücher -->
+        <div class="issued-list">
+            <h2>Ausgegebene Bücher</h2>
+            <!-- Tabelle für ausgegebene Bücher -->
+            <table>
+                <!-- Tabellenkopf -->
+                <thead>
+                    <tr>
+                        <th>Autorname</th>
+                        <th>Name des Buches</th>
+                        <th>Ausgabedatum</th>
+                        <th>User-ID</th>
+                    </tr>
+                </thead>
+                <!-- Tabelleninhalt -->
+                <tbody>
+                    <!-- Beispielzeile für ein ausgegebenes Buch -->
+                    <tr>
+                        <td>J.R.R. Tolkien</td>
+                        <td>Der Herr der Ringe</td>
+                        <td>2023-04-01</td>
+                        <td>2</td>
+                    </tr>
+                    <!-- Weitere ausgegebene Buchzeilen hier einfügen -->
                 </tbody>
             </table>
         </div>
