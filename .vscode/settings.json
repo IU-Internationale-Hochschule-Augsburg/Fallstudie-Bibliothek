@@ -13,5 +13,5 @@
     "scm.showIncomingChanges": "never",
     "git.confirmSync": false,
     "liveServer.settings.donotVerifyTags": true,
-    "php.validate.executablePath": ""
+    "php.validate.executablePath": "",
 }
