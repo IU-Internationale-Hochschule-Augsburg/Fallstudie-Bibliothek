@@ -13,5 +13,5 @@
     "scm.showIncomingChanges": "never",
     "git.confirmSync": false,
     "liveServer.settings.donotVerifyTags": true,
-    "php.validate.executablePath": "C:\\Users\\angel\\Desktop\\xampp\\php\\php.exe"
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe"
 }
