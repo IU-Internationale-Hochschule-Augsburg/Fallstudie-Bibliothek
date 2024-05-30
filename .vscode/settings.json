@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Default High Contrast",
+    "workbench.colorTheme": "Monokai",
     "redhat.telemetry.enabled": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "[html]": {
