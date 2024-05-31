@@ -36,10 +36,12 @@
                     // Check if the query was successful and if there are any rows returned
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
-                        echo "<table id='table_booklist'>"; // Hier die ID hinzugefügt
+                        echo "<table id='table_booklist'>"; 
                         echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
+                        $row_number = 0;
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
+                            $row_number++;
+                            echo "<tr class='table-row' data-row-number='$row_number'>";
                             echo "<td>" . $row["book_id"] . "</td>";
                             echo "<td>" . $row["title"] . "</td>";
                             echo "<td>" . $row["author"] . "</td>";

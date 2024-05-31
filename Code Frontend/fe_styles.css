@@ -114,6 +114,7 @@ body {
     margin: 0 auto; 
     background-color: #cacaca;
     border-radius: 10px; 
+    user-select: none;
 }
  
 #table_booklist th,

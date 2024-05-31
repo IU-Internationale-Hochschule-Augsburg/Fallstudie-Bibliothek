@@ -13,7 +13,7 @@ if (sidebar.classList.contains("active")) {
     background.style.left = '210px';
     background.style.width = 'calc(100% - 210px)';
 } else {
-    background.style.left = '75px'; // Initial left position of the background
+    background.style.left = '75px';
     background.style.width = 'calc(100% - 75px)';
 }
 
@@ -30,9 +30,6 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s';
 }
 }
-
-
-
 
 // function hover_Dashboard 
 function function_hover_dashboard() {
@@ -271,4 +268,23 @@ function function_hover_loans() {
 // Call the function when the document is loaded
 document.addEventListener("DOMContentLoaded", function() {
     function_hover_loans();
+});
+
+// function tableRows
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all table rows except the header row
+    const tableRows = document.querySelectorAll('.table-row');
+        
+    // Add event listener to each table row
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', function() {
+            // Get the row number
+            const rowNumber = this.dataset.rowNumber;
+            // Exclude the first row
+            if (rowNumber !== '1') {
+                // Redirect to another HTML page
+                 window.location.href = 'other_page.html';
+            }
+        });
+    });
 });
