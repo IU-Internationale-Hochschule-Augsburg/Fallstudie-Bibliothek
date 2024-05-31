@@ -8,9 +8,30 @@ function toggleMenu() {
     sidebar.classList.toggle("active");
 
 // background function
-    var background = document.querySelector(".background");
-    background.classList.toggle("background-active");
+var background = document.querySelector(".background");
+if (sidebar.classList.contains("active")) {
+    background.style.left = '210px';
+    background.style.width = 'calc(100% - 210px)';
+} else {
+    background.style.left = '75px'; // Initial left position of the background
+    background.style.width = 'calc(100% - 75px)';
 }
+
+// White Square function
+var whiteSquare = document.getElementById("white-squareID");
+if (sidebar.classList.contains("active")) {
+    whiteSquare.style.left = '850px'; //
+    whiteSquare.style.width = 'calc(1700px - 130px - 44px)';
+    whiteSquare.style.transition = 'width 0.6s';
+} else {
+    whiteSquare.style.left = '50%';
+    whiteSquare.style.transform = 'translateX(-50%)';
+    whiteSquare.style.width = '1650px';
+    whiteSquare.style.transition = 'width 0.6s';
+}
+}
+
+
 
 
 // function hover_Dashboard 
