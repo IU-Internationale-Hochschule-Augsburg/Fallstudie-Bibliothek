@@ -137,7 +137,8 @@ table {
 <div class="logo_name"><p>LibrioFact</p></div>
 </div>
 <div class="topbar"><!-- adding topbar,profile button -->
-<div> <button class="button_profile">Mitarbeiter_1</button></div>
+<div> <button class="button_profile"id="button_logout"onclick="window.location.href='../Code Backend/be_logout.php'">Logout</button></div>
+
 </div> 
 <div class="sidebar"> <!-- adding sidebar, buttons and links -->
 <div class="buttons">
