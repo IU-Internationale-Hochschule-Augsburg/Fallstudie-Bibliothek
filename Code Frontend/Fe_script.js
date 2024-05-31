@@ -272,19 +272,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // function tableRows
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all table rows except the header row
-    const tableRows = document.querySelectorAll('.table-row');
-        
-    // Add event listener to each table row
-    tableRows.forEach(row => {
-        row.addEventListener('mouseover', function() {
-            // Get the row number
-            const rowNumber = this.dataset.rowNumber;
-            // Exclude the first row
-            if (rowNumber !== '1') {
-                // Redirect to another HTML page
-                 window.location.href = 'other_page.html';
-            }
+    const rows = document.querySelectorAll('#table_booklist tr:not(:first-child)');
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
         });
     });
 });

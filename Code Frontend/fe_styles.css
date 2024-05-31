@@ -116,13 +116,26 @@ body {
     border-radius: 10px; 
     user-select: none;
 }
- 
+
 #table_booklist th,
 #table_booklist td {
     border: 1px solid #000;
     padding: 8px;
     text-align: left;
 }
+
+#table_booklist tr {
+    cursor: pointer;
+}
+
+#table_booklist tr:first-child {
+    cursor: default; 
+}
+
+#table_booklist tr:hover {
+    background-color: #ddd; 
+}
+
 .topbar { /* declare topbar */
     position: absolute;
     top: 0px;

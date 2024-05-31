@@ -23,25 +23,23 @@
                 </div>
                 <?php
                     include "../Code Backend/be_db_conn.php";
- 
+
                     // Check if the connection to the database is successful
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
- 
+
                     // Perform a query to fetch all books from the database
                     $sql = "SELECT * FROM books";
                     $result = $conn->query($sql);
- 
+
                     // Check if the query was successful and if there are any rows returned
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
                         echo "<table id='table_booklist'>"; 
                         echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
-                        $row_number = 0;
                         while ($row = $result->fetch_assoc()) {
-                            $row_number++;
-                            echo "<tr class='table-row' data-row-number='$row_number'>";
+                            echo "<tr data-href='book_detail.php?book_id=" . $row["book_id"] . "'>";
                             echo "<td>" . $row["book_id"] . "</td>";
                             echo "<td>" . $row["title"] . "</td>";
                             echo "<td>" . $row["author"] . "</td>";
@@ -55,7 +53,7 @@
                         // If no books are found, display a message
                         echo "No books found.";
                     }
- 
+
                     // Close the database connection
                     $conn->close();
                 ?>
