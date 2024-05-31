@@ -8,10 +8,28 @@ function toggleMenu() {
     sidebar.classList.toggle("active");
 
 // background function
-    var background = document.querySelector(".background");
-    background.classList.toggle("background-active");
+var background = document.querySelector(".background");
+if (sidebar.classList.contains("active")) {
+    background.style.left = '210px';
+    background.style.width = 'calc(100% - 210px)';
+} else {
+    background.style.left = '75px';
+    background.style.width = 'calc(100% - 75px)';
 }
 
+// White Square function
+var whiteSquare = document.getElementById("white-squareID");
+if (sidebar.classList.contains("active")) {
+    whiteSquare.style.left = '850px'; //
+    whiteSquare.style.width = 'calc(1700px - 130px - 44px)';
+    whiteSquare.style.transition = 'width 0.6s';
+} else {
+    whiteSquare.style.left = '50%';
+    whiteSquare.style.transform = 'translateX(-50%)';
+    whiteSquare.style.width = '1650px';
+    whiteSquare.style.transition = 'width 0.6s';
+}
+}
 
 // function hover_Dashboard 
 function function_hover_dashboard() {
@@ -250,4 +268,24 @@ function function_hover_loans() {
 // Call the function when the document is loaded
 document.addEventListener("DOMContentLoaded", function() {
     function_hover_loans();
+});
+
+// function tableRows booklist
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('#table_booklist tr:not(:first-child)');
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
+        });
+    });
+});
+
+// function memberlist
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('#table_memberlist tr:not(:first-child)');
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
+        });
+    });
 });
