@@ -15,7 +15,7 @@
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
                 </div>
             </form> 
-            <button class="button_add_book" onclick="window.location.href='fe_add_book.html'">Add new Book</button>
+            <button class="button_add_book" onclick="window.location.href='add_book.php'">Add new Book</button>
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
                     <h1>Booklist</h1>
