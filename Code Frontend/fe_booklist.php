@@ -71,7 +71,7 @@
             <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
             <button class="button_equals" onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
             <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
             <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
             <button class="button_settings"></button>
@@ -81,7 +81,7 @@
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
-            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
+            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
         </ul>

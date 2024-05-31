@@ -19,8 +19,8 @@ body {
     align-items: flex-start;
 }
  
-/* declare buttons edit book and add book */
-.button_back_to_dashboard, .button_add_book {
+/* declare buttons back to dashboard, add book and add member */
+.button_back_to_dashboard, .button_add_book, .button_add_member {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -42,6 +42,10 @@ body {
 }
  
 .button_add_book {
+    right: 74px;
+}
+
+.button_add_member {
     right: 74px;
 }
 
@@ -106,7 +110,7 @@ body {
 }
  
 
-/* declare table */
+/* declare table booklist */
 #table_booklist {
     border-collapse: collapse;
     width: 97%; 
@@ -133,6 +137,36 @@ body {
 }
 
 #table_booklist tr:hover {
+    background-color: #ddd; 
+}
+
+/* declare table memberlist */
+#table_memberlist {
+    border-collapse: collapse;
+    width: 97%; 
+    border: 1px solid #cacaca; 
+    margin: 0 auto; 
+    background-color: #cacaca;
+    border-radius: 10px; 
+    user-select: none;
+}
+
+#table_memberlist th,
+#table_memberlist td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+#table_memberlist tr {
+    cursor: pointer;
+}
+
+#table_memberlist tr:first-child {
+    cursor: default; 
+}
+
+#table_memberlist tr:hover {
     background-color: #ddd; 
 }
 

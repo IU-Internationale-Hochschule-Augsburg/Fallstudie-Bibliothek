@@ -270,9 +270,19 @@ document.addEventListener("DOMContentLoaded", function() {
     function_hover_loans();
 });
 
-// function tableRows
+// function tableRows booklist
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('#table_booklist tr:not(:first-child)');
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
+        });
+    });
+});
+
+// function memberlist
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('#table_memberlist tr:not(:first-child)');
     rows.forEach(row => {
         row.addEventListener('click', function() {
             window.location.href = this.dataset.href;
