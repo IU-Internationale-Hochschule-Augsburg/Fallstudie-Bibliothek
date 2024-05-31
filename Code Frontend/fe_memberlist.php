@@ -12,14 +12,14 @@
             <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
             <form action="suche.php" method="get">
                 <div class="search-bar">
-                    <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
+                    <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
                 </div>
             </form> 
-            <button class="button_add_book" onclick="window.location.href='fe_add_book.html'">Add new Book</button>
+            <button class="button_add_member" onclick="window.location.href='fe_add_member.html'">Add new Member</button>
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
-                    <h1>Booklist</h1>
-                    <p>Here you can see and manage the list of books.</p>
+                    <h1>Memberlist</h1>
+                    <p>Here you can see and manage the list of members.</p>
                 </div>
                 <?php
                     include "../Code Backend/be_db_conn.php";
@@ -30,29 +30,28 @@
                     }
 
                     // Perform a query to fetch all books from the database
-                    $sql = "SELECT * FROM books";
+                    $sql = "SELECT * FROM members";
                     $result = $conn->query($sql);
 
                     // Check if the query was successful and if there are any rows returned
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
-                        echo "<table id='table_booklist'>"; 
-                        echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
+                        echo "<table id='table_memberlist'>"; 
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th></tr>";
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr data-href='book_detail.php?book_id=" . $row["book_id"] . "'>";
-                            echo "<td>" . $row["book_id"] . "</td>";
-                            echo "<td>" . $row["title"] . "</td>";
-                            echo "<td>" . $row["author"] . "</td>";
-                            echo "<td>" . $row["isbn"] . "</td>";
-                            echo "<td>" . $row["genre"] . "</td>";
-                            echo "<td>" . $row["status"] . "</td>";
-                            echo "</tr>";
-                        }
+                            echo "<tr>";
+                                echo "<td>" . $row["member_id"] . "</td>";
+                                echo "<td>" . $row["first_name"] . "</td>";
+                                echo "<td>" . $row["last_name"] . "</td>";
+                                echo "<td>" . $row["email"] . "</td>";
+                                echo "<td>" . $row["phone"] . "</td>";
+                                echo "</tr>";
+                            }
                         echo "</table>";
                     } else {
-                        // If no books are found, display a message
-                        echo "No books found.";
-                    }
+                        // If no members are found, display a message
+                        echo "No members found.";
+                    }                
 
                     // Close the database connection
                     $conn->close();
