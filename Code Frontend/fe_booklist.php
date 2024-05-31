@@ -9,13 +9,18 @@
 <body>
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
-            <button class="button_edit_book" onclick="window.location.href='fe_edit_book.html'">Edit Book</button>          
+            <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
             <form action="suche.php" method="get">
-                <input type="search" name="query" class="search-bar" placeholder="Search Book ..."> 
-                <button type="submit" class="button_add_book">Search</button> 
-            </form>    
+                <div class="search-bar">
+                    <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
+                </div>
+            </form> 
             <button class="button_add_book" onclick="window.location.href='fe_add_book.html'">Add New Book</button>
             <div class="white-square" id="white-squareID">
+                <div class="info-box">
+                    <h1>Booklist</h1>
+                    <p>Here you can see and manage the list of books.</p>
+                </div>
                 <?php
                     include "../Code Backend/be_db_conn.php";
  
