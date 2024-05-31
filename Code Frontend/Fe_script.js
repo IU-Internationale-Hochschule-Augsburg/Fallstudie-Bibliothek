@@ -270,15 +270,21 @@ document.addEventListener("DOMContentLoaded", function() {
     function_hover_loans();
 });
 
-// function tableRows booklist
 document.addEventListener('DOMContentLoaded', function() {
-    const rows = document.querySelectorAll('#table_booklist tr:not(:first-child)');
+    console.log("DOM fully loaded and parsed");
+    const rows = document.querySelectorAll('#table_booklist tr[data-href]');
+    console.log("Number of rows found: ", rows.length);
     rows.forEach(row => {
+        console.log("Row found: ", row);
         row.addEventListener('click', function() {
+            console.log("Row clicked: ", this.dataset.href);
             window.location.href = this.dataset.href;
         });
     });
 });
+
+
+
 
 // function memberlist
 document.addEventListener('DOMContentLoaded', function() {

@@ -10,7 +10,7 @@
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
-            <form action="suche.php" method="get">
+            <form action="book_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
                 </div>
@@ -39,7 +39,7 @@
                         echo "<table id='table_booklist'>"; 
                         echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr data-href='book_detail.php?book_id=" . $row["book_id"] . "'>";
+                            echo "<tr data-href='book_details.php?book_id=" . $row["book_id"] . "'>";
                             echo "<td>" . $row["book_id"] . "</td>";
                             echo "<td>" . $row["title"] . "</td>";
                             echo "<td>" . $row["author"] . "</td>";

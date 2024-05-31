@@ -5,7 +5,7 @@
     <meta name="LibroFact" content="Library of Books">
     <style>
 
-.white-square {
+.white-box {
         width: calc(100% - 2*20px); /* Subtract the left and right margins */
         height: calc(100% - 2*20px); /* Subtract the top and bottom margins */
         background-color: #f0f0f0;
@@ -56,32 +56,53 @@
     <div class="background"> 
         
     
-    <div class="white-square">
+    <div class="white-box">
             <div class="detail-content">
-            <button class="button_book_list" onclick="window.location.href='test.php'">Book List</button>
-                <h2>Book Details</h2>
-            <?php
+            <button class="button_book_list" onclick="window.location.href='fe_booklist.php'">Book List</button>
+            <button class="button_book_list" onclick="window.location.href='edit_book.php'">Edit Book</button>
+                
+                <?php
 include "../Code Backend/be_db_conn.php";
 
-$book_id = $_GET['id'];
+// Check if 'book_id' parameter is set in the URL
+if (isset($_GET['book_id'])) {
+    $book_id = $_GET['book_id'];
+    
+    // Check if the connection to the database is successful
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-$sql = "SELECT * FROM books WHERE book_id = $book_id";
-$result = $conn->query($sql);
+    // Sanitize the book_id to prevent SQL injection
+    $book_id = $conn->real_escape_string($book_id);
 
+    // Perform a query to fetch the book details from the database
+    $sql = "SELECT * FROM books WHERE book_id = '$book_id'";
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    echo "<table class='book-details'>";
-    echo "<tr><th>Title</th><td>" . $row["title"] . "</td></tr>";
-    echo "<tr><th>Author</th><td>" . $row["author"] . "</td></tr>";
-    echo "<tr><th>ISBN</th><td>" . $row["isbn"] . "</td></tr>";
-    echo "<tr><th>Genre</th><td>" . $row["genre"] . "</td></tr>";
-    echo "<tr><th>Status</th><td>" . $row["status"] . "</td></tr>";
-    echo "</table>";
+    // Check if the query was successful and if there are any rows returned
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch the book details
+        $book = $result->fetch_assoc();
+        // Display the book details (you can customize this part as needed)
+        echo "<h1>Book Details</h1>";
+        echo "<p>Book ID: " . $book["book_id"] . "</p>";
+        echo "<p>Title: " . $book["title"] . "</p>";
+        echo "<p>Author: " . $book["author"] . "</p>";
+        echo "<p>ISBN: " . $book["isbn"] . "</p>";
+        echo "<p>Genre: " . $book["genre"] . "</p>";
+        echo "<p>Status: " . $book["status"] . "</p>";
+    } else {
+        echo "Book not found.";
+    }
+
+    // Close the database connection
+    $conn->close();
 } else {
-    echo "No book found with this ID";
+    echo "No book ID specified.";
 }
 ?>
+
         
         </div>
     </div><!-- adding background -->       

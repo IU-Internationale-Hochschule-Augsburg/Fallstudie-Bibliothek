@@ -4,19 +4,7 @@
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
     <style>
-        .white-square {
-        width: calc(100% - 2*20px); /* Subtract the left and right margins */
-        height: calc(100% - 2*20px); /* Subtract the top and bottom margins */
-        background-color: white;
-        position: absolute;
-        top: 20px; /* Add margin at the top */
-        left: 20px; /* Add margin at the left */
-        right: 20px; /* Add margin at the right */
-        bottom: 20px; /* Add margin at the bottom */
-        padding: 20px; /* Add padding inside the div */
-        box-sizing: border-box; /* Include padding and border in element's total width and height */
-        overflow: auto; /* Add a scrollbar if the content is too big */
-}
+        
  
         table {
             border-collapse: collapse;
@@ -61,45 +49,25 @@ form button {
 h2 {
     text-align: center;
 }
-.button_home {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    cursor: pointer;
-    margin-bottom: 30px; /* Add margin to separate buttons */
-    top: 25px; 
-    color: #000000; 
-    cursor: pointer; 
-    z-index: 999; 
-}
-.button_book_list {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    cursor: pointer;
-    margin-bottom: 30px; /* Add margin to separate buttons */
-    top: 25px; 
-    color: #000000; 
-    cursor: pointer; 
-    z-index: 999; 
-}
+
 
        
     </style>
 </head>
 <body>
     <div class="background">
-    <div class="white-square">  <!-- adding background -->
-        <div class="add_book_content">
-        <button class="button_book_list" onclick="window.location.href='test.php'">Book List</button>
-        <button class="button_home" onclick="window.location.href='../Code Backend/be_home.php'">Home</button>
-        <h2>Add a New Book</h2>
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Back to Booklist</button>          
+            <form action="book_search_results.php" method="get">
+                <div class="search-bar">
+                    <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
+                </div>
+            </form> 
+            
+    <div class="white-square"> 
+    <div class="info-box">
+                    <h1>Add Book</h1>
+                    <p>Here you can add new books to the catalog</p>
+                </div> <!-- adding background -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
@@ -126,7 +94,7 @@ h2 {
             <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
             <button class="button_equals" onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
             <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
             <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
             <button class="button_settings"></button>
@@ -136,13 +104,16 @@ h2 {
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
-            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
+            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
         </ul>
     </div>
 </body>
  
+
+// Backend Code
+
 <?php
   include "../Code Backend/be_db_conn.php";
 class Book {

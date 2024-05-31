@@ -6,7 +6,7 @@
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
     <style>
-        .white-square {
+        .white-box {
     width: calc(100% - 2*20px); /* Subtract the left and right margins */
     height: calc(100% - 2*20px); /* Subtract the top and bottom margins */
     background-color: white;
@@ -22,29 +22,31 @@
  
 table {
     border-collapse: collapse;
-    width: 100%; /* Make the table take the full width of its parent */
-    border: 1px solid #000; /* Add border around the table */
-    max-width: 100%; /* Ensure the table does not exceed its parent's width */
-    box-sizing: border-box; /* Include padding and border in element's total width */
-}
-        th, td {
-            border: 1px solid #000; /* Add border around table cells */
-            padding: 8px;
-            text-align: left;
-        }
-        .button_book_list {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
+    width: 97%; 
+    border: 1px solid #cacaca; 
+    margin: 0 auto; 
     background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
+    border-radius: 10px; 
+    user-select: none;
+}
+
+table th,
+table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+table tr {
     cursor: pointer;
-    margin-bottom: 30px; /* Add margin to separate buttons */
-    top: 25px; 
-    color: #000000; 
-    cursor: pointer; 
-    z-index: 999; 
+}
+
+table  tr:first-child {
+    cursor: default; 
+}
+
+table tr:hover {
+    background-color: #ddd; 
 }
 h2 {
     text-align: center;
@@ -53,21 +55,26 @@ h2 {
 </head>
 <body>
     <div class="background">  
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>     
         <div class="white-square">
+        <div class="info-box">
+                    <h1>Search Result</h1>
+                    <p>Here you can see the result of your search.</p>
+                </div>
             <div class="search-content">
-                <h2>Search Results</h2>
-                <button class="button_book_list" onclick="window.location.href='test.php'">Book List</button>
+                
+                
             <?php
 include "../Code Backend/be_db_conn.php";
 
 $query = $_GET['query'];
 
-$sql = "SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%'";
+$sql = "SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Details</th></tr>";
+    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["book_id"] . "</td>";
@@ -76,7 +83,6 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["isbn"] . "</td>";
         echo "<td>" . $row["genre"] . "</td>";
         echo "<td>" . $row["status"] . "</td>";
-        echo "<td><button onclick=\"window.location.href='test_book_details.php?id=" . $row["book_id"] . "'\">Details</button></td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -100,7 +106,7 @@ if ($result->num_rows > 0) {
             <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
             <button class="button_equals" onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
             <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
             <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
             <button class="button_settings"></button>
@@ -110,7 +116,7 @@ if ($result->num_rows > 0) {
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
-            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
+            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
         </ul>
