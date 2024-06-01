@@ -21,35 +21,6 @@
             z-index: 999;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 97%;
-            border: 1px solid #cacaca;
-            margin: 0 auto;
-            background-color: #cacaca;
-            border-radius: 10px;
-            user-select: none;
-        }
-
-        table th,
-        table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-
-        table tr {
-            cursor: pointer;
-        }
-
-        table tr:first-child {
-            cursor: default;
-        }
-
-        table tr:hover {
-            background-color: #ddd;
-        }
-
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -57,7 +28,8 @@
             padding: 0;
         }
 
-        .form-container {
+
+        .form-container-bookdetails {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
@@ -65,21 +37,21 @@
             border-radius: 10px;
         }
 
-        .form-container h2 {
+        .form-container-bookdetails h2 {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .form-group {
+        .form-group-bookdetails {
             margin-bottom: 15px;
         }
 
-        .form-group label {
+        .form-group-bookdetails label {
             display: block;
             margin-bottom: 5px;
         }
 
-        .form-group input {
+        .form-group-bookdetails input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -87,7 +59,7 @@
             box-sizing: border-box;
         }
 
-        .form-group button {
+        .form-group-bookdetails button {
             width: 100%;
             padding: 10px;
             background-color: #cacaca;
@@ -97,16 +69,13 @@
             cursor: pointer;
             font-size: 16px;
         }
-
-        
-
-        
-    </style>
+</style>
     
 </head>
 <body>
     <div class="background">
         <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>
+        <button class="button_add_book" onclick="window.location.href='add_book.php'">Add new Book</button>
 
         <div class="white-square">
             <div class="info-box">
@@ -114,7 +83,7 @@
                 <p>Here you can see and manage the details of a specific book.</p>
             </div>
             <div class="detail-content">
-                <div class="form-container">
+                <div class="form-container-bookdetails">
                     <?php
                     include "../Code Backend/be_db_conn.php";
 
@@ -140,31 +109,31 @@
                             $book = $result->fetch_assoc();
                             ?>
                             <form action="submit_form.php" method="post">
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="book_id">Book ID:</label>
                                     <input type="text" id="book_id" name="book_id" value="<?php echo htmlspecialchars($book['book_id']); ?>" readonly>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="title">Title:</label>
                                     <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($book['title']); ?>" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="author">Author:</label>
                                     <input type="text" id="author" name="author" value="<?php echo htmlspecialchars($book['author']); ?>" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="isbn">ISBN:</label>
                                     <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($book['isbn']); ?>" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="genre">Genre:</label>
                                     <input type="text" id="genre" name="genre" value="<?php echo htmlspecialchars($book['genre']); ?>" required>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <label for="status">Status:</label>
                                     <input type="text" id="status" name="status" value="<?php echo htmlspecialchars($book['status']); ?>" readonly>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group-bookdetails">
                                     <button type="submit">Submit</button>
                                 </div>
                                 <div id="confirmation-message"></div> <!-- Confirmation message area -->

@@ -4,51 +4,50 @@
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
     <style>
+        .form-container-addbook {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .form-container-addbook h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group-addbook {
+            margin-bottom: 15px;
+        }
+
+        .form-group-addbook label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group-addbook input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group-addbook button {
+            width: 100%;
+            padding: 10px;
+            background-color: #cacaca;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
         
- 
-        table {
-            border-collapse: collapse;
-            width: 100%; /* Make the table take the full width of its parent */
-            border: 1px solid #000; /* Add border around the table */
-            max-width: 100%; /* Ensure the table does not exceed its parent's width */
-            box-sizing: border-box; /* Include padding and border in element's total width */
+        h2 {
+            text-align: center;
         }
-        th, td {
-            border: 1px solid #000; /* Add border around table cells */
-            padding: 8px;
-            text-align: left;
-        }
-        form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px; /* Adjust as needed */
-    margin: auto;
-    padding: 20px;
-    border: 2px solid #000;
-    border-radius: 5px; /* Rounded corners */
-    font-weight: bold;
- 
-}
- 
-form input, form select, form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 5px; /* Rounded corners */
-}
- 
-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-}
-h2 {
-    text-align: center;
-}
 
 
        
@@ -61,25 +60,44 @@ h2 {
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
                 </div>
-            </form> 
+            </form>
+     
             
     <div class="white-square"> 
     <div class="info-box">
                     <h1>Add Book</h1>
                     <p>Here you can add new books to the catalog</p>
                 </div> <!-- adding background -->
+    
+    <div class="form-container-addbook">  
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br>
-        <label for="author">Author:</label><br>
-        <input type="text" id="author" name="author"><br>
-        <label for="isbn">ISBN:</label><br>
-        <input type="text" id="isbn" name="isbn"><br>
-        <label for="genre">Genre:</label><br>
-        <input type="text" id="genre" name="genre"><br><br>
-        <input type="submit" value="Add Book">
-    </form>
-   
+    <div class="form-group-addbook">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+    </div>
+    <div class="form-group-addbook">
+         <label for="author">Author:</label>
+         <input type="text" id="author" name="author">
+    </div>
+    <div class="form-group-addbook">
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn">
+    </div>
+    <div class="form-group-addbook">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre">
+     </div>
+     <div class="form-group-addbook">
+        <button type="submit">Submit</button>
+    </div>
+    
+
+
+
+
+
+
+
         </div>
     </div> <!-- adding background -->      
     </div>
@@ -144,6 +162,7 @@ class BookList {
         $stmt->bind_param("ssss", $title, $author, $isbn, $genre);
         $stmt->execute();
         $stmt->close();
+
         echo "Book added successfully!";
     }
  
@@ -180,3 +199,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
  
 ?>
+
+
