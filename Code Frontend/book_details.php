@@ -1,3 +1,28 @@
+<?php
+    include "../Code Backend/be_db_conn.php";
+
+         // Check if 'book_id' parameter is set in the URL
+        if (isset($_GET['book_id'])) {
+             $book_id = $_GET['book_id'];
+
+             // Check if the connection to the database is successful
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+                }
+
+            // Sanitize the book_id to prevent SQL injection
+            $book_id = $conn->real_escape_string($book_id);
+
+            // Perform a query to fetch the book details from the database
+            $sql = "SELECT * FROM books WHERE book_id = '$book_id'";
+            $result = $conn->query($sql);
+
+            // Check if the query was successful and if there are any rows returned
+            if ($result !== false && $result->num_rows > 0) {
+            // Fetch the book details
+            $book = $result->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
+    <title>LIBRIOFACT - Book Details</title>
 </head>
 
 <body>
@@ -18,30 +44,6 @@
             </div>
             <div class="detail-content">
                 <div class="form-container-bookdetails">
-                    <?php
-                    include "../Code Backend/be_db_conn.php";
-
-                    // Check if 'book_id' parameter is set in the URL
-                    if (isset($_GET['book_id'])) {
-                        $book_id = $_GET['book_id'];
-
-                        // Check if the connection to the database is successful
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        // Sanitize the book_id to prevent SQL injection
-                        $book_id = $conn->real_escape_string($book_id);
-
-                        // Perform a query to fetch the book details from the database
-                        $sql = "SELECT * FROM books WHERE book_id = '$book_id'";
-                        $result = $conn->query($sql);
-
-                        // Check if the query was successful and if there are any rows returned
-                        if ($result !== false && $result->num_rows > 0) {
-                            // Fetch the book details
-                            $book = $result->fetch_assoc();
-                            ?>
                             <form action="submit_form.php" method="post">
                                 <div class="form-group-bookdetails">
                                     <label for="book_id">Book ID:</label>
@@ -69,6 +71,9 @@
                                 </div>
                                 <div class="form-group-bookdetails">
                                     <button type="submit">Submit</button>
+                                </div>
+                                <div class="form-group-bookdetails">
+                                    <button type="submit">Delete</button>
                                 </div>
                                 <div id="confirmation-message"></div> <!-- Confirmation message area -->
                             </form>

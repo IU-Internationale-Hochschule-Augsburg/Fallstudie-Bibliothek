@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
+    <title>LIBRIOFACT - Booklist</title>
 </head>
 <body>
     <div class="background">  <!-- adding background -->  

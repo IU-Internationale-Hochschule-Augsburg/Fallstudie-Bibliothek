@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
+    <title>LIBRIOFACT - Search Results</title>
     <style>
         .white-box {
     width: calc(100% - 2*20px); /* Subtract the left and right margins */
@@ -61,9 +62,7 @@ h2 {
                     <h1>Search Result</h1>
                     <p>Here you can see the result of your search.</p>
                 </div>
-            <div class="search-content">
-                
-                
+            <div class="search-content">               
             <?php
 include "../Code Backend/be_db_conn.php";
 
@@ -90,7 +89,6 @@ if ($result->num_rows > 0) {
     echo "No results found";
 }
 ?>
-
             </div>
         </div>
         <!-- adding background -->       
@@ -99,7 +97,7 @@ if ($result->num_rows > 0) {
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
     <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div> 
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">

@@ -1,3 +1,42 @@
+<?php
+    include "../Code Backend/be_db_conn.php";
+
+    $title = "";
+    $author = "";
+    $isbn = "";
+    $genre = "";
+
+
+    $success = "";  
+    $error = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $isbn = $_POST['isbn'];
+        $genre = $_POST['genre'];
+
+
+        do {
+            if (empty($title) || empty($author) || empty($isbn) || empty($genre)) {
+                $error = "All fields are required";
+                break;
+            }
+
+            $q = " INSERT INTO `books`(`title`, `author`, `isbn`, `genre`) VALUES ( '$title', '$author', '$isbn', '$genre' )";
+            $result = $conn->query($q);
+
+            if (!$result) {
+                $error = "Invalid Query: " . $conn->error;
+                break;
+            }
+
+            $success = $title . " added successfully";
+
+            } while (false);
+        }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
+    <title>LIBRIOFACT - Add Book</title>
     <style>
         .form-container-addbook {
             width: 80%;
@@ -90,9 +130,19 @@
         <input type="text" id="genre" name="genre">
      </div>
      <div class="form-group-addbook">
-        <button type="submit">Submit</button>
+        <button type="submit" name="submit">Submit</button>
     </div>
-     </div>
+    <!-- Display error or success message --> 
+    
+    <?php if (!empty($success)) : ?>
+            <p><?php echo $success; ?></p>
+    <?php endif; ?>
+    <?php if (!empty($error)) : ?>
+            <p><?php echo $error; ?></p>
+    <?php endif; ?>
+    </form>
+
+     </div>   
     </div> <!-- adding background -->      
     </div>
     <div class="logo"> <!-- add logo -->
@@ -115,7 +165,7 @@
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
-            <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
+            <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
@@ -126,72 +176,7 @@
 
 // Backend Code
 
-<?php
-  include "../Code Backend/be_db_conn.php";
-class Book {
-    public $id;
-    public $title;
-    public $author;
-    public $isbn;
-    public $genre;
- 
-    public function __construct($id, $title, $author, $isbn, $genre) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->author = $author;
-        $this->isbn = $isbn;
-        $this->genre = $genre;
-    }
-}
- 
-class BookList {
-    private $conn;
- 
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
- 
-    public function addBookManually($title, $author, $isbn, $genre) {
-        $stmt = $this->conn->prepare("INSERT INTO books (title, author, isbn, genre) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $title, $author, $isbn, $genre);
-        $stmt->execute();
-        $stmt->close();
 
-        echo "Book added successfully!";
-    }
- 
-    public function getAllBooks() {
-        $result = $this->conn->query("SELECT * FROM books");
-        if ($result->num_rows > 0) {
-            echo "<table class='book-table'>";
-            echo "<tr><th>ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th></tr>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["book_id"] . "</td>";
-                echo "<td>" . $row["title"] . "</td>";
-                echo "<td>" . $row["author"] . "</td>";
-                echo "<td>" . $row["isbn"] . "</td>";
-                echo "<td>" . $row["genre"] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "No books added yet.";
-        }
-    }
-}
- 
-$bookList = new BookList($conn);
- 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["title"];
-    $author = $_POST["author"];
-    $isbn = $_POST["isbn"];
-    $genre = $_POST["genre"];
-   
-    $bookList->addBookManually($title, $author, $isbn, $genre);
-}
- 
-?>
 
+<!-- Your HTML code here -->
 
