@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
@@ -90,22 +92,14 @@
      <div class="form-group-addbook">
         <button type="submit">Submit</button>
     </div>
-    
-
-
-
-
-
-
-
-        </div>
+     </div>
     </div> <!-- adding background -->      
     </div>
     <div class="logo"> <!-- add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
     <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
