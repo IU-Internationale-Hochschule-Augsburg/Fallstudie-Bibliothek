@@ -5,79 +5,13 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
-    <style>
-        .button_book_list {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background-color: #cacaca;
-            color: rgb(0, 0, 0);
-            font-size: 18px;
-            cursor: pointer;
-            margin-bottom: 30px; /* Add margin to separate buttons */
-            top: 25px;
-            color: #000000;
-            cursor: pointer;
-            z-index: 999;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .form-container-bookdetails {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-        }
-
-        .form-container-bookdetails h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group-bookdetails {
-            margin-bottom: 15px;
-        }
-
-        .form-group-bookdetails label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group-bookdetails input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .form-group-bookdetails button {
-            width: 100%;
-            padding: 10px;
-            background-color: #cacaca;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-</style>
-    
 </head>
+
 <body>
     <div class="background">
-        <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>
+        <button class="button_back_to_booklist" onclick="window.location.href='fe_booklist.php'">Back to Book List</button>
         <button class="button_add_book" onclick="window.location.href='add_book.php'">Add new Book</button>
-
-        <div class="white-square">
+        <div class="white-square" id="white-squareID">
             <div class="info-box">
                 <h1>Book Details</h1>
                 <p>Here you can see and manage the details of a specific book.</p>
@@ -157,27 +91,26 @@
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
     <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
-        <div class="buttons">
-            <button class="button_house" id="button_houseID" onclick="window.location.href='fe_dashboard.html'"></button>
-            <button class="button_equals" onclick="toggleMenu()"></button>
-            <button class="button_booklist" id="button_booklistID" onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist" id="button_memberlistID" onclick="window.location.href='fe_memberlist.php'"></button>
-            <button class="button_reminder" id="button_reminderID" onclick="window.location.href='fe_reminder.html'"></button>
-            <button class="button_loans" id="button_loansID" onclick="window.location.href='fe_loans.html'"></button>
+    <div class="buttons">
+            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'"></button>
+            <button class="button_equals"onclick="toggleMenu()"></button>
+            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
+            <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.php'"></button>
+            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.php'"></button>
             <button class="button_settings"></button>
         </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard" onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
-            <li><a href="#" id="Booklist" onclick="window.location.href='fe_booklist.php''">Books</a></li>
-            <li><a href="#" id="Memberlist" onclick="window.location.href='fe_memberlist.html'">Members</a></li>
-            <li><a href="#" id="Reminder" onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
-            <li><a href="#" id="Loans" onclick="window.location.href='fe_loans.html'">Loans</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
+            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
+            <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.php'">Reminder</a></li>
+            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.php'">Loans</a></li>
         </ul>
     </div>
 </body>
-</html>

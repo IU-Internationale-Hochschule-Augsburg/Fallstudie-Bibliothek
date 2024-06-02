@@ -20,8 +20,8 @@ body {
     align-items: flex-start;
 }
  
-/* declare buttons back to dashboard, add book and add member */
-.button_back_to_dashboard, .button_add_book, .button_add_member {
+/* declare buttons back to dashboard, add book and add member, button_back_to_booklist */
+.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -38,7 +38,7 @@ body {
     border-radius: 15px
 }
  
-.button_back_to_dashboard {
+.button_back_to_dashboard, .button_back_to_booklist {
     left: 90px;
 }
  
@@ -171,7 +171,50 @@ body {
     background-color: #ddd; 
 }
 
-.topbar { /* declare topbar */
+/* declare bookdetails site */
+.form-container-bookdetails {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.form-container-bookdetails h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group-bookdetails {
+    margin-bottom: 15px;
+}
+
+.form-group-bookdetails label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group-bookdetails input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group-bookdetails button {
+    width: 100%;
+    padding: 10px;
+    background-color: #cacaca;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* declare topbar */
+.topbar { 
     position: absolute;
     top: 0px;
     width: 100%;
@@ -336,8 +379,8 @@ body {
         z-index: 1000; 
     }
 
-/* declare a profile button of topebar */
-    .button_profile {
+/* declare a logout button of topebar */
+    .button_logout {
         position: fixed;
         top: 7px;
         right: 20px; 

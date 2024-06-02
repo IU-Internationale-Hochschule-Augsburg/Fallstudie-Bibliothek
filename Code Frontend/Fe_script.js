@@ -283,10 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
-
-// function memberlist
+// function not first child
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('#table_memberlist tr:not(:first-child)');
     rows.forEach(row => {
