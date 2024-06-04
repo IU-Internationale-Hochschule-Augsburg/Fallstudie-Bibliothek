@@ -39,7 +39,7 @@
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
                         echo "<table id='table_booklist'>"; 
-                        echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
+                        echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr data-href='book_details.php?book_id=" . $row["book_id"] . "'>";
                             echo "<td>" . $row["book_id"] . "</td>";
@@ -48,6 +48,7 @@
                             echo "<td>" . $row["isbn"] . "</td>";
                             echo "<td>" . $row["genre"] . "</td>";
                             echo "<td>" . $row["status"] . "</td>";
+                            echo "<td><a href='book_edit.php?book_id=" . $row["book_id"] . "'>Edit </a> | <a href='book_delete.php?book_id=" . $row["book_id"] . "'>Delete</a></td>";
                             echo "</tr>";
                         }
                         echo "</table>";
