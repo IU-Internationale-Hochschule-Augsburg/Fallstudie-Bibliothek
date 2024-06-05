@@ -11,7 +11,7 @@
 <body>
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
-            <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.php'">Back to Dashboard</button>          
+            <button class="button_back_to_dashboard" onclick="window.location.href='dashboard.php'">Back to Dashboard</button>          
             <form action="book_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
@@ -71,7 +71,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'"></button>
+            <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'"></button>
             <button class="button_equals"onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
             <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
@@ -82,7 +82,7 @@
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.php'">Reminder</a></li>

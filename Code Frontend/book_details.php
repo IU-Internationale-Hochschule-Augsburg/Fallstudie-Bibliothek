@@ -68,14 +68,7 @@
                                 <div class="form-group-bookdetails">
                                     <label for="status">Status:</label>
                                     <input type="text" id="status" name="status" value="<?php echo htmlspecialchars($book['status']); ?>" readonly>
-                                </div>
-                                <div class="form-group-bookdetails">
-                                    <button type="submit">Submit</button>
-                                </div>
-                                <div class="form-group-bookdetails">
-                                    <button type="submit">Delete</button>
-                                </div>
-                                <div id="confirmation-message"></div> <!-- Confirmation message area -->
+                                </div> <!-- Confirmation message area -->
                             </form>
                             <?php
                         } else {
@@ -100,7 +93,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
     <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'"></button>
+            <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'"></button>
             <button class="button_equals"onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
             <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
@@ -111,7 +104,7 @@
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.php'">Reminder</a></li>
