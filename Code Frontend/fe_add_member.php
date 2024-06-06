@@ -113,7 +113,7 @@
     <div class="white-square"> 
     <div class="info-box">
                     <h1>Add Member</h1>
-                    <p>Here you can add new members to the catalog</p>
+                    <p>Here you can add new members</p>
                 </div> <!-- adding background -->
     
     <div class="form-container-addmember">  
