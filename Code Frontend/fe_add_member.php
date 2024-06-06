@@ -1,29 +1,34 @@
 <?php
     include "../Code Backend/be_db_conn.php";
 
-    $title = "";
-    $author = "";
-    $isbn = "";
-    $genre = "";
+    $member_id = "";
+    $first_name = "";
+    $last_name = "";
+    $email = "";
+    $phone = "";
+    
 
 
     $success = "";  
     $error = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $isbn = $_POST['isbn'];
-        $genre = $_POST['genre'];
+        $member_id = $_POST['title'];
+        $first_name = $_POST['author'];
+        $last_name = $_POST['isbn'];
+        $email = $_POST['genre'];
+        $phone = $_POST['genre'];
+
 
 
         do {
-            if (empty($title) || empty($author) || empty($isbn) || empty($genre)) {
+            if (empty($member_id) || empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
                 $error = "All fields are required";
                 break;
             }
 
-            $q = " INSERT INTO `books`(`title`, `author`, `isbn`, `genre`) VALUES ( '$title', '$author', '$isbn', '$genre' )";
+            $q = " INSERT INTO `books`(`member_id`, `first_name`, `last_name`, `email`, `phone`) 
+            VALUES ( '$member_id', '$first_name', '$last_name', '$email', '$phone' )";
             $result = $conn->query($q);
 
             if (!$result) {
@@ -31,7 +36,7 @@
                 break;
             }
 
-            $success = $title . " added successfully";
+            $success = $member_id . " added successfully";
 
             } while (false);
         }
@@ -97,7 +102,7 @@
 </head>
 <body>
     <div class="background">
-    <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Back to Booklist</button>          
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Back to Memberlist</button>          
             <form action="book_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
@@ -114,20 +119,24 @@
     <div class="form-container-addmember">  
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <div class="form-group-addmember">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title">
+        <label for="member_id">Title:</label>
+        <input type="text" id="member_id" name="member_id">
     </div>
     <div class="form-group-addmember">
-         <label for="author">Author:</label>
-         <input type="text" id="author" name="author">
+         <label for="first_name">Author:</label>
+         <input type="text" id="first_name" name="first_name">
     </div>
     <div class="form-group-addmember">
-        <label for="isbn">ISBN:</label>
-        <input type="text" id="isbn" name="isbn">
+        <label for="last_name">ISBN:</label>
+        <input type="text" id="last_name" name="last_name">
     </div>
     <div class="form-group-addmember">
-        <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre">
+        <label for="email">Genre:</label>
+        <input type="text" id="email" name="email">
+     </div>
+     <div class="form-group-addmember">
+        <label for="phone">Genre:</label>
+        <input type="text" id="phone" name="phone">
      </div>
      <div class="form-group-addmember">
         <button type="submit" name="submit">Submit</button>
