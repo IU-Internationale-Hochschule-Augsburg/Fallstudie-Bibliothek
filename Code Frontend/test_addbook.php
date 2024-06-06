@@ -1,211 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="fe_styles.css">
-    <script src="fe_script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="LibroFact" content="Library of Books">
+    <title>Neues Buch hinzufügen - LibrioFact</title>
     <style>
-        .white-square {
-        width: calc(100% - 2*20px); /* Subtract the left and right margins */
-        height: calc(100% - 2*20px); /* Subtract the top and bottom margins */
-        background-color: white;
-        position: absolute;
-        top: 20px; /* Add margin at the top */
-        left: 20px; /* Add margin at the left */
-        right: 20px; /* Add margin at the right */
-        bottom: 20px; /* Add margin at the bottom */
-        padding: 20px; /* Add padding inside the div */
-        box-sizing: border-box; /* Include padding and border in element's total width and height */
-        overflow: auto; /* Add a scrollbar if the content is too big */
-}
- 
-        table {
-            border-collapse: collapse;
-            width: 100%; /* Make the table take the full width of its parent */
-            border: 1px solid #000; /* Add border around the table */
-            max-width: 100%; /* Ensure the table does not exceed its parent's width */
-            box-sizing: border-box; /* Include padding and border in element's total width */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
-        th, td {
-            border: 1px solid #000; /* Add border around table cells */
-            padding: 8px;
-            text-align: left;
-        }
-        form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px; /* Adjust as needed */
-    margin: auto;
-    padding: 20px;
-    border: 2px solid #000;
-    border-radius: 5px; /* Rounded corners */
-    font-weight: bold;
- 
-}
- 
-form input, form select, form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 5px; /* Rounded corners */
-}
- 
-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-}
-h2 {
-    text-align: center;
-}
-.button_home {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    cursor: pointer;
-    margin-bottom: 30px; /* Add margin to separate buttons */
-    top: 25px; 
-    color: #000000; 
-    cursor: pointer; 
-    z-index: 999; 
-}
-.button_book_list {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    cursor: pointer;
-    margin-bottom: 30px; /* Add margin to separate buttons */
-    top: 25px; 
-    color: #000000; 
-    cursor: pointer; 
-    z-index: 999; 
-}
 
-       
+        .background {
+            background-color: #404040;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .scrollable-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #888888;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            z-index: 1000;
+        }
+
+        .logo_name {
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            position: absolute;
+            top: 25px;
+            left: 120px;
+            z-index: 1001;
+        }
+
+        .logo_pic {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: auto;
+            background-image: url('Pfad/zum/deinem/Bild/logo_pic.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 1000;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 75px;
+            height: 100%;
+            background-color: #888888;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+
+        .button_equals,
+        .button_house,
+        .button_booklist,
+        .button_memberlist,
+        .button_reminder,
+        .button_loans,
+        .button_settings {
+            background-size: cover;
+            background-color: #888888;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 35px;
+            height: 35px;
+            margin-top: 20px;
+            display: block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button_equals {
+            background-image: url('button_equals.png');
+            margin-top: 30px;
+        }
+
+        .button_house {
+            background-image: url('button_house.png');
+        }
+
+        .button_booklist {
+            background-image: url('button_booklist.png');
+        }
+
+        .button_memberlist {
+            background-image: url('button_memberlist.png');
+        }
+
+        .button_reminder {
+            background-image: url('button_reminder.png');
+        }
+
+        .button_loans {
+            background-image: url('button_loans.png');
+        }
+
+        .button_settings {
+            background-image: url('button_settings.png');
+            position: absolute;
+            bottom: 30px;
+            left: 15px;
+        }
+
+        .button_profile {
+            position: fixed;
+            top: 0px;
+            right: 20px;
+            padding: 10px 40px;
+            border: none;
+            border-radius: 20px;
+            background-color: #acacac;
+            color: #000000;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+        }
+
+        .button_profile:hover {
+            transform: scale(1.06);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar.active {
+            width: calc(35px + 150px);
+        }
+
+        .menu {
+            position: fixed;
+            top: 30px;
+            left: 70px;
+            width: 150px;
+            background-color: #888888;
+            z-index: 999;
+            display: none;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            padding: 10px;
+            margin-bottom: -20px;
+        }
+
+        .menu ul li a {
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            padding-top: 44px;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .form-container {
+            width: 90%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-left: auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin: 10px 0 5px 0;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #888888;
+            color: #ffffff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #555555;
+        }
+
+        .book-entry {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .remove-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff6666;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 1em;
+            line-height: 25px;
+            text-align: center;
+        }
+
     </style>
+    <script>
+        function addBookEntry() {
+            const container = document.getElementById('books-container');
+            const bookEntry = document.createElement('div');
+            bookEntry.className = 'book-entry';
+            bookEntry.innerHTML = `
+
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="isbn">ISBN:</label>
+                    <input type="text" name="isbn" required>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="author">Autor:</label>
+                    <input type="text" name="author" required>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="genre">Genre:</label>
+                    <input type="text" name="genre" required>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label for="title">Titel:</label>
+                    <input type="text" name="title" required>
+                </div>
+            </div>
+            <button onclick="removeBookEntry(this)" style="margin-top: 10px;">Remove Book</button>
+            `;
+            container.appendChild(bookEntry);
+        }
+
+        function removeBookEntry(button) {
+            const container = document.getElementById('books-container');
+            if (container.children.length > 1) {
+                button.parentElement.remove();
+            } else {
+                alert('There has to be at least one Book entry.');
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            addBookEntry();
+        });
+    </script>
 </head>
 <body>
-    <div class="background">
-    <div class="white-square">  <!-- adding background -->
-        <div class="add_book_content">
-        <button class="button_book_list" onclick="window.location.href='test.php'">Book List</button>
-        <button class="button_home" onclick="window.location.href='../Code Backend/be_home.php'">Home</button>
-        <h2>Add a New Book</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br>
-        <label for="author">Author:</label><br>
-        <input type="text" id="author" name="author"><br>
-        <label for="isbn">ISBN:</label><br>
-        <input type="text" id="isbn" name="isbn"><br>
-        <label for="genre">Genre:</label><br>
-        <input type="text" id="genre" name="genre"><br><br>
-        <input type="submit" value="Add Book">
-    </form>
-   
-        </div>
-    </div> <!-- adding background -->      
+    <div class="topbar">
+        <div class="logo_name" onclick="window.location.href='fe_Libriofact.html'">LibrioFact</div>
+        <button class="button_profile" onclick="window.location.href='fe_profile.html'">Admin</button>
+        <div class="logo_pic"></div>
     </div>
-    <div class="logo"> <!-- add logo -->
-        <div class="logo_name"><p>LibrioFact</p></div>
+    <div class="sidebar">
+        <button class="button_equals" onclick="toggleMenu()"></button>
+        <button class="button_house" id="button_houseID" onclick="window.location.href='fe_dashboard.html'"></button>
+        <button class="button_booklist" id="button_booklistID" onclick="window.location.href='fe_booklist.html'"></button>
+        <button class="button_memberlist" id="button_memberlistID" onclick="window.location.href='fe_memberlist.html'"></button>
+        <button class="button_reminder" id="button_reminderID" onclick="window.location.href='fe_reminder.html'"></button>
+        <button class="button_loans" id="button_loansID" onclick="window.location.href='fe_loans.html'"></button>
+        <button class="button_settings" onclick="window.location.href='fe_settings.html'"></button>
     </div>
-    <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
-    </div>
-    <div class="sidebar"> <!-- adding sidebar, buttons and links -->
-        <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
-            <button class="button_equals" onclick="toggleMenu()"></button>
-            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.html'"></button>
-            <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
-            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
-            <button class="button_settings"></button>
-        </div>
-    </div>
-    <div class="menu" id="menu"> <!-- adding menu with bullet points -->
+    <div class="menu" id="menu">
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
-            <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php''">Books</a></li>
-            <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.html'">Members</a></li>
-            <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
-            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
+            <li><a href="#" id="Dashboard" onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
+            <li><a href="#" id="Booklist" onclick="window.location.href='fe_booklist.html'">Books</a></li>
+            <li><a href="#" id="Memberlist" onclick="window.location.href='fe_memberlist.html'">Members</a></li>
+            <li><a href="#" id="Reminder" onclick="window.location.href='fe_loans.html'">Reminder</a></li>
+            <li><a href="#" id="Loans" onclick="window.location.href='fe_settings.html'">Loans</a></li>
         </ul>
     </div>
+    <div class="background">
+        <div class="scrollable-content">
+            <div class="form-container">
+                <h2>Add new Book(s)</h2>
+                <form id="books-form">
+                    <div id="books-container"></div>
+                    <button type="button" onclick="addBookEntry()">Add another new Book</button>
+                    <button type="submit">Add Book(s)</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
- 
-<?php
-  include "../Code Backend/be_db_conn.php";
-class Book {
-    public $id;
-    public $title;
-    public $author;
-    public $isbn;
-    public $genre;
- 
-    public function __construct($id, $title, $author, $isbn, $genre) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->author = $author;
-        $this->isbn = $isbn;
-        $this->genre = $genre;
-    }
-}
- 
-class BookList {
-    private $conn;
- 
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
- 
-    public function addBookManually($title, $author, $isbn, $genre) {
-        $stmt = $this->conn->prepare("INSERT INTO books (title, author, isbn, genre) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $title, $author, $isbn, $genre);
-        $stmt->execute();
-        $stmt->close();
-        echo "Book added successfully!";
-    }
- 
-    public function getAllBooks() {
-        $result = $this->conn->query("SELECT * FROM books");
-        if ($result->num_rows > 0) {
-            echo "<table class='book-table'>";
-            echo "<tr><th>ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th></tr>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["book_id"] . "</td>";
-                echo "<td>" . $row["title"] . "</td>";
-                echo "<td>" . $row["author"] . "</td>";
-                echo "<td>" . $row["isbn"] . "</td>";
-                echo "<td>" . $row["genre"] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "No books added yet.";
-        }
-    }
-}
- 
-$bookList = new BookList($conn);
- 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["title"];
-    $author = $_POST["author"];
-    $isbn = $_POST["isbn"];
-    $genre = $_POST["genre"];
-   
-    $bookList->addBookManually($title, $author, $isbn, $genre);
-}
- 
-?>
+</html>
