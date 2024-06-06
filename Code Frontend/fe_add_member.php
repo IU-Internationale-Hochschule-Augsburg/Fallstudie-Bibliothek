@@ -119,23 +119,23 @@
     <div class="form-container-addmember">  
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <div class="form-group-addmember">
-        <label for="member_id">Title:</label>
+        <label for="member_id">member_id</label>
         <input type="text" id="member_id" name="member_id">
     </div>
     <div class="form-group-addmember">
-         <label for="first_name">Author:</label>
+         <label for="first_name">first_name</label>
          <input type="text" id="first_name" name="first_name">
     </div>
     <div class="form-group-addmember">
-        <label for="last_name">ISBN:</label>
+        <label for="last_name">last_name</label>
         <input type="text" id="last_name" name="last_name">
     </div>
     <div class="form-group-addmember">
-        <label for="email">Genre:</label>
+        <label for="email">email</label>
         <input type="text" id="email" name="email">
      </div>
      <div class="form-group-addmember">
-        <label for="phone">Genre:</label>
+        <label for="phone">phone</label>
         <input type="text" id="phone" name="phone">
      </div>
      <div class="form-group-addmember">
