@@ -65,7 +65,7 @@
 <body>
     <div class="background">
         <button class="button_back_to_booklist" onclick="window.location.href='fe_booklist.php'">Back to Book List</button>
-        <button class="button_add_book" onclick="window.location.href='add_book.php'">Add new Book</button>
+        <button class="button_add_book" onclick="window.location.href='book_add.php'">Add new Book</button>
         <div class="white-square" id="white-squareID">
             <div class="info-box">
                 <h1>Edit Book Details</h1>

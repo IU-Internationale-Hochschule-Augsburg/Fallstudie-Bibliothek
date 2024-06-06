@@ -73,7 +73,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
+    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["book_id"] . "</td>";
@@ -82,6 +82,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["isbn"] . "</td>";
         echo "<td>" . $row["genre"] . "</td>";
         echo "<td>" . $row["status"] . "</td>";
+        echo "<td><a href='book_edit.php?book_id=" . $row["book_id"] . "'>Edit </a> | <a href='book_delete.php?book_id=" . $row["book_id"] . "'>Delete</a></td>";
         echo "</tr>";
     }
     echo "</table>";
