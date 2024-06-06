@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows == 1) {
             // Login successful
             // Redirect to home page
-            header("Location: ../Code Frontend/fe_template_background.html"); // Change "home.php" to the URL of your home page
+            header("Location: ../Code Frontend/dashboard.php"); // Change "home.php" to the URL of your home page
             exit(); // Ensure that script execution stops after redirection
         } else {
             header("Location: be_index.php?error=Incorrect Username or Password");
