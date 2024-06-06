@@ -53,7 +53,7 @@ body {
  /* declare search */
 .search-bar {
     position: relative; 
-    display: inline-block; 
+    display: inline-block;
 }
 
 .search-input {
