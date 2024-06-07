@@ -22,9 +22,9 @@
                     <h1>Loanlist</h1>
                     <p>Here you can see and manage the list of loaned books.</p>
                 </div>
-
-                <!-- PHP code for the loan list will go here -->
-
+                <?php
+                    include "../Code Backend/NEW_be_loan_overview.php";
+                ?>
             </div>
         </div>
     </div>
