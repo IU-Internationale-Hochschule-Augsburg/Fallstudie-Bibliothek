@@ -17,49 +17,17 @@
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
                 </div>
             </form> 
-            <button class="button_add_book" onclick="window.location.href='book_add.php'">Add new Book</button>
+            <button class="button_add_book" onclick="window.location.href='fe_return_book.php'">Return Book</button>
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
-                    <h1>Booklist</h1>
-                    <p>Here you can see and manage the list of books.</p>
+                    <h1>Overdue Booklist</h1>
+                    <p>Here you can see and manage the list of overdue books.</p>
                 </div>
-                <?php
-                    include "../Code Backend/be_db_conn.php";
 
-                    // Check if the connection to the database is successful
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
 
-                    // Perform a query to fetch all books from the database
-                    $sql = "SELECT * FROM books";
-                    $result = $conn->query($sql);
+               <!-- Php code für die Overdue Booklist -->
 
-                    // Check if the query was successful and if there are any rows returned
-                    if ($result !== false && $result->num_rows > 0) {
-                        // Display the table header and iterate through the fetched results
-                        echo "<table id='table_booklist'>"; 
-                        echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr data-href='book_details.php?book_id=" . $row["book_id"] . "'>";
-                            echo "<td>" . $row["book_id"] . "</td>";
-                            echo "<td>" . $row["title"] . "</td>";
-                            echo "<td>" . $row["author"] . "</td>";
-                            echo "<td>" . $row["isbn"] . "</td>";
-                            echo "<td>" . $row["genre"] . "</td>";
-                            echo "<td>" . $row["status"] . "</td>";
-                            echo "<td><a href='book_edit.php?book_id=" . $row["book_id"] . "'>Edit </a> | <a href='book_delete.php?book_id=" . $row["book_id"] . "'>Delete</a></td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    } else {
-                        // If no books are found, display a message
-                        echo "No books found.";
-                    }
-
-                    // Close the database connection
-                    $conn->close();
-                ?>
+        
             </div>
         </div>
     </div>

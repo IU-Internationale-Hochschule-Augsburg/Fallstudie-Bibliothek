@@ -13,11 +13,11 @@
     $error = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $member_id = $_POST['title'];
-        $first_name = $_POST['author'];
-        $last_name = $_POST['isbn'];
-        $email = $_POST['genre'];
-        $phone = $_POST['genre'];
+        $member_id = $_POST['member_id'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
 
 
 
@@ -27,9 +27,9 @@
                 break;
             }
 
-            $q = " INSERT INTO `books`(`member_id`, `first_name`, `last_name`, `email`, `phone`) 
-            VALUES ( '$member_id', '$first_name', '$last_name', '$email', '$phone' )";
-            $result = $conn->query($q);
+            $q = "INSERT INTO `members`(`member_id`, `first_name`, `last_name`, `email`, `phone`) 
+            VALUES ('$member_id', '$first_name', '$last_name', '$email', '$phone')";
+                        $result = $conn->query($q);
 
             if (!$result) {
                 $error = "Invalid Query: " . $conn->error;
@@ -113,7 +113,7 @@
     <div class="white-square"> 
     <div class="info-box">
                     <h1>Add Member</h1>
-                    <p>Here you can add new members to the catalog</p>
+                    <p>Here you can add new members</p>
                 </div> <!-- adding background -->
     
     <div class="form-container-addmember">  
