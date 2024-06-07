@@ -64,7 +64,7 @@
 </head>
 <body>
     <div class="background">
-        <button class="button_back_to_dashboard" onclick="window.location.href='fe_loans'">Back to Loanlist</button>
+        <button class="button_back_to_dashboard" onclick="window.location.href='fe_loans.php'">Back to Loanlist</button>
      
         <div class="white-square"> 
             <div class="info-box">
