@@ -73,7 +73,7 @@
             </div>
     
             <div class="form-container-addbook">  
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="loanBookForm">
+                <form>
                     <div class="form-group-addbook">
                         <label for="member-id">Member-ID</label>
                         <input type="text" id="member-id" name="member-id">
