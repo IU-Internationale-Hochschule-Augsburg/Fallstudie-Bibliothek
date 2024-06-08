@@ -82,6 +82,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["email"] . "</td>";
         echo "<td>" . $row["phone"] . "</td>";
         echo "<td>" . $row["status"] . "</td>";
+        echo "<td><a href='member_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
         echo "</tr>";
     }
     echo "</table>";
