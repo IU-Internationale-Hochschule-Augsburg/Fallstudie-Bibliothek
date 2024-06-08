@@ -10,7 +10,7 @@
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
-            <form action="meber_search_results.php" method="get">
+            <form action="member_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
                 </div>
