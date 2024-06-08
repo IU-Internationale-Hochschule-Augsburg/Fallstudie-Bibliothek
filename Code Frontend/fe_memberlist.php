@@ -45,6 +45,7 @@
                                 echo "<td>" . $row["last_name"] . "</td>";
                                 echo "<td>" . $row["email"] . "</td>";
                                 echo "<td>" . $row["phone"] . "</td>";
+                                echo "<td><a href='book_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?book_id=" . $row["member_id"] . "'>Delete</a></td>";
                                 echo "</tr>";
                             }
                         echo "</table>";
