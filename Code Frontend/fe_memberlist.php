@@ -37,7 +37,7 @@
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
                         echo "<table id='table_memberlist'>"; 
-                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th></tr>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th></tr><tr><th>Action</th><th>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
                                 echo "<td>" . $row["member_id"] . "</td>";
@@ -45,7 +45,7 @@
                                 echo "<td>" . $row["last_name"] . "</td>";
                                 echo "<td>" . $row["email"] . "</td>";
                                 echo "<td>" . $row["phone"] . "</td>";
-                                echo "<td><a href='book_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?book_id=" . $row["member_id"] . "'>Delete</a></td>";
+                                echo "<td><a href='member_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
                                 echo "</tr>";
                             }
                         echo "</table>";
