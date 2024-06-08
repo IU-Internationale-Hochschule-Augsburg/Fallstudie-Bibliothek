@@ -73,7 +73,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
+    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Action</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["member_id"] . "</td>";
@@ -81,7 +81,6 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["last_name"] . "</td>";
         echo "<td>" . $row["email"] . "</td>";
         echo "<td>" . $row["phone"] . "</td>";
-        echo "<td>" . $row["status"] . "</td>";
         echo "<td><a href='member_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
         echo "</tr>";
     }
