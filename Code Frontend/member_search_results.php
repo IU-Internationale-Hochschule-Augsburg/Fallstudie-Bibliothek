@@ -68,7 +68,7 @@ include "../Code Backend/be_db_conn.php";
 
 $query = $_GET['query'];
 
-$sql = "SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
+$sql = "SELECT * FROM members WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -76,11 +76,11 @@ if ($result->num_rows > 0) {
     echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["book_id"] . "</td>";
-        echo "<td>" . $row["title"] . "</td>";
-        echo "<td>" . $row["author"] . "</td>";
-        echo "<td>" . $row["isbn"] . "</td>";
-        echo "<td>" . $row["genre"] . "</td>";
+        echo "<td>" . $row["member_id"] . "</td>";
+        echo "<td>" . $row["first_name"] . "</td>";
+        echo "<td>" . $row["last_name"] . "</td>";
+        echo "<td>" . $row["email"] . "</td>";
+        echo "<td>" . $row["phone"] . "</td>";
         echo "<td>" . $row["status"] . "</td>";
         echo "</tr>";
     }
