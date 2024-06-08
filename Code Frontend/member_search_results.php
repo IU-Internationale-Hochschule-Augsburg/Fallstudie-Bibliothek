@@ -56,7 +56,7 @@ h2 {
 </head>
 <body>
     <div class="background">  
-    <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>     
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Member List</button>     
         <div class="white-square">
         <div class="info-box">
                     <h1>Search Result</h1>
@@ -68,7 +68,7 @@ include "../Code Backend/be_db_conn.php";
 
 $query = $_GET['query'];
 
-$sql = "SELECT * FROM members WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
+$sql = "SELECT * FROM members WHERE first_name LIKE '%$query%' OR last_name LIKE '%$query%' OR member_id LIKE '%$query%' OR email LIKE '%$query%' ORDER BY first_name ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
