@@ -29,7 +29,7 @@
                         die("Connection failed: " . $conn->connect_error);
                     }
 
-                    $results_per_page = 16;
+                    $results_per_page = 15;
                     $sql = "SELECT COUNT(*) AS total FROM books";
                     $result = $conn->query($sql);
                     $row = $result->fetch_assoc();
