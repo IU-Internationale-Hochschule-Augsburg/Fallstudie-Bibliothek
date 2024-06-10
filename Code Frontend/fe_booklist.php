@@ -1,4 +1,3 @@
-<!-- done -->
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
     <title>LIBRIOFACT - Booklist</title>
 </head>
 <body>
-    <div class="background">  <!-- adding background -->  
+    <div class="background">
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='dashboard.php'">Back to Dashboard</button>          
             <form action="book_search_results.php" method="get">
@@ -26,18 +25,36 @@
                 <?php
                     include "../Code Backend/be_db_conn.php";
 
-                    // Check if the connection to the database is successful
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
 
-                    // Perform a query to fetch all books from the database
-                    $sql = "SELECT * FROM books";
+                    $results_per_page = 15;
+                    $sql = "SELECT COUNT(*) AS total FROM books";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $total_books = $row['total'];
+                    $total_pages = ceil($total_books / $results_per_page);
+
+                    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+                        $current_page = (int) $_GET['page'];
+                    } else {
+                        $current_page = 1;
+                    }
+
+                    if ($current_page > $total_pages) {
+                        $current_page = $total_pages;
+                    } 
+                    if ($current_page < 1) {
+                        $current_page = 1;
+                    }
+
+                    $start_from = ($current_page - 1) * $results_per_page;
+
+                    $sql = "SELECT * FROM books LIMIT $start_from, $results_per_page";
                     $result = $conn->query($sql);
 
-                    // Check if the query was successful and if there are any rows returned
                     if ($result !== false && $result->num_rows > 0) {
-                        // Display the table header and iterate through the fetched results
                         echo "<table id='table_booklist'>"; 
                         echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
                         while ($row = $result->fetch_assoc()) {
@@ -53,23 +70,30 @@
                         }
                         echo "</table>";
                     } else {
-                        // If no books are found, display a message
                         echo "No books found.";
                     }
 
-                    // Close the database connection
                     $conn->close();
                 ?>
+                <div class="pagination">
+                    <?php if ($current_page > 1): ?>
+                        <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>" class="button_previous">Previous</a>
+                    <?php endif; ?>
+
+                    <?php if ($current_page < $total_pages): ?>
+                        <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>" class="button_next">Next</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-    <div class="logo"> <!-- add logo -->
+    <div class="logo">
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
-    <div class="topbar"><!-- adding topbar,logout button -->
+    <div class="topbar">
         <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
-    <div class="sidebar"> <!-- adding sidebar, buttons and links -->
+    <div class="sidebar">
         <div class="buttons">
             <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'"></button>
             <button class="button_equals"onclick="toggleMenu()"></button>
@@ -80,7 +104,7 @@
             <button class="button_settings"></button>
         </div>
     </div>
-    <div class="menu" id="menu"> <!-- adding menu with bullet points -->
+    <div class="menu" id="menu">
         <ul>
             <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
@@ -90,4 +114,4 @@
         </ul>
     </div>
 </body>
-
+</html>

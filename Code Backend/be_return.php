@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookId = $_POST["book_id"];
     
     // Check if the book has been issued
-    $checkIssuedQuery = "SELECT * FROM issues WHERE book_id = ? AND status = 'open'";
+    $checkIssuedQuery = "SELECT * FROM NEW_loans WHERE book_id = ? AND status = 'open'";
     
     $stmt = $conn->prepare($checkIssuedQuery);
     $stmt->bind_param("i", $bookId);
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result->num_rows > 0) {
         // Book has been issued, proceed with return
-        $updateReturnDateQuery = "UPDATE issues SET status = 'Returned', return_date = NOW() WHERE book_id = ? AND status = 'open'";
+        $updateReturnDateQuery = "UPDATE NEW_loans SET status = 'Returned', return_date = NOW() WHERE book_id = ? AND status = 'open'";
         
         $stmt = $conn->prepare($updateReturnDateQuery);
         $stmt->bind_param("i", $bookId);
