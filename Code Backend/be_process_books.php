@@ -14,22 +14,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $status = 'open'; // Set initial status to 'open';
 
     if (!empty($member_id) && !empty($book_ids)) {
+        $messages = [];
         foreach ($book_ids as $book_id) {
             if (!empty($book_id)) {
-                // Prepared statement to avoid SQL injection
-                $stmt = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
-                                        VALUES (?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
-                if ($stmt->execute()) {
-                    echo "New record created successfully for Book-ID: $book_id<br>";
+                // Check if the book is already loaned
+                $checkBookStatusQuery = $conn->prepare("SELECT status FROM books WHERE book_id = ?");
+                $checkBookStatusQuery->bind_param("s", $book_id);
+                $checkBookStatusQuery->execute();
+                $result = $checkBookStatusQuery->get_result();
+                $book = $result->fetch_assoc();
+
+                if ($book['status'] == 'On loan') {
+                    $messages[] = "Book ID $book_id is already loaned!";
                 } else {
-                    echo "Error: " . $stmt->error . "<br>";
+                    // Prepared statement to avoid SQL injection
+                    $insertLoanQuery = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
+                                            VALUES (?, ?, ?, ?, ?)");
+                    $insertLoanQuery->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
+
+                    if ($insertLoanQuery->execute() === TRUE) {
+                        // Update book status to 'On loan'
+                        $updateBookStatusQuery = $conn->prepare("UPDATE books SET status = 'On loan' WHERE book_id = ?");
+                        $updateBookStatusQuery->bind_param("s", $book_id);
+                        $updateBookStatusQuery->execute();
+
+                        $messages[] = "Book ID $book_id loaned successfully!";
+                    } else {
+                        $messages[] = "Error loaning Book ID $book_id: " . $conn->error;
+                    }
                 }
             }
         }
+        $_SESSION["message"] = implode("<br>", $messages);
     } else {
-        echo "Please provide a member ID and at least one book ID.";
+        $_SESSION["message"] = "Please provide a member ID and at least one book ID.";
+    }
 }
 
 $conn->close();
+
+header("Location: ../Code Frontend/fe_loan_book.php");
+exit();
 ?>

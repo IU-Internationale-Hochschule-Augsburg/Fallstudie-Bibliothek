@@ -1,3 +1,10 @@
+<!-- Session_start nötig, damit die Nachrichten zwischen den beiden Klasssen
+ versendet werden können.-->
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,8 +79,19 @@
                 <p>Here you can loan new books for the Member</p>
             </div>
 
+            <!--Dieser PHP-Code wird benötigt, um die Nachricht anzuzeigen, 
+            dass ein Buch erfolgreich ausgeliehen wurde. Muss evtl. noch an eine andere Stelle 
+            geschoben werden -- Absprache mit Flo! -->
+    
+            <?php
+            if (isset($_SESSION["message"])) {
+                echo '<p>' . $_SESSION["message"] . '</p>';
+                unset($_SESSION["message"]); // remove it after displaying
+            }
+            ?>
+
             <div class="form-container-addbook">  
-                <form action="be_process_books.php" method="POST">
+                <form action="../Code Backend/be_process_books.php" method="POST">
                     <div class="form-group-addbook">
                         <label for="member_id">Member-ID</label>
                         <input type="text" id="member_id" name="member_id">

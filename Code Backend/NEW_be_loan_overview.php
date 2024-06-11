@@ -41,10 +41,10 @@ if ($result !== false && $result->num_rows > 0) {
     // Display the table header and iterate through the fetched results
     echo "<table id='table_booklist'>";
     echo "<tr><th>Loan-ID</th><th>Book-Title</th><th>Book-ID</th><th>Member-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th></tr>";
-=======
+
     echo "<table>";
     echo "<tr><th>Loan ID</th><th>Book Title</th><th>Book ID</th><th>Member Name</th><th>Borrow Date</th><th>Return Date</th><th>Status</th></tr>";
->>>>>>> 0d1b19d3eacbd69b617750f1f04a6beab81d7de9
+
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["loan_id"] . "</td>";
