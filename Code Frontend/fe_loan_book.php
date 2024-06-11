@@ -71,17 +71,17 @@
                 <h1>Loan Book</h1>
                 <p>Here you can loan new books for the Member</p>
             </div>
-    
+
             <div class="form-container-addbook">  
-                <form>
+                <form action="be_process_books.php" method="POST">
                     <div class="form-group-addbook">
-                        <label for="member-id">Member-ID</label>
-                        <input type="text" id="member-id" name="member-id">
+                        <label for="member_id">Member-ID</label>
+                        <input type="text" id="member_id" name="member_id">
                     </div>
                     <div id="bookFieldsContainer">
                         <div class="form-group-addbook book-field">
-                            <label for="book-id-1">Book-ID</label>
-                            <input type="text" id="book-id-1" name="book-id[]">
+                            <label for="book_id-1">Book-ID</label>
+                            <input type="text" id="book_id_1" name="book_id[]">
                         </div>
                     </div>
                     <div class="form-group-addbook button-container">
@@ -125,6 +125,7 @@
     </div>
 
     <script>
+        
         function addBookField() {
             const container = document.getElementById('bookFieldsContainer');
             if (container.children.length < 5) {
@@ -132,8 +133,8 @@
                 const newField = document.createElement('div');
                 newField.className = 'form-group-addbook book-field';
                 newField.innerHTML = `
-                    <label for="book-id-${index}">Book-ID</label>
-                    <input type="text" id="book-id-${index}" name="book-id[]">
+                    <label for="book_id_${index}">Book-ID</label>
+                    <input type="text" id="book_id_${index}" name="book_id[]">
                 `;
                 container.appendChild(newField);
             } else {
@@ -147,6 +148,8 @@
                 container.removeChild(container.lastChild);
             }
         }
+
+
     </script>
 </body>
 </html>
