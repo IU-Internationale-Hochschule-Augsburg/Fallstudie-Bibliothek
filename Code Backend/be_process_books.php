@@ -25,12 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     echo "Error: " . $stmt->error . "<br>";
                 }
-                $stmt->close();
             }
         }
     } else {
         echo "Please provide a member ID and at least one book ID.";
-    }
 }
 
 $conn->close();

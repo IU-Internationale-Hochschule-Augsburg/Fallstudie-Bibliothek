@@ -39,7 +39,6 @@ $result = $conn->query($sql);
 // Check if the query was successful and if there are any rows returned
 if ($result !== false && $result->num_rows > 0) {
     // Display the table header and iterate through the fetched results
-<<<<<<< HEAD
     echo "<table id='table_booklist'>";
     echo "<tr><th>Loan-ID</th><th>Book-Title</th><th>Book-ID</th><th>Member-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th></tr>";
 =======
