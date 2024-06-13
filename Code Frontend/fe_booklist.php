@@ -9,7 +9,7 @@ $query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COU
           INNER JOIN genre ON books.genre_id = genre.id
           LEFT JOIN book_copies ON books.book_id = book_copies.book_id
           GROUP BY books.book_id
-          ORDER BY books.title";
+          ORDER BY books.title"; //Alphabetical Order 
 
 $result = $conn->query($query);
 
