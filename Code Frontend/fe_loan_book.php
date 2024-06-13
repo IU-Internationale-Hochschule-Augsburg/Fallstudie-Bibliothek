@@ -91,7 +91,7 @@ session_start();
             ?>
 
             <div class="form-container-addbook">  
-                <form action="../Code Backend/be_process_books.php" method="POST">
+                <form action="../Code Backend/be_loan_book.php" method="POST">
                     <div class="form-group-addbook">
                         <label for="member_id">Member-ID</label>
                         <input type="text" id="member_id" name="member_id">
