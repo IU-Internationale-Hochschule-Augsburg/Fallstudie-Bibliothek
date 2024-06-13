@@ -64,32 +64,35 @@ h2 {
                 </div>
             <div class="search-content">               
             <?php
-include "../Code Backend/be_db_conn.php";
+            include "../Code Backend/be_db_conn.php";
 
-$query = $_GET['query'];
+            $query = $_GET['query'];
 
-$sql = "SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
-$result = $conn->query($sql);
+            $sql = "SELECT books.*, genre.name AS genre 
+                    FROM books 
+                    INNER JOIN genre ON books.genre_id = genre.id 
+                    WHERE books.title LIKE '%$query%' OR books.author LIKE '%$query%' OR books.isbn LIKE '%$query%' OR genre.name LIKE '%$query%' 
+                    ORDER BY books.title ASC";
 
-if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["book_id"] . "</td>";
-        echo "<td>" . $row["title"] . "</td>";
-        echo "<td>" . $row["author"] . "</td>";
-        echo "<td>" . $row["isbn"] . "</td>";
-        echo "<td>" . $row["genre"] . "</td>";
-        echo "<td>" . $row["status"] . "</td>";
-        echo "<td><a href='book_edit.php?book_id=" . $row["book_id"] . "'>Edit </a> | <a href='book_delete.php?book_id=" . $row["book_id"] . "'>Delete</a></td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "No results found";
-}
-?>
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<table>";
+                echo "<tr><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Action</th></tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["title"] . "</td>";
+                    echo "<td>" . $row["author"] . "</td>";
+                    echo "<td>" . $row["isbn"] . "</td>";
+                    echo "<td>" . $row["genre"] . "</td>";
+                    echo "<td><a href='book_edit.php?isbn=" . $row["isbn"] . "'>Edit</a> | <a href='book_copies.php?isbn=" . $row["isbn"] . "'>View Copies</a></td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "No results found";
+            }
+            ?>
             </div>
         </div>
         <!-- adding background -->       
