@@ -6,11 +6,12 @@ if (isset($_GET['isbn'])) {
     $isbn = $_GET['isbn'];
 
     // Fetch book details
-    $query = "SELECT b.title, b.author, b.isbn, g.name AS genre, COUNT(bc.book_id) AS copies
-              FROM book AS b
-              INNER JOIN genre AS g ON b.genre_id = g.id
-              LEFT JOIN book_copy AS bc ON b.book_id = bc.book_id
-              WHERE b.isbn = '$isbn'";
+    $query = "SELECT books.title, books.author, books.isbn, genre.name, COUNT(book_copies.book_id) AS copies
+              FROM books
+              INNER JOIN genre ON books.genre_id = genre.id
+              LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+              WHERE books.isbn = '$isbn'
+              GROUP BY books.book_id";
     $result = $conn->query($query);
 
     if ($result && $result->num_rows > 0) {
@@ -18,7 +19,7 @@ if (isset($_GET['isbn'])) {
     }
 
     // Fetch book copies
-    $query = "SELECT * FROM book_copy WHERE book_id IN (SELECT book_id FROM book WHERE isbn = '$isbn')";
+    $query = "SELECT * FROM book_copies WHERE book_id IN (SELECT book_id FROM books WHERE isbn = '$isbn')";
     $result = $conn->query($query);
 
     $copies = array();
@@ -59,15 +60,14 @@ if (isset($_GET['isbn'])) {
     <table>
         <thead>
             <tr>
-                <th>Book ID</th>
+                <th>Copy ID</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>ISBN</th>
                 <th>Genre</th>
-                <th>Copies</th>
+                <th>Total Copies</th>
                 <th>Copy Number</th>
                 <th>Status</th>
-
             </tr>
         </thead>
         <tbody>
@@ -77,11 +77,10 @@ if (isset($_GET['isbn'])) {
                 <td><?php echo $book['title']; ?></td>
                 <td><?php echo $book['author']; ?></td>
                 <td><?php echo $book['isbn']; ?></td>
-                <td><?php echo $book['genre']; ?></td>
+                <td><?php echo $book['name']; ?></td>
                 <td><?php echo $book['copies']; ?></td>
                 <td><?php echo $copy['copy_number']; ?></td>
                 <td><?php echo $copy['status']; ?></td>
-
             </tr>
             <?php endforeach; ?>
         </tbody>

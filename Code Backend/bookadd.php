@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "All fields are required";
     } else {
         // Check if the book with the provided ISBN already exists
-        $check_book_query = "SELECT `book_id`, `copies` FROM `book` WHERE `isbn` = '$isbn'";
+        $check_book_query = "SELECT `book_id`, `copies` FROM `books` WHERE `isbn` = '$isbn'";
         $result_check = $conn->query($check_book_query);
         if ($result_check && $result_check->num_rows > 0) {
             // If the book exists, increment the copy number and update the copies count in the book table
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Add a new copy of the book to the book_copy table with the incremented copy number
-            $insert_copy_query = "INSERT INTO `book_copy` (`book_id`, `copy_number`, `status`)
+            $insert_copy_query = "INSERT INTO `book_copies` (`book_id`, `copy_number`, `status`)
                                   SELECT '$book_id', MAX(`copy_number`) + 1, 'Available' FROM `book_copy` WHERE `book_id` = '$book_id'";
             $result_copy = $conn->query($insert_copy_query);
             if ($result_copy) {
@@ -46,14 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // If the book doesn't exist, add the book to the book table and a copy to the book_copy table
-            $insert_book_query = "INSERT INTO `book` (`title`, `author`, `isbn`, `genre_id`, `copies`) 
+            $insert_book_query = "INSERT INTO `books` (`title`, `author`, `isbn`, `genre_id`, `copies`) 
                                   VALUES ('$title', '$author', '$isbn', (SELECT `id` FROM `genre` WHERE `name` = '$genre'), 1)";
             $result_book = $conn->query($insert_book_query);
             if ($result_book) {
                 $book_id = $conn->insert_id; // Get the ID of the inserted book
 
                 // Add a copy of the book to the book_copy table
-                $insert_copy_query = "INSERT INTO `book_copy` (`book_id`, `copy_number`, `status`)
+                $insert_copy_query = "INSERT INTO `book_copies` (`book_id`, `copy_number`, `status`)
                                       VALUES ('$book_id', 1, 'Available')";
                 $result_copy = $conn->query($insert_copy_query);
                 if ($result_copy) {

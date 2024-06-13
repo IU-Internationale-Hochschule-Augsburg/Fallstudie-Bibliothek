@@ -1,13 +1,13 @@
 <?php
 include "be_db_conn.php";
 
-$query = "SELECT book.title, book.author, book.isbn, genre.name AS genre, COUNT(book_copy.book_id) AS copies,
-          SUM(CASE WHEN book_copy.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
-          SUM(CASE WHEN book_copy.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
-          FROM book
-          INNER JOIN genre ON book.genre_id = genre.id
-          LEFT JOIN book_copy ON book.book_id = book_copy.book_id
-          GROUP BY book.book_id";
+$query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
+          SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
+          SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
+          FROM books
+          INNER JOIN genre ON books.genre_id = genre.id
+          LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+          GROUP BY books.book_id";
 
 $result = $conn->query($query);
 
@@ -43,7 +43,7 @@ if ($result && $result->num_rows > 0) {
     <br>
     <br>
     <h1>Book List</h1>
-    <table>
+    <table id="table_booklist">
         <thead>
             <tr>
                 <th>Title</th>
@@ -67,11 +67,9 @@ if ($result && $result->num_rows > 0) {
                 <?php
                     if ($book['available_copies'] == 0) {
                         echo "All Copies on Loan";
-                    } 
-                    if ($book['available_copies'] == 1) {
+                    } elseif ($book['available_copies'] == 1) {
                         echo $book['available_copies'] . " Copy available ";
-                    }
-                    else {
+                    } else {
                         echo $book['available_copies'] . " Copies available ";
                     }
                     ?>

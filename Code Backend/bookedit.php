@@ -6,21 +6,34 @@ $title = "";
 $author = "";
 $isbn = "";
 $genre = "";
+$genres = [];  // Array to store genres
 $status = "";
 
 $error = "";
 $success = "";
+
+// Fetch all genres
+$genre_query = "SELECT id, name FROM genre";
+$genre_result = $conn->query($genre_query);
+if ($genre_result) {
+    while ($row = $genre_result->fetch_assoc()) {
+        $genres[] = $row;
+    }
+} else {
+    $error = "Failed to fetch genres: " . $conn->error;
+}
 
 // Check if the ISBN is provided in the URL
 if (isset($_GET['isbn'])) {
     $isbn = $_GET['isbn'];
 
     // Fetch book details
-    $query = "SELECT b.book_id, b.title, b.author, b.isbn, g.name AS genre, COUNT(bc.book_id) AS copies
-              FROM book AS b
-              INNER JOIN genre AS g ON b.genre_id = g.id
-              LEFT JOIN book_copy AS bc ON b.book_id = bc.book_id
-              WHERE b.isbn = '$isbn'";
+    $query = "SELECT books.book_id, books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies
+              FROM books
+              INNER JOIN genre ON books.genre_id = genre.id
+              LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+              WHERE books.isbn = '$isbn'
+              GROUP BY books.book_id";
     $result = $conn->query($query);
 
     if ($result && $result->num_rows > 0) {
@@ -50,14 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn = $_POST['isbn'];
     $genre = $_POST['genre'];
 
-    $update_query = "UPDATE book SET title = '$title', author = '$author', isbn = '$isbn', genre_id = (SELECT id FROM genre WHERE name = '$genre') WHERE book_id = '$book_id'";
-    $result = $conn->query($update_query);
+    $update_query = "UPDATE books SET title = ?, author = ?, isbn = ?, genre_id = (SELECT id FROM genre WHERE name = ?) WHERE book_id = ?";
+    $stmt = $conn->prepare($update_query);
+    $stmt->bind_param("ssssi", $title, $author, $isbn, $genre, $book_id);
 
-    if ($result) {
-        // Redirect to the booklist page after successful update
+    if ($stmt->execute()) {
         $success = "Book details updated successfully.";
     } else {
-        $error = "Failed to update the book details " . $conn->error;
+        $error = "Failed to update the book details: " . $conn->error;
     }
 }
 ?>
@@ -74,21 +87,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post">
         <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
         <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" value="<?php echo $title; ?>"><br>
+        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($title); ?>"><br>
         <label for="author">Author:</label><br>
-        <input type="text" id="author" name="author" value="<?php echo $author; ?>"><br>
+        <input type="text" id="author" name="author" value="<?php echo htmlspecialchars($author); ?>"><br>
         <label for="isbn">ISBN:</label><br>
-        <input type="text" id="isbn" name="isbn" value="<?php echo $isbn; ?>"><br>
+        <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($isbn); ?>"><br>
         <label for="genre">Genre:</label><br>
-        <input type="text" id="genre" name="genre" value="<?php echo $genre; ?>"><br><br>
+        <select id="genre" name="genre">
+            <?php foreach ($genres as $g): ?>
+                <option value="<?php echo htmlspecialchars($g['name']); ?>" <?php echo ($g['name'] == $genre) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($g['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select><br><br>
         <button type="submit">Update</button>
     </form>
 
-    <?php if (!empty($error)) : ?>
+    <?php if (!empty($error)): ?>
         <p><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <?php if (!empty($success)) : ?>
+    <?php if (!empty($success)): ?>
         <p><?php echo $success; ?></p>
     <?php endif; ?>
 </body>
