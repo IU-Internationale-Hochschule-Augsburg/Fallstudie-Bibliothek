@@ -20,6 +20,7 @@ if ($result && $result->num_rows > 0) {
     }
 }
 
+// Book Table only shows 15 books per page
 $total_books = count($books);
 $total_pages = ceil($total_books / $results_per_page);
 
