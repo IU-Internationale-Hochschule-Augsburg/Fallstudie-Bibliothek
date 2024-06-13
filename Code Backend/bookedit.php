@@ -85,11 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <?php if (!empty($error)) : ?>
-        <p>Error: <?php echo $error; ?></p>
+        <p><?php echo $error; ?></p>
     <?php endif; ?>
 
     <?php if (!empty($success)) : ?>
-        <p>Success: <?php echo $success; ?></p>
+        <p><?php echo $success; ?></p>
     <?php endif; ?>
 </body>
 </html>
