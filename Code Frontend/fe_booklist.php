@@ -1,3 +1,55 @@
+<?php
+include "../Code Backend/be_db_conn.php";
+
+$results_per_page = 15;
+$query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
+          SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
+          SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
+          FROM books
+          INNER JOIN genre ON books.genre_id = genre.id
+          LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+          GROUP BY books.book_id
+          ORDER BY books.title";
+
+$result = $conn->query($query);
+
+$books = array();
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $books[] = $row;
+    }
+}
+
+$total_books = count($books);
+$total_pages = ceil($total_books / $results_per_page);
+
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $current_page = (int)$_GET['page'];
+} else {
+    $current_page = 1;
+}
+
+if ($current_page > $total_pages) {
+    $current_page = $total_pages;
+}
+if ($current_page < 1) {
+    $current_page = 1;
+}
+
+$start_from = ($current_page - 1) * $results_per_page;
+
+$query .= " LIMIT $start_from, $results_per_page";
+$result = $conn->query($query);
+
+$books = array();
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $books[] = $row;
+    }
+}
+$conn->close();
+?>
+
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -22,59 +74,45 @@
                     <h1>Booklist</h1>
                     <p>Here you can see and manage the list of books.</p>
                 </div>
+                <table id="table_booklist">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Genre</th>
+                <th>Copies</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($books as $book) : ?>
+            <tr>
+                <td><?php echo $book['title']; ?></td>
+                <td><?php echo $book['author']; ?></td>
+                <td><?php echo $book['isbn']; ?></td>
+                <td><?php echo $book['genre']; ?></td>
+                <td><?php echo $book['copies']; ?></td>
+                <td>
                 <?php
-                    include "../Code Backend/be_db_conn.php";
-
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-
-                    $results_per_page = 15;
-                    $sql = "SELECT COUNT(*) AS total FROM books";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $total_books = $row['total'];
-                    $total_pages = ceil($total_books / $results_per_page);
-
-                    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-                        $current_page = (int) $_GET['page'];
+                    if ($book['available_copies'] == 0) {
+                        echo "All Copies on Loan";
+                    } elseif ($book['available_copies'] == 1) {
+                        echo $book['available_copies'] . " Copy available ";
                     } else {
-                        $current_page = 1;
+                        echo $book['available_copies'] . " Copies available ";
                     }
-
-                    if ($current_page > $total_pages) {
-                        $current_page = $total_pages;
-                    } 
-                    if ($current_page < 1) {
-                        $current_page = 1;
-                    }
-
-                    $start_from = ($current_page - 1) * $results_per_page;
-
-                    $sql = "SELECT * FROM books LIMIT $start_from, $results_per_page";
-                    $result = $conn->query($sql);
-
-                    if ($result !== false && $result->num_rows > 0) {
-                        echo "<table id='table_booklist'>"; 
-                        echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th><th>Action</th></tr>";
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr data-href='book_details.php?book_id=" . $row["book_id"] . "'>";
-                            echo "<td>" . $row["book_id"] . "</td>";
-                            echo "<td>" . $row["title"] . "</td>";
-                            echo "<td>" . $row["author"] . "</td>";
-                            echo "<td>" . $row["isbn"] . "</td>";
-                            echo "<td>" . $row["genre"] . "</td>";
-                            echo "<td>" . $row["status"] . "</td>";
-                            echo "<td><a href='book_edit.php?book_id=" . $row["book_id"] . "'>Edit </a> | <a href='book_delete.php?book_id=" . $row["book_id"] . "'>Delete</a></td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    } else {
-                        echo "No books found.";
-                    }
-
-                    $conn->close();
-                ?>
+                    ?>
+                </td>
+                <td>
+                    <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
+                    <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
                 <div class="pagination">
                     <?php if ($current_page > 1): ?>
                         <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>" class="button_previous">Previous</a>
@@ -83,7 +121,7 @@
                     <?php if ($current_page < $total_pages): ?>
                         <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>" class="button_next">Next</a>
                     <?php endif; ?>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
