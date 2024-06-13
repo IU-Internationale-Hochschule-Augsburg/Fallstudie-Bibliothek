@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <meta name="LibroFact" content="Library of Books">
-    <title>LIBRIOFACT - Booklist</title>
+    <title>LIBRIOFACT - Loanlist</title>
 </head>
 <body>
     <div class="background">  
@@ -20,11 +20,11 @@
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
                     <h1>Loanlist</h1>
-                    <p>Here you can see and manage the list of loaned books.</p>
+                    <p>Here you can see and manage the list of loaned books.</p>  
                 </div>
-
-                <!-- PHP code for the loan list will go here -->
-
+                <?php
+                    include "../Code Backend/NEW_be_loan_overview.php";
+                ?>
             </div>
         </div>
     </div>

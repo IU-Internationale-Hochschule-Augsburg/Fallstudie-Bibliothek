@@ -19,12 +19,6 @@
 </head>
 
 <body>
-    <h2> Loan Overview </h2>
-    <br>
-    <button onclick="window.location.href='be_home.php'">Home</button>
-    <br>
-    <br>
-
     <?php
 include "be_db_conn.php";
 
@@ -35,25 +29,29 @@ if ($conn->connect_error) {
 
 // Perform a query to fetch all books from the database
 $sql = "
-    SELECT NEW_loans.loan_id, books.title, books.book_id, members.member_id, NEW_loans.borrow_date, NEW_loans.return_date, NEW_loans.status 
+    SELECT NEW_loans.loan_id, books.title, books.book_id, members.first_name, members.last_name, NEW_loans.borrow_date, NEW_loans.return_date, NEW_loans.status 
     FROM NEW_loans 
     INNER JOIN books ON NEW_loans.book_id = books.book_id 
     INNER JOIN members ON NEW_loans.member_id = members.member_id 
-    ORDER BY issues.issue_id DESC";
+    ORDER BY NEW_loans.loan_id DESC";
 $result = $conn->query($sql);
 
 // Check if the query was successful and if there are any rows returned
 if ($result !== false && $result->num_rows > 0) {
     // Display the table header and iterate through the fetched results
-    echo "<table>";
+    echo "<table id='table_booklist'>";
     echo "<tr><th>Loan-ID</th><th>Book-Title</th><th>Book-ID</th><th>Member-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th></tr>";
+
+    echo "<table>";
+    echo "<tr><th>Loan ID</th><th>Book Title</th><th>Book ID</th><th>Member Name</th><th>Borrow Date</th><th>Return Date</th><th>Status</th></tr>";
+
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["issue_id"] . "</td>";
+        echo "<td>" . $row["loan_id"] . "</td>";
         echo "<td>" . $row["title"] . "</td>";
         echo "<td>" . $row["book_id"] . "</td>";
-        echo "<td>" . $row["member_id"] . "</td>";
-        echo "<td>" . $row["issue_date"] . "</td>";
+        echo "<td>" . $row["first_name"] . " " . $row["last_name"] . "</td>";
+        echo "<td>" . $row["borrow_date"] . "</td>";
         echo "<td>" . $row["return_date"] . "</td>";
         echo "<td>" . $row["status"] . "</td>";
         echo "</tr>";
@@ -62,6 +60,6 @@ if ($result !== false && $result->num_rows > 0) {
 } else {
     echo "No issues found.";
 }
-    ?>
+?>
 </body>
 </html>

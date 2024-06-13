@@ -56,7 +56,7 @@ h2 {
 </head>
 <body>
     <div class="background">  
-    <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>     
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Memberlist</button>     
         <div class="white-square">
         <div class="info-box">
                     <h1>Search Result</h1>
@@ -68,20 +68,20 @@ include "../Code Backend/be_db_conn.php";
 
 $query = $_GET['query'];
 
-$sql = "SELECT * FROM books WHERE title LIKE '%$query%' OR author LIKE '%$query%' OR isbn LIKE '%$query%' OR genre LIKE '%$query%' ORDER BY title ASC";
+$sql = "SELECT * FROM members WHERE first_name LIKE '%$query%' OR last_name LIKE '%$query%' OR member_id LIKE '%$query%' OR email LIKE '%$query%' ORDER BY first_name ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Status</th></tr>";
+    echo "<tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Action</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["book_id"] . "</td>";
-        echo "<td>" . $row["title"] . "</td>";
-        echo "<td>" . $row["author"] . "</td>";
-        echo "<td>" . $row["isbn"] . "</td>";
-        echo "<td>" . $row["genre"] . "</td>";
-        echo "<td>" . $row["status"] . "</td>";
+        echo "<td>" . $row["member_id"] . "</td>";
+        echo "<td>" . $row["first_name"] . "</td>";
+        echo "<td>" . $row["last_name"] . "</td>";
+        echo "<td>" . $row["email"] . "</td>";
+        echo "<td>" . $row["phone"] . "</td>";
+        echo "<td><a href='member_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
         echo "</tr>";
     }
     echo "</table>";

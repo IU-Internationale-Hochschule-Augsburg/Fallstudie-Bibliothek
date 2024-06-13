@@ -10,7 +10,7 @@
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
-            <form action="suche.php" method="get">
+            <form action="member_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
                 </div>
@@ -37,7 +37,7 @@
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
                         echo "<table id='table_memberlist'>"; 
-                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th></tr>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
                                 echo "<td>" . $row["member_id"] . "</td>";
@@ -45,6 +45,7 @@
                                 echo "<td>" . $row["last_name"] . "</td>";
                                 echo "<td>" . $row["email"] . "</td>";
                                 echo "<td>" . $row["phone"] . "</td>";
+                                echo "<td><a href='member_edit.php?book_id=" . $row["member_id"] . "'>Edit </a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
                                 echo "</tr>";
                             }
                         echo "</table>";
@@ -62,8 +63,8 @@
     <div class="logo"> <!-- add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
-    <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    <div class="topbar"><!-- adding topbar,logout button -->
+    <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
