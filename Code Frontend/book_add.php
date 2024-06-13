@@ -1,41 +1,78 @@
 <?php
-    include "../Code Backend/be_db_conn.php";
+include "../Code Backend/be_db_conn.php";
 
-    $title = "";
-    $author = "";
-    $isbn = "";
-    $genre = "";
+$title = "";
+$author = "";
+$isbn = "";
+$genre = "";
 
+$success = "";
+$error = "";
 
-    $success = "";  
-    $error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $isbn = $_POST['isbn'];
+    $genre = $_POST['genre'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $isbn = $_POST['isbn'];
-        $genre = $_POST['genre'];
+    if (empty($title) || empty($author) || empty($isbn) || empty($genre)) {
+        $error = "All fields are required";
+    } else {
+        // Check if the book with the provided ISBN already exists
+        $check_book_query = $conn->prepare("SELECT book_id, copies FROM books WHERE isbn = ?");
+        $check_book_query->bind_param("s", $isbn);
+        $check_book_query->execute();
+        $result_check = $check_book_query->get_result();
 
+        if ($result_check && $result_check->num_rows > 0) {
+            // If the book exists, increment the copy number and update the copies count in the book table
+            $row = $result_check->fetch_assoc();
+            $book_id = $row['book_id'];
+            $copies = $row['copies'];
 
-        do {
-            if (empty($title) || empty($author) || empty($isbn) || empty($genre)) {
-                $error = "All fields are required";
-                break;
+            // Increment the number of copies in the book table
+            $copies += 1;
+            $update_book_query = $conn->prepare("UPDATE books SET copies = ? WHERE book_id = ?");
+            $update_book_query->bind_param("ii", $copies, $book_id);
+            $result_update_book = $update_book_query->execute();
+            if (!$result_update_book) {
+                $error = "Failed to update the copies count in the book table: " . $conn->error;
             }
 
-            $q = " INSERT INTO `books`(`title`, `author`, `isbn`, `genre`) VALUES ( '$title', '$author', '$isbn', '$genre' )";
-            $result = $conn->query($q);
-
-            if (!$result) {
-                $error = "Invalid Query: " . $conn->error;
-                break;
+            // Add a new copy of the book to the book_copy table with the incremented copy number
+            $insert_copy_query = $conn->prepare("INSERT INTO book_copies (book_id, copy_number, status) SELECT ?, MAX(copy_number) + 1, 'Available' FROM book_copies WHERE book_id = ?");
+            $insert_copy_query->bind_param("ii", $book_id, $book_id);
+            $result_copy = $insert_copy_query->execute();
+            if ($result_copy) {
+                $success = "A new copy of the existing book has been added successfully.";
+            } else {
+                $error = "Failed to add a copy of the existing book to the book_copy table: " . $conn->error;
             }
+        } else {
+            // If the book doesn't exist, add the book to the book table and a copy to the book_copy table
+            $insert_book_query = $conn->prepare("INSERT INTO books (title, author, isbn, genre_id, copies) VALUES (?, ?, ?, (SELECT id FROM genre WHERE name = ?), 1)");
+            $insert_book_query->bind_param("ssss", $title, $author, $isbn, $genre);
+            $result_book = $insert_book_query->execute();
+            if ($result_book) {
+                $book_id = $conn->insert_id; // Get the ID of the inserted book
 
-            $success = $title . " added successfully";
-
-            } while (false);
+                // Add a copy of the book to the book_copy table
+                $insert_copy_query = $conn->prepare("INSERT INTO book_copies (book_id, copy_number, status) VALUES (?, 1, 'Available')");
+                $insert_copy_query->bind_param("i", $book_id);
+                $result_copy = $insert_copy_query->execute();
+                if ($result_copy) {
+                    $success = "A new book " .  $title . " has been added successfully.";
+                } else {
+                    $error = "Failed to add a copy of the book to the book_copy table: " . $conn->error;
+                }
+            } else {
+                $error = "Failed to add the book to the book table: " . $conn->error;
+            }
         }
-    ?>
+    }
+}
+?>
+    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,21 +151,29 @@
     <div class="form-container-addbook">  
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <div class="form-group-addbook">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title">
-    </div>
-    <div class="form-group-addbook">
-         <label for="author">Author:</label>
-         <input type="text" id="author" name="author">
-    </div>
-    <div class="form-group-addbook">
         <label for="isbn">ISBN:</label>
         <input type="text" id="isbn" name="isbn">
     </div>
     <div class="form-group-addbook">
-        <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre">
+         <label for="title">Title:</label>
+         <input type="text" id="title" name="title">
+    </div>
+    <div class="form-group-addbook">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author">
      </div>
+    <div class="form-group-addbook">
+        <label for="genre">Gemre:</label>
+        <select id="genre" name="genre">
+            <option value="Fantasy">Fantasy</option>
+            <option value="History">History</option>
+            <option value="Romance">Romance</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Science">Science</option>
+            <option value="Sport">Sport</option>
+        </select>
+    </div>
+    
      <div class="form-group-addbook">
         <button type="submit" name="submit">Submit</button>
     </div>
