@@ -1,13 +1,14 @@
 <?php
 include "be_db_conn.php";
 
-$query = "SELECT b.title, b.author, b.isbn, g.name AS genre, COUNT(bc.book_id) AS copies,
-          SUM(CASE WHEN bc.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
-          SUM(CASE WHEN bc.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
-          FROM book AS b
-          INNER JOIN genre AS g ON b.genre_id = g.id
-          LEFT JOIN book_copy AS bc ON b.book_id = bc.book_id
-          GROUP BY b.book_id";
+$query = "SELECT book.title, book.author, book.isbn, genre.name AS genre, COUNT(book_copy.book_id) AS copies,
+          SUM(CASE WHEN book_copy.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
+          SUM(CASE WHEN book_copy.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
+          FROM book
+          INNER JOIN genre ON book.genre_id = genre.id
+          LEFT JOIN book_copy ON book.book_id = book_copy.book_id
+          GROUP BY book.book_id";
+
 $result = $conn->query($query);
 
 $books = array();
