@@ -7,11 +7,11 @@
     }
 
     // Count total number of loans
-    $totalLoansQuery = "SELECT COUNT(*) AS total_loans FROM issues";
+    $totalLoansQuery = "SELECT COUNT(*) AS total_loans FROM NEW_loans";
     $totalLoansResult = $conn->query($totalLoansQuery);
     $totalLoans = $totalLoansResult->fetch_assoc()['total_loans'];
 
-    $openLoansQuery = "SELECT COUNT(*) AS open_Loans FROM issues WHERE status = 'open'";
+    $openLoansQuery = "SELECT COUNT(*) AS open_Loans FROM NEW_loans WHERE status = 'open'";
     $openLoansResult = $conn->query($openLoansQuery);
     $openLoans = $openLoansResult->fetch_assoc()['open_Loans'];
 
