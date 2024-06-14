@@ -1,38 +1,38 @@
 <?php
-include "../Code Backend/be_db_conn.php";
+    include "../Code Backend/be_db_conn.php";
 
-// Check if the ISBN is provided in the URL
-if (isset($_GET['isbn'])) {
-    $isbn = $_GET['isbn'];
+        // Check if the ISBN is provided in the URL
+        if (isset($_GET['isbn'])) {
+            $isbn = $_GET['isbn'];
 
-    // Fetch book details
-    $query = "SELECT books.title, books.author, books.isbn, genre.name, COUNT(book_copies.book_id) AS copies
-              FROM books
-              INNER JOIN genre ON books.genre_id = genre.id
-              LEFT JOIN book_copies ON books.book_id = book_copies.book_id
-              WHERE books.isbn = '$isbn'
-              GROUP BY books.book_id";
-    $result = $conn->query($query);
+            // Fetch book details
+            $query = "SELECT books.title, books.author, books.isbn, genre.name, COUNT(book_copies.book_id) AS copies
+                    FROM books
+                    INNER JOIN genre ON books.genre_id = genre.id
+                    LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+                    WHERE books.isbn = '$isbn'
+                    GROUP BY books.book_id";
+            $result = $conn->query($query);
 
-    if ($result && $result->num_rows > 0) {
-        $book = $result->fetch_assoc();
-    }
+                if ($result && $result->num_rows > 0) {
+                $book = $result->fetch_assoc();
+                }
 
-    // Fetch book copies
-    $query = "SELECT * FROM book_copies WHERE book_id IN (SELECT book_id FROM books WHERE isbn = '$isbn')";
-    $result = $conn->query($query);
+            // Fetch book copies
+                    $query = "SELECT * FROM book_copies WHERE book_id IN (SELECT book_id FROM books WHERE isbn = '$isbn')";
+                    $result = $conn->query($query);
 
-    $copies = array();
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $copies[] = $row;
+                    $copies = array();
+                if ($result && $result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $copies[] = $row;
+                    }
+                }
+        } else {
+            // If no ISBN is provided, redirect back to the booklist page
+            header("Location: booklist.php");
+            exit();
         }
-    }
-} else {
-    // If no ISBN is provided, redirect back to the booklist page
-    header("Location: booklist.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html> 
@@ -70,6 +70,7 @@ if (isset($_GET['isbn'])) {
                 <th>Total Copies</th>
                 <th>Copy Number</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -83,11 +84,11 @@ if (isset($_GET['isbn'])) {
                 <td><?php echo $book['copies']; ?></td>
                 <td><?php echo $copy['copy_number']; ?></td>
                 <td><?php echo $copy['status']; ?></td>
+                <td><a href="book_delete.php?copy_id=<?php echo $copy['copy_id']; ?>&isbn=<?php echo $isbn; ?>">Delete</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-                
+    </table>              
             </div>
         </div>
     </div>
