@@ -9,13 +9,13 @@
 <body>
     <div class="background">  <!-- adding background -->  
         <div class="background_content">
-            <button class="button_back_to_dashboard" onclick="window.location.href='fe_dashboard.html'">Back to Dashboard</button>          
-            <form action="suche.php" method="get">
+            <button class="button_back_to_dashboard" onclick="window.location.href='dashboard.php'">Back to Dashboard</button>          
+            <form action="member_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
                 </div>
             </form> 
-            <button class="button_add_member" onclick="window.location.href='fe_add_member.html'">Add new Member</button>
+            <button class="button_add_member" onclick="window.location.href='fe_add_member.php'">Add new Member</button>
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
                     <h1>Memberlist</h1>
@@ -29,23 +29,24 @@
                         die("Connection failed: " . $conn->connect_error);
                     }
 
-                    // Perform a query to fetch all books from the database
-                    $sql = "SELECT * FROM members";
+                    // Perform a query to fetch all members from the database
+                    $sql = "SELECT member_id, first_name, last_name, email, phone FROM members";
                     $result = $conn->query($sql);
 
                     // Check if the query was successful and if there are any rows returned
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
-                        echo "<table id='table_memberlist'>"; 
-                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th></tr>";
+                        echo "<table id='table_memberlist'>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                                echo "<td>" . $row["member_id"] . "</td>";
-                                echo "<td>" . $row["first_name"] . "</td>";
-                                echo "<td>" . $row["last_name"] . "</td>";
-                                echo "<td>" . $row["email"] . "</td>";
-                                echo "<td>" . $row["phone"] . "</td>";
-                                echo "</tr>";
+                            echo "<td>" . $row["member_id"] . "</td>";
+                            echo "<td>" . $row["first_name"] . "</td>";
+                            echo "<td>" . $row["last_name"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td>" . $row["phone"] . "</td>";
+                            echo "<td><a href='member_edit.php?member_id=" . $row["member_id"] . "'>Edit</a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
+                            echo "</tr>";
                             }
                         echo "</table>";
                     } else {
@@ -62,27 +63,27 @@
     <div class="logo"> <!-- add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
-    <div class="topbar"><!-- adding topbar,profile button -->
-        <div> <button class="button_profile">Mitarbeiter_1</button></div>
+    <div class="topbar"><!-- adding topbar,logout button -->
+    <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.html'"></button>
+            <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'"></button>
             <button class="button_equals" onclick="toggleMenu()"></button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
             <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
             <button class="button_reminder"id="button_reminderID"onclick="window.location.href='fe_reminder.html'"></button>
-            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.html'"></button>
+            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.php'"></button>
             <button class="button_settings"></button>
         </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.html'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="Reminder"onclick="window.location.href='fe_reminder.html'">Reminder</a></li>
-            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.html'">Loans</a></li>
+            <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.php'">Loans</a></li>
         </ul>
     </div>
 </body>
