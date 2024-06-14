@@ -56,7 +56,7 @@ h2 {
 </head>
 <body>
     <div class="background">  
-    <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>     
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Memberlist</button>     
         <div class="white-square">
         <div class="info-box">
                     <h1>Search Result</h1>
