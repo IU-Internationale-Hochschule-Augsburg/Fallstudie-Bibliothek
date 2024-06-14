@@ -4,7 +4,7 @@
     include "../Code Backend/be_db_conn.php";
 
     //Deklarieren und Initialisieren von Variablen zum Speichern der Benutzerdaten.
-    $member_id = "";
+    //$member_id = "";
     $first_name = "";
     $last_name = "";
     $email = "";
@@ -17,7 +17,7 @@
     //Überprüfen, ob die Anfrage mit der POST-Methode gesendet wurde.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Auslesen der Daten, die aus dem Formular gesendet wurden, und Speichern in Variablen.
-        $member_id = $_POST['member_id'];
+        //$member_id = $_POST['member_id'];
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
@@ -27,13 +27,13 @@
         //Eine Schleife, die einmal ausgeführt wird, kann aber abgebrochen werden, wenn die Bedingungen nicht erfüllt sind.
         do {
             //Überprüfen, ob alle Felder gefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt.
-            if (empty($member_id) || empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
+            if (empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
                 $error = "All fields are required";
                 break;
             }
             //Erstellen einer SQL-Abfrage, um Daten in die Datenbank einzufügen.
-            $q = "INSERT INTO `members`(`member_id`, `first_name`, `last_name`, `email`, `phone`) 
-            VALUES ('$member_id', '$first_name', '$last_name', '$email', '$phone')";
+            $q = "INSERT INTO `members`(`first_name`, `last_name`, `email`, `phone`) 
+            VALUES ('$first_name', '$last_name', '$email', '$phone')";
                         //Ausführen der SQL-Abfrage und Überprüfen des Erfolgs.
                         $result = $conn->query($q);
             //Wenn die Abfrage fehlschlägt, wird eine Fehlermeldung gesetzt.
@@ -127,10 +127,10 @@
     
     <div class="form-container-addmember">  
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <div class="form-group-addmember">
+    <!-- <div class="form-group-addmember">
         <label for="member_id">Member ID</label>
         <input type="text" id="member_id" name="member_id">
-    </div>
+    </div> -->
     <div class="form-group-addmember">
          <label for="first_name">Firstname</label>
          <input type="text" id="first_name" name="first_name">
