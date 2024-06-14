@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($book_ids as $book_id) {
             if (!empty($book_id)) {
                 // Check if the book is already loaned
-                $checkBookStatusQuery = $conn->prepare("SELECT status FROM books WHERE book_id = ?");
+                $checkBookStatusQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
                 $checkBookStatusQuery->bind_param("s", $book_id);
                 $checkBookStatusQuery->execute();
                 $result = $checkBookStatusQuery->get_result();
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($insertLoanQuery->execute() === TRUE) {
                         // Update book status to 'On loan'
-                        $updateBookStatusQuery = $conn->prepare("UPDATE books SET status = 'On loan' WHERE book_id = ?");
+                        $updateBookStatusQuery = $conn->prepare("UPDATE book_copies SET status = 'On loan' WHERE copy_id = ?");
                         $updateBookStatusQuery->bind_param("s", $book_id);
                         $updateBookStatusQuery->execute();
 
