@@ -15,7 +15,7 @@ if (sidebar.classList.contains("active")) {
 } else {
     background.style.left = '75px';
     background.style.width = 'calc(100% - 75px)';
-}
+} 
 
 // White Square function
 var whiteSquare = document.getElementById("white-squareID");
