@@ -8,10 +8,28 @@ function toggleMenu() {
     sidebar.classList.toggle("active");
 
 // background function
-    var background = document.querySelector(".background");
-    background.classList.toggle("background-active");
+var background = document.querySelector(".background");
+if (sidebar.classList.contains("active")) {
+    background.style.left = '210px';
+    background.style.width = 'calc(100% - 210px)';
+} else {
+    background.style.left = '75px';
+    background.style.width = 'calc(100% - 75px)';
 }
 
+// White Square function
+var whiteSquare = document.getElementById("white-squareID");
+if (sidebar.classList.contains("active")) {
+    whiteSquare.style.left = '850px'; //
+    whiteSquare.style.width = 'calc(1700px - 130px - 44px)';
+    whiteSquare.style.transition = 'width 0.6s';
+} else {
+    whiteSquare.style.left = '50%';
+    whiteSquare.style.transform = 'translateX(-50%)';
+    whiteSquare.style.width = '1650px';
+    whiteSquare.style.transition = 'width 0.6s';
+}
+}
 
 // function hover_Dashboard 
 function function_hover_dashboard() {
@@ -60,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function_hover_dashboard();
 });
 
-
 // function hover_booklist 
 function function_hover_booklist() {
     var booklistItem = document.getElementById("Booklist");
@@ -107,7 +124,6 @@ function function_hover_booklist() {
 document.addEventListener("DOMContentLoaded", function() {
     function_hover_booklist();
 });
-
 
 // function hover_memberlist 
 function function_hover_memberlist() {
@@ -156,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function_hover_memberlist();
 });
 
-
 // function hover_reminder
 function function_hover_reminder() {
     var reminderItem = document.getElementById("Reminder");
@@ -204,7 +219,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function_hover_reminder();
 });
 
-
 // function hover_loans
 function function_hover_loans() {
     var loansItem = document.getElementById("Loans");
@@ -250,7 +264,6 @@ function function_hover_loans() {
 // Call the function when the document is loaded
 document.addEventListener("DOMContentLoaded", function() {
     function_hover_loans();
-<<<<<<< Updated upstream
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -276,7 +289,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('#table_booklist tr[data-href]');
     rows.forEach(row => {
@@ -284,6 +296,5 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = this.dataset.href;
         });
     });
-=======
->>>>>>> Stashed changes
 });
+
