@@ -24,7 +24,7 @@ body {
 .button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist {
     padding: 10px 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #cacaca;
     color: rgb(0, 0, 0);
     font-size: 18px;
@@ -35,7 +35,6 @@ body {
     color: #000000;
     cursor: pointer;
     z-index: 999;
-    border-radius: 15px
 }
  
 .button_back_to_dashboard, .button_back_to_booklist {
@@ -118,7 +117,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
@@ -148,7 +146,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
