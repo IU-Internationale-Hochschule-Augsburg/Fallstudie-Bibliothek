@@ -29,10 +29,11 @@ if ($conn->connect_error) {
 
 // Perform a query to fetch all books from the database
 $sql = "
-    SELECT NEW_loans.loan_id, books.title, books.book_id, members.first_name, members.last_name, NEW_loans.borrow_date, NEW_loans.return_date, NEW_loans.status 
+    SELECT NEW_loans.loan_id, books.title, book_copies.copy_id, members.first_name, members.last_name, NEW_loans.borrow_date, NEW_loans.return_date, NEW_loans.status 
     FROM NEW_loans 
-    INNER JOIN books ON NEW_loans.book_id = books.book_id 
-    INNER JOIN members ON NEW_loans.member_id = members.member_id 
+    INNER JOIN book_copies ON NEW_loans.book_id = book_copies.book_id
+    INNER JOIN books ON book_copies.book_id = books.book_id
+    INNER JOIN members ON NEW_loans.member_id = members.member_id
     ORDER BY NEW_loans.loan_id DESC";
 $result = $conn->query($sql);
 
@@ -42,14 +43,11 @@ if ($result !== false && $result->num_rows > 0) {
     echo "<table id='table_booklist'>";
     echo "<tr><th>Loan-ID</th><th>Book-Title</th><th>Book-ID</th><th>Member-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th></tr>";
 
-    echo "<table>";
-    echo "<tr><th>Loan ID</th><th>Book Title</th><th>Book ID</th><th>Member Name</th><th>Borrow Date</th><th>Return Date</th><th>Status</th></tr>";
-
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["loan_id"] . "</td>";
         echo "<td>" . $row["title"] . "</td>";
-        echo "<td>" . $row["book_id"] . "</td>";
+        echo "<td>" . $row["copy_id"] . "</td>";
         echo "<td>" . $row["first_name"] . " " . $row["last_name"] . "</td>";
         echo "<td>" . $row["borrow_date"] . "</td>";
         echo "<td>" . $row["return_date"] . "</td>";
