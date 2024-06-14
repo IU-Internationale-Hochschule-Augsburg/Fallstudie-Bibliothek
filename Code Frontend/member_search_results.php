@@ -121,7 +121,7 @@ if ($result->num_rows > 0) {
             <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
-            <li><a href="#" id="overduebooks"onclick="window.location.href='fe_overduebooks.php'">Overdue Books</a></li>
+            <li><a href="#" id="overduebooks"onclick="window.location.href='fe_overduebooks.php'">Overdue</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.php'">Loans</a></li>
         </ul>
     </div>
