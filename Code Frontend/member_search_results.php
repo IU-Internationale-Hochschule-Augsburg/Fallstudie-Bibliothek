@@ -56,7 +56,13 @@ h2 {
 </head>
 <body>
     <div class="background">  
-    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Memberlist</button>     
+    <button class="button_back_to_dashboard" onclick="window.location.href='fe_memberlist.php'">Back to Memberlist</button>    
+            <form action="book_search_results.php" method="get">
+                <div class="search-bar">
+                    <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
+                </div>
+            </form>    
+
         <div class="white-square">
         <div class="info-box">
                     <h1>Search Result</h1>
