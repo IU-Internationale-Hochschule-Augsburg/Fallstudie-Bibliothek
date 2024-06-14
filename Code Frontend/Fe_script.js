@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setupHoverEffect("Dashboard", "button_houseID");
     setupHoverEffect("Booklist", "button_booklistID");
     setupHoverEffect("Memberlist", "button_memberlistID");
-    setupHoverEffect("Overdue Books", "button_overduebooksID");
+    setupHoverEffect("overduebooks", "button_overduebooksID");
     setupHoverEffect("Loans", "button_loansID");
 });
 
