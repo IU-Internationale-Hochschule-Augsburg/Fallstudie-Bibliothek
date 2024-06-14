@@ -47,7 +47,7 @@
 <body>
     <div class="background">
         <div class="background_content">
-            <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Back to Booklist</button>          
+            <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Back to Book List</button>          
             <form action="book_search_results.php" method="get">
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 

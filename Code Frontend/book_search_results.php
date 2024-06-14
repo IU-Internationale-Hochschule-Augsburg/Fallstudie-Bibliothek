@@ -56,7 +56,13 @@
 </head>
 <body>
     <div class="background">  
-        <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>     
+        <button class="button_back_to_dashboard" onclick="window.location.href='fe_booklist.php'">Book List</button>    
+        <form action="book_search_results.php" method="get">
+                <div class="search-bar">
+                    <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
+                </div>
+            </form> 
+        <button class="button_add_book" onclick="window.location.href='book_add.php'">Add new Book</button> 
         <div class="white-square">
             <div class="info-box">
                         <h1>Search Result</h1>
@@ -65,7 +71,7 @@
                 <div class="search-content">               
                         <?php
                         include "../Code Backend/be_db_conn.php";
-                        
+
                             $query = $_GET['query'];
 
                             $sql = "SELECT books.*, genre.name AS genre 
