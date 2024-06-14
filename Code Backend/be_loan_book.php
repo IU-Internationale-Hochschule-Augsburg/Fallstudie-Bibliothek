@@ -18,16 +18,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($book_ids as $book_id) {
             if (!empty($book_id)) {
                 // Check if the book exists in the database
-                $checkBookExistenceQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
+                $checkBookExistenceQuery = $conn->prepare("SELECT copy_id FROM book_copies WHERE copy_id = ?");
                 $checkBookExistenceQuery->bind_param("s", $book_id);
                 $checkBookExistenceQuery->execute();
                 $result = $checkBookExistenceQuery->get_result();
                 
                 if ($result->num_rows > 0) {
+
+                    //Check if the book is already loand
+                    $checkBookStatusQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
+                    $checkBookStatusQuery->bind_param("s", $book_id);
+                    $checkBookStatusQuery->execute();
+                    $result = $checkBookStatusQuery->get_result();
                     $book = $result->fetch_assoc();
                     
                     // Check if the book is already loaned
-                    if ($book['status'] == 'On loan') {
+                    if ($book['status'] == 'On Loan') {
                         $messages[] = "Book ID $book_id is already loaned!";
                     } else {
                         // Prepared statement to avoid SQL injection
