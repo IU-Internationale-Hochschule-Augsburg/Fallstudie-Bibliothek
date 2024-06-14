@@ -15,22 +15,18 @@ if (sidebar.classList.contains("active")) {
 } else {
     background.style.left = '75px';
     background.style.width = 'calc(100% - 75px)';
-} 
+}
 
-// White Square function
-var whiteSquare = document.getElementById("white-squareID");
-if (sidebar.classList.contains("active")) {
-    whiteSquare.style.left = '850px'; //
-    whiteSquare.style.width = 'calc(1700px - 130px - 44px)';
-    whiteSquare.style.transition = 'width 0.6s';
-} else {
+
+    // White Square function
+    var whiteSquare = document.getElementById("white-squareID");
+    whiteSquare.style.width = '90%';  // Adjust the width as a percentage
+    whiteSquare.style.height = '80%'; // Adjust the height as a percentage
+    whiteSquare.style.top = '100px';
     whiteSquare.style.left = '50%';
     whiteSquare.style.transform = 'translateX(-50%)';
-    whiteSquare.style.width = '1650px';
-    whiteSquare.style.transition = 'width 0.6s';
+    whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
-}
-
 
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {
