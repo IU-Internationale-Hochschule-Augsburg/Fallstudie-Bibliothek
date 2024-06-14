@@ -17,31 +17,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $messages = [];
         foreach ($book_ids as $book_id) {
             if (!empty($book_id)) {
-                // Check if the book is already loaned
-                $checkBookStatusQuery = $conn->prepare("SELECT status FROM books WHERE book_id = ?");
-                $checkBookStatusQuery->bind_param("s", $book_id);
-                $checkBookStatusQuery->execute();
-                $result = $checkBookStatusQuery->get_result();
-                $book = $result->fetch_assoc();
+                // Check if the book exists in the database
+                $checkBookExistenceQuery = $conn->prepare("SELECT copy_id FROM book_copies WHERE copy_id = ?");
+                $checkBookExistenceQuery->bind_param("s", $book_id);
+                $checkBookExistenceQuery->execute();
+                $result = $checkBookExistenceQuery->get_result();
+                
+                if ($result->num_rows > 0) {
 
-                if ($book['status'] == 'On loan') {
-                    $messages[] = "Book ID $book_id is already loaned!";
-                } else {
-                    // Prepared statement to avoid SQL injection
-                    $insertLoanQuery = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
-                                            VALUES (?, ?, ?, ?, ?)");
-                    $insertLoanQuery->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
-
-                    if ($insertLoanQuery->execute() === TRUE) {
-                        // Update book status to 'On loan'
-                        $updateBookStatusQuery = $conn->prepare("UPDATE books SET status = 'On loan' WHERE book_id = ?");
-                        $updateBookStatusQuery->bind_param("s", $book_id);
-                        $updateBookStatusQuery->execute();
-
-                        $messages[] = "Book ID $book_id loaned successfully!";
+                    //Check if the book is already loand
+                    $checkBookStatusQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
+                    $checkBookStatusQuery->bind_param("s", $book_id);
+                    $checkBookStatusQuery->execute();
+                    $result = $checkBookStatusQuery->get_result();
+                    $book = $result->fetch_assoc();
+                    
+                    // Check if the book is already loaned
+                    if ($book['status'] == 'On Loan') {
+                        $messages[] = "Book ID $book_id is already loaned!";
                     } else {
-                        $messages[] = "Error loaning Book ID $book_id: " . $conn->error;
+                        // Prepared statement to avoid SQL injection
+                        $insertLoanQuery = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
+                                                VALUES (?, ?, ?, ?, ?)");
+                        $insertLoanQuery->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
+
+                        if ($insertLoanQuery->execute() === TRUE) {
+                            // Update book status to 'On loan'
+                            $updateBookStatusQuery = $conn->prepare("UPDATE book_copies SET status = 'On loan' WHERE copy_id = ?");
+                            $updateBookStatusQuery->bind_param("s", $book_id);
+                            $updateBookStatusQuery->execute();
+
+                            $messages[] = "Book ID $book_id loaned successfully!";
+                        } else {
+                            $messages[] = "Error loaning Book ID $book_id: " . $conn->error;
+                        }
                     }
+                } else {
+                    $messages[] = "Book ID $book_id does not exist in the database!";
                 }
             }
         }
