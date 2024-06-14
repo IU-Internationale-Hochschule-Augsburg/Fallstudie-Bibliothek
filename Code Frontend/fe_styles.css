@@ -118,7 +118,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
@@ -148,7 +147,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
@@ -177,7 +175,6 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
 }
 
 .form-container-bookdetails h2 {
@@ -198,7 +195,6 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
 }
 
@@ -208,7 +204,6 @@ body {
     background-color: #cacaca;
     color: black;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
