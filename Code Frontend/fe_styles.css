@@ -365,8 +365,8 @@ h2 {
         cursor: pointer;
     }
 
-    .button_reminder {
-        background-image: url('button_reminder.png');
+    .button_overduebooks {
+        background-image: url('button_overduebooks.png');
         background-size: cover;
         background-color: #888888;
         background-position: center;
