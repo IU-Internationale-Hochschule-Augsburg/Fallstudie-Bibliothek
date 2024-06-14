@@ -1,53 +1,48 @@
 <!-- Backend Code: Funktionen und ihre Logik -->
 <?php
-    //Einbinden der Datei, die die Verbindung zur Datenbank herstellt.
-    include "../Code Backend/be_db_conn.php";
+// Einbinden der Datei, die die Verbindung zur Datenbank herstellt.
+include "../Code Backend/be_db_conn.php";
 
-    //Deklarieren und Initialisieren von Variablen zum Speichern der Benutzerdaten.
-    //$member_id = "";
-    $first_name = "";
-    $last_name = "";
-    $email = "";
-    $phone = "";
-    
+// Deklarieren und Initialisieren von Variablen zum Speichern der Benutzerdaten.
+$first_name = "";
+$last_name = "";
+$email = "";
+$phone = "";
 
-    //Variablen für die Speicherung von Erfolgs- oder Fehlermeldungen.
-    $success = "";  
-    $error = "";
-    //Überprüfen, ob die Anfrage mit der POST-Methode gesendet wurde.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //Auslesen der Daten, die aus dem Formular gesendet wurden, und Speichern in Variablen.
-        //$member_id = $_POST['member_id'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
+// Variablen für die Speicherung von Erfolgs- oder Fehlermeldungen.
+$success = "";  
+$error = "";
 
+// Überprüfen, ob die Anfrage mit der POST-Methode gesendet wurde.
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Auslesen der Daten, die aus dem Formular gesendet wurden, und Speichern in Variablen.
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
 
-        //Eine Schleife, die einmal ausgeführt wird, kann aber abgebrochen werden, wenn die Bedingungen nicht erfüllt sind.
-        do {
-            //Überprüfen, ob alle Felder gefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt.
-            if (empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
-                $error = "All fields are required";
-                break;
-            }
-            //Erstellen einer SQL-Abfrage, um Daten in die Datenbank einzufügen.
-            $q = "INSERT INTO `members`(`first_name`, `last_name`, `email`, `phone`) 
-            VALUES ('$first_name', '$last_name', '$email', '$phone')";
-                        //Ausführen der SQL-Abfrage und Überprüfen des Erfolgs.
-                        $result = $conn->query($q);
-            //Wenn die Abfrage fehlschlägt, wird eine Fehlermeldung gesetzt.
-            if (!$result) {
-                $error = "Invalid Query: " . $conn->error;
-                break;
-            }
-            //Wenn alles erfolgreich verläuft, wird eine Erfolgsmeldung gesetzt.
-            $success = $member_id . " added successfully";
-
-            //Die Schleife wird nur einmal ausgeführt; wir verwenden `break`, um sie zu verlassen.
-            } while (false);
+    // Überprüfen, ob alle Felder gefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt.
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
+        $error = "Alle Felder sind erforderlich";
+    } else {
+        // Erstellen einer SQL-Abfrage, um Daten in die Datenbank einzufügen.
+        $q = "INSERT INTO `members`(`first_name`, `last_name`, `email`, `phone`) 
+        VALUES ('$first_name', '$last_name', '$email', '$phone')";
+        // Ausführen der SQL-Abfrage und Überprüfen des Erfolgs.
+        $result = $conn->query($q);
+        if ($result) {
+            // Wenn alles erfolgreich verläuft, wird eine Erfolgsmeldung gesetzt.
+            $success = "Mitglied erfolgreich hinzugefügt.";
+            // JavaScript für die Weiterleitung zur Mitgliederliste nach erfolgreichem Hinzufügen
+            echo "<script type='text/javascript'>document.location.href='fe_add_member.php';</script>";
+            exit();
+        } else {
+            // Wenn die Abfrage fehlschlägt, wird eine Fehlermeldung gesetzt.
+            $error = "Ungültige Anfrage: " . $conn->error;
         }
-    ?>
+    }
+}
+?>
 
 
 <!-- Frontend Code: Struktur und Navigations-Buttons der Seite sowie Site Layout generell -->
