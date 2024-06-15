@@ -55,9 +55,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="LibroFact" content="Library of Books">
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
-    <meta name="LibroFact" content="Library of Books">
+    <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
 </head>
 <body>
@@ -135,7 +136,9 @@
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
             <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'"></button>
-            <button class="button_equals"onclick="toggleMenu()"></button>
+            <button class="button_equals"onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
             <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
             <button class="button_overduebooks"id="button_overduebooksID"onclick="window.location.href='fe_overduebooks.php'"></button>

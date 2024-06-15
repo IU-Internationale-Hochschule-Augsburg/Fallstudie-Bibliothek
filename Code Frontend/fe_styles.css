@@ -308,22 +308,16 @@ h2 {
     }
 
     .button_equals {
-        background-image: url('button_equals.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 24px; 
-        max-width: 24px;
-        height: 24px; 
+        font-size: 25px;
+        top: 0px;
         margin: 13px;
-        margin-left: 4px;
-        padding-top: 26px; 
+        margin-left: 0px;
         display: block;
         border: none;
         cursor: pointer;
-        position: absolute;  /* Positionierung ändern */
-        top: 0px;
+        position: absolute; 
     }
 
     .button_booklist {
