@@ -290,128 +290,94 @@ h2 {
 
 /* declare all buttons of sidebar */
 .button_house {
-        background-image: url('button_house.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 35px; 
-        max-width: 35px;
-        height: 35px; 
-        margin: 0px;
-        margin-top:30px;
-        padding-left: 20px;
-        padding-top: 35px; 
+        font-size: 32px;
+        top: 38px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_equals {
-        background-image: url('button_equals.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 24px; 
-        max-width: 24px;
-        height: 24px; 
+        font-size: 25px;
+        top: 0px;
         margin: 13px;
-        margin-left: 4px;
-        padding-top: 26px; 
+        margin-left: 0px;
         display: block;
         border: none;
         cursor: pointer;
-        position: absolute;  /* Positionierung ändern */
-        top: 0px;
+        position: absolute; 
     }
 
     .button_booklist {
-        background-image: url('button_booklist.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 40px; 
-        max-width: 40px;
-        height: 32px; 
-        margin: 8px;
-        margin-top: 25px;  
-        margin-left: -2px;   
+        font-size: 33px;
+        top: 95px;
+        margin: 13px;
+        margin-left: -2px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_memberlist {
-        background-image: url('button_memberlist.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 45px; 
-        max-width: 45px;
-        height: 45px; 
-        margin: 6px;
-        margin-top:15px;
+        font-size: 30px;
+        top: 150.7px;
+        margin: 13px;
         margin-left: -5px;
-        padding-top: 32px; 
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_overduebooks {
-        background-image: url('button_overduebooks.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 45px; 
-        max-width: 45px;
-        height: 45px; 
-        margin: 6px;
-        margin-top:0px;
-        margin-left: -5px;
-        padding-top: 32px; 
+        font-size: 30px;
+        top: 204px;
+        margin: 13px;
+        margin-left: -2px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_loans {
-        background-image: url('button_loans.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 42px; 
-        max-width: 42px;
-        height: 42px; 
-        margin: 8px;
-        margin-top:20px;
-        margin-left: -2px;
-        padding-top: 32px; 
+        font-size: 36px;
+        top: 254.2px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_settings {
-        background-image: url('button_settings.png');
-        background-size: cover;
-        background-color: transparent;
-        background-position: center;
+        background-color: #888888;
         background-repeat: no-repeat;
-        position: fixed;
-        width: 42px;
-        height: 42px;
-        bottom: 20px;  /* Position von unten */
-        left: 18px;    /* Position von links */
+        font-size: 36px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
-        z-index: 1000; 
+        position: absolute;
+        bottom: 35px;
     }
 
 /* declare a logout button of topebar */

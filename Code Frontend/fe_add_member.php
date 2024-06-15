@@ -49,11 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+    <meta name="LibroFact" content="Library of Books">
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
-    <meta name="LibroFact" content="Library of Books">
-    <title>LIBRIOFACT - Add Member</title>
+    <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
+    <title>LIBRIOFACT - Booklist</title>
     <style>
         .form-container-addmember {
             width: 80%;
@@ -166,13 +167,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'"></button>
-            <button class="button_equals"onclick="toggleMenu()"></button>
-            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'"></button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'"></button>
-            <button class="button_overduebooks"id="button_overduebooksID"onclick="window.location.href='fe_overduebooks.php'"></button>
-            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.php'"></button>
-            <button class="button_settings"></button>
+        <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
+                <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_equals"onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'">
+                <i class="fa-solid fa-book-bookmark" style="color: #030303;"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'">
+                <i class="fa-solid fa-users" style="color: #000000;"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_overduebooks"id="button_overduebooksID"onclick="window.location.href='fe_overduebooks.php'">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.php'">
+                <i class="fa-solid fa-right-long"></i> <!-- adding fontawesome icon -->
+            </button>
+            <button class="button_settings">
+                <i class="fa-solid fa-gear" style="color: #000000;"></i> <!-- adding fontawesome icon -->
+            </button>
         </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
