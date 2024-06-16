@@ -136,14 +136,14 @@
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
             <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
-                <i class="fa-duotone fa-house" style="--fa-primary-color: #000000; --fa-secondary-color: #000000; --fa-secondary-opacity: 0.7;"></i> <!-- adding fontawesome icon -->
+                <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_equals"onclick="toggleMenu()">
                 <i class="fa-solid fa-bars"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_booklist"id="button_booklistID"onclick="window.location.href='fe_booklist.php'">
                 <i class="fa-solid fa-book-bookmark" style="color: #030303;"></i> <!-- adding fontawesome icon -->
-            </button>
+            </button> 
             <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='fe_memberlist.php'">
                 <i class="fa-solid fa-users" style="color: #000000;"></i> <!-- adding fontawesome icon -->
             </button>
