@@ -20,13 +20,61 @@ if (sidebar.classList.contains("active")) {
 
     // White Square function
     var whiteSquare = document.getElementById("white-squareID");
-    whiteSquare.style.width = '90%';  // Adjust the width as a percentage
-    whiteSquare.style.height = '80%'; // Adjust the height as a percentage
+    whiteSquare.style.width = '90%';  
+    whiteSquare.style.height = '80%'; 
     whiteSquare.style.top = '100px';
     whiteSquare.style.left = '50%';
     whiteSquare.style.transform = 'translateX(-50%)';
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
+
+// changeIconColorfunction for sort buttons
+function changeIconColor(buttonId) {
+    var icon = document.querySelector(`#${buttonId} i`);
+    var isGray = icon.style.color === 'rgb(101, 101, 103)' || icon.style.color === 'rgb(101,101,103)' || icon.style.color === '';
+
+    if (isGray) {
+        icon.style.color = '#494969';
+    } else {
+        icon.style.color = '#656567';
+    }
+}
+
+// DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    var layerSortButton = document.getElementById('layer_sortID');
+    var verticalSortButton = document.getElementById('vertical_sortID');
+    
+    // Initial selection: layer_sort is active by default
+    layerSortButton.classList.add('active');
+    changeIconColor('layer_sortID');
+
+    // Function to toggle active state and colors
+    function toggleButton(button) {
+        if (!button.classList.contains('active')) {
+            button.classList.add('active');
+            changeIconColor(button.id);
+        }
+    }
+
+    // Event listener for layer_sort button
+    layerSortButton.addEventListener('click', function() {
+        if (!layerSortButton.classList.contains('active')) {
+            toggleButton(layerSortButton); // Toggle active state
+            verticalSortButton.classList.remove('active'); // Remove active from vertical_sort
+            changeIconColor('vertical_sortID'); // Reset color of vertical_sort button
+        }
+    });
+
+    // Event listener for vertical_sort button
+    verticalSortButton.addEventListener('click', function() {
+        if (!verticalSortButton.classList.contains('active')) {
+            toggleButton(verticalSortButton); // Toggle active state
+            layerSortButton.classList.remove('active'); // Remove active from layer_sort
+            changeIconColor('layer_sortID'); // Reset color of layer_sort button
+        }
+    });
+});
 
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {

@@ -104,7 +104,32 @@ body {
     text-align: center;
     font-size: 15px;
 }
- 
+
+/* declare sort buttons */
+.layer_sort, .vertical_sort {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.layer_sort {
+    margin-top: -21px;
+    right: 1.7%;
+}
+
+.vertical_sort {
+    font-size: 24px;
+    margin-top: -22px;
+    right: calc(1.7% + 35px);
+}
+
+.active .fa-layer-group {
+    color: #656567; 
+}
 
 /* declare table booklist */
 #table_booklist {

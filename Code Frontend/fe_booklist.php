@@ -75,6 +75,12 @@
                     <div class="info-box">
                         <h1>Booklist</h1>
                         <p>Here you can see and manage the list of books.</p>
+                        <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
+                            <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
+                        </button>
+                        <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
+                            <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
+                        </button>
                     </div>
                         <table id="table_booklist">
                             <thead>
