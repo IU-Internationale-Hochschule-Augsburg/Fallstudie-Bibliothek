@@ -97,6 +97,12 @@ $error = "";
             <div class="info-box">
                 <h1>Add Book</h1>
                 <p>Here you can add new books to the catalog</p>
+                <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
+                    <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
+                </button>
+                <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
+                    <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
+                </button>
             </div> <!-- adding background -->
             
                 <div class="form-container-addbook">  

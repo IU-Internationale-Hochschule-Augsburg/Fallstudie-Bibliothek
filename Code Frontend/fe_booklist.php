@@ -69,7 +69,7 @@
                 <div class="search-bar">
                     <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
                 </div>
-            </form> 
+            </form>  
             <button class="button_add_book" onclick="window.location.href='book_add.php'">Add new Book</button>
                 <div class="white-square" id="white-squareID">
                     <div class="info-box">
