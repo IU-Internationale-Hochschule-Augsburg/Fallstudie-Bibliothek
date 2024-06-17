@@ -24,7 +24,7 @@ body {
 .button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist {
     padding: 10px 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #cacaca;
     color: rgb(0, 0, 0);
     font-size: 18px;
@@ -35,19 +35,14 @@ body {
     color: #000000;
     cursor: pointer;
     z-index: 999;
-    border-radius: 15px
 }
  
 .button_back_to_dashboard, .button_back_to_booklist {
-    left: 90px;
+    left: 5%;
 }
  
-.button_add_book {
-    right: 74px;
-}
-
-.button_add_member {
-    right: 74px;
+.button_add_book, .button_add_member {
+    right: 3.69%;
 }
 
  /* declare search */
@@ -73,13 +68,13 @@ body {
 /* declare white square */
 .white-square {
     background-color: rgb(235, 235, 235);
-    width: 1650px;
-    height: 750px;
+    width: 90%;  
+    height: 80%;
     margin: 10px;
     position: absolute;
     top: 100px;
     border-radius: 15px;
-    right: 50px;
+    right: 10%;
     left: 50%; 
     transform: translateX(-50%);
     position: absolute;
@@ -92,8 +87,8 @@ body {
     padding: 10px; 
     margin-bottom: 20px; 
     margin-top: 15px;  
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
 }
 
 .info-box h1 {
@@ -109,7 +104,32 @@ body {
     text-align: center;
     font-size: 15px;
 }
- 
+
+/* declare sort buttons */
+.layer_sort, .vertical_sort {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.layer_sort {
+    margin-top: -21px;
+    right: 1.7%;
+}
+
+.vertical_sort {
+    font-size: 24px;
+    margin-top: -22px;
+    right: calc(1.7% + 35px);
+}
+
+.active .fa-layer-group {
+    color: #656567; 
+}
 
 /* declare table booklist */
 #table_booklist {
@@ -118,7 +138,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
@@ -148,7 +167,6 @@ body {
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
-    border-radius: 10px; 
     user-select: none;
 }
 
@@ -177,7 +195,6 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
 }
 
 .form-container-bookdetails h2 {
@@ -198,7 +215,6 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
 }
 
@@ -208,9 +224,53 @@ body {
     background-color: #cacaca;
     color: black;
     border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-container-addbook {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.form-container-addbook h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group-addbook {
+    margin-bottom: 15px;
+}
+
+.form-group-addbook label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group-addbook input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group-addbook button {
+    width: 100%;
+    padding: 10px;
+    background-color: #cacaca;
+    color: black;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+}
+
+h2 {
+    text-align: center;
 }
 
 /* declare topbar */
@@ -255,128 +315,94 @@ body {
 
 /* declare all buttons of sidebar */
 .button_house {
-        background-image: url('button_house.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 35px; 
-        max-width: 35px;
-        height: 35px; 
-        margin: 0px;
-        margin-top:30px;
-        padding-left: 20px;
-        padding-top: 35px; 
+        font-size: 32px;
+        top: 38px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_equals {
-        background-image: url('button_equals.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 24px; 
-        max-width: 24px;
-        height: 24px; 
+        font-size: 25px;
+        top: 0px;
         margin: 13px;
-        margin-left: 4px;
-        padding-top: 26px; 
+        margin-left: 0px;
         display: block;
         border: none;
         cursor: pointer;
-        position: absolute;  /* Positionierung ändern */
-        top: 0px;
+        position: absolute; 
     }
 
     .button_booklist {
-        background-image: url('button_booklist.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 40px; 
-        max-width: 40px;
-        height: 32px; 
-        margin: 8px;
-        margin-top: 25px;  
-        margin-left: -2px;   
+        font-size: 33px;
+        top: 95px;
+        margin: 13px;
+        margin-left: -2px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_memberlist {
-        background-image: url('button_memberlist.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 45px; 
-        max-width: 45px;
-        height: 45px; 
-        margin: 6px;
-        margin-top:15px;
+        font-size: 30px;
+        top: 150.7px;
+        margin: 13px;
         margin-left: -5px;
-        padding-top: 32px; 
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
-    .button_reminder {
-        background-image: url('button_reminder.png');
-        background-size: cover;
+    .button_overduebooks {
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 45px; 
-        max-width: 45px;
-        height: 45px; 
-        margin: 6px;
-        margin-top:0px;
-        margin-left: -5px;
-        padding-top: 32px; 
+        font-size: 30px;
+        top: 204px;
+        margin: 13px;
+        margin-left: -2px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_loans {
-        background-image: url('button_loans.png');
-        background-size: cover;
         background-color: #888888;
-        background-position: center;
         background-repeat: no-repeat;
-        width: 42px; 
-        max-width: 42px;
-        height: 42px; 
-        margin: 8px;
-        margin-top:20px;
-        margin-left: -2px;
-        padding-top: 32px; 
+        font-size: 36px;
+        top: 254.2px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
+        position: absolute;
     }
 
     .button_settings {
-        background-image: url('button_settings.png');
-        background-size: cover;
-        background-color: transparent;
-        background-position: center;
+        background-color: #888888;
         background-repeat: no-repeat;
-        position: fixed;
-        width: 42px;
-        height: 42px;
-        bottom: 20px;  /* Position von unten */
-        left: 18px;    /* Position von links */
+        font-size: 36px;
+        margin: 13px;
+        margin-left: -5px;
         display: block;
         border: none;
         cursor: pointer;
-        z-index: 1000; 
+        position: absolute;
+        bottom: 35px;
     }
 
 /* declare a logout button of topebar */
