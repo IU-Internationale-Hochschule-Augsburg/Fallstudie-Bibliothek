@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 if ($result->num_rows > 0) {
 
-                    //Check if the book is already loand
+                    //Check if the book is already loaned
                     $checkBookStatusQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
                     $checkBookStatusQuery->bind_param("s", $book_id);
                     $checkBookStatusQuery->execute();
