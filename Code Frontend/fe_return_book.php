@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,17 +76,28 @@
                 <h1>Return Book</h1>
                 <p>Here you can return the books for the Member</p>
             </div>
+
+            <!--Dieser PHP-Code wird benötigt, um die Nachricht anzuzeigen, 
+            dass ein Buch erfolgreich ausgeliehen wurde. Muss evtl. noch an eine andere Stelle 
+            geschoben werden -- Absprache mit Flo! -->
+    
+            <?php
+            if (isset($_SESSION["message"])) {
+                echo '<p>' . $_SESSION["message"] . '</p>';
+                unset($_SESSION["message"]); // remove it after displaying
+            }
+            ?>
     
             <div class="form-container-addbook">  
-                <form>
+                <form action="../Code Backend/be_return_book.php" method="POST">
                     <div class="form-group-addbook">
                         <label for="member-id">Member-ID</label>
-                        <input type="text" id="member-id" name="member-id">
+                        <input type="text" id="member_id" name="member_id">
                     </div>
                     <div id="bookFieldsContainer">
                         <div class="form-group-addbook book-field">
                             <label for="book-id-1">Book-ID</label>
-                            <input type="text" id="book-id-1" name="book-id[]">
+                            <input type="text" id="book-id-1" name="book_id[]">
                         </div>
                     </div>
                     <div class="form-group-addbook button-container">
@@ -148,7 +163,7 @@
                 newField.className = 'form-group-addbook book-field';
                 newField.innerHTML = `
                     <label for="book-id-${index}">Book-ID</label>
-                    <input type="text" id="book-id-${index}" name="book-id[]">
+                    <input type="text" id="book_id_${index}" name="book_id[]">
                 `;
                 container.appendChild(newField);
             } else {

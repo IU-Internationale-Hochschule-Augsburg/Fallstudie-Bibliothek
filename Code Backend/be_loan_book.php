@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 if ($result->num_rows > 0) {
 
-                    //Check if the book is already loand
+                    //Check if the book is already loaned
                     $checkBookStatusQuery = $conn->prepare("SELECT status FROM book_copies WHERE copy_id = ?");
                     $checkBookStatusQuery->bind_param("s", $book_id);
                     $checkBookStatusQuery->execute();
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $messages[] = "Book ID $book_id is already loaned!";
                     } else {
                         // Prepared statement to avoid SQL injection
-                        $insertLoanQuery = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
+                        $insertLoanQuery = $conn->prepare("INSERT INTO loans (member_id, book_id, borrow_date, return_date, status)
                                                 VALUES (?, ?, ?, ?, ?)");
                         $insertLoanQuery->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
 
