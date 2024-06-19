@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
-    <title>LIBRIOFACT - Booklist</title>
+    <title>LIBRIOFACT - Loanlist</title>
 </head>
 <body>
     <div class="background">  
