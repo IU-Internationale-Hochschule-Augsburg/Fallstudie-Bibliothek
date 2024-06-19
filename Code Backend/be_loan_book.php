@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $messages[] = "Book ID $book_id is already loaned!";
                     } else {
                         // Prepared statement to avoid SQL injection
-                        $insertLoanQuery = $conn->prepare("INSERT INTO NEW_loans (member_id, book_id, borrow_date, return_date, status)
+                        $insertLoanQuery = $conn->prepare("INSERT INTO loans (member_id, book_id, borrow_date, return_date, status)
                                                 VALUES (?, ?, ?, ?, ?)");
                         $insertLoanQuery->bind_param("sssss", $member_id, $book_id, $issue_date, $return_date, $status);
 
