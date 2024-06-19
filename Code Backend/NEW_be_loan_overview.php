@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW Loan Overview</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            border: 1px solid #000; /* Add border around the table */
-        }
-        th, td {
-            border: 1px solid #000; /* Add border around table cells */
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
-</head>
-
-<body>
-    <?php
+<?php
 include "be_db_conn.php";
 
 // Check if the connection to the database is successful
