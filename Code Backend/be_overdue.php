@@ -13,7 +13,6 @@ $overdueLoans->bind_param("s", $status );
 $overdueLoans->execute();
 $result = $overdueLoans->get_result();
 
-
 if ($result !== false && $result->num_rows > 0) {
     // Display the table header and iterate through the fetched results
     echo "<table id='table_booklist'>";
