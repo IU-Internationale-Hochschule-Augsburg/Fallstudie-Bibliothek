@@ -28,84 +28,62 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-// changeIconColorfunction for sort buttons
-function changeIconColor(buttonId) {
-    var icon = document.querySelector(`#${buttonId} i`);
-    var isGray = icon.style.color === 'rgb(101, 101, 103)' || icon.style.color === 'rgb(101,101,103)' || icon.style.color === '';
 
-    if (isGray) {
-        icon.style.color = '#494969';
-    } else {
-        icon.style.color = '#656567';
-    }
-}
+
+
+
 
 // DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
-    var layerSortButton = document.getElementById('layer_sortID');
-    var verticalSortButton = document.getElementById('vertical_sortID');
-    
-    // Initial selection: layer_sort is active by default
-    layerSortButton.classList.add('active');
-    changeIconColor('layer_sortID');
+    let currentPage = 1;
+    let resultsPerPage = 15;
+    let activeSortButton = 'layer_sortID'; // Initial active sort button
 
-    // Function to toggle active state and colors
-    function toggleButton(button) {
-        if (!button.classList.contains('active')) {
-            button.classList.add('active');
-            changeIconColor(button.id);
-        }
+    // Function to handle color change and active state toggle for sort buttons
+    function toggleSortButtons(buttonId) {
+        const activeButton = document.getElementById(buttonId);
+        const inactiveButtonId = buttonId === 'layer_sortID' ? 'vertical_sortID' : 'layer_sortID';
+        const inactiveButton = document.getElementById(inactiveButtonId);
+
+        activeButton.querySelector('i').style.color = '#494969'; // Make active button gray
+        inactiveButton.querySelector('i').style.color = '#656567'; // Make inactive button blue
+
+        activeSortButton = buttonId; // Update active sort button
     }
 
+    // Initial setup: layer_sort is active by default
+    toggleSortButtons(activeSortButton);
+
     // Event listener for layer_sort button
-    layerSortButton.addEventListener('click', function() {
-        if (!layerSortButton.classList.contains('active')) {
-            toggleButton(layerSortButton); // Toggle active state
-            verticalSortButton.classList.remove('active'); // Remove active from vertical_sort
-            changeIconColor('vertical_sortID'); // Reset color of vertical_sort button
+    document.getElementById('layer_sortID').addEventListener('click', function() {
+        if (activeSortButton !== 'layer_sortID') {
+            toggleSortButtons('layer_sortID');
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
 
     // Event listener for vertical_sort button
-    verticalSortButton.addEventListener('click', function() {
-        if (!verticalSortButton.classList.contains('active')) {
-            toggleButton(verticalSortButton); // Toggle active state
-            layerSortButton.classList.remove('active'); // Remove active from layer_sort
-            changeIconColor('layer_sortID'); // Reset color of layer_sort button
+    document.getElementById('vertical_sortID').addEventListener('click', function() {
+        if (activeSortButton !== 'vertical_sortID') {
+            toggleSortButtons('vertical_sortID');
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
-});
 
-// function for button 
-document.addEventListener("DOMContentLoaded", function() {
-    let currentPage = 1;
-    let resultsPerPage = 15;
-
-    function changeIconColor(buttonId) {
-        var icon = document.querySelector(`#${buttonId} i`);
-        var isGray = icon.style.color === 'rgb(101, 101, 103)' || icon.style.color === 'rgb(101,101,103)' || icon.style.color === '';
-
-        if (isGray) {
-            icon.style.color = '#494969';
-        } else {
-            icon.style.color = '#656567';
-        }
-
-        // Check if layer_sort button is blue
-        var layerSortButton = document.getElementById('layer_sortID');
-        var layerSortIcon = layerSortButton.querySelector('i');
-        var isBlue = layerSortIcon.style.color === 'rgb(73, 73, 105)' || layerSortIcon.style.color === 'rgb(73,73,105)';
-
-        if (isBlue) {
+    // Function to update resultsPerPage based on active sort button
+    function updateResultsPerPage() {
+        if (activeSortButton === 'layer_sortID') {
             resultsPerPage = 15;
         } else {
             resultsPerPage = books.length;
         }
-
-        currentPage = 1; // Reset to first page
-        displayBooks();
     }
 
+    // Function to display books based on currentPage and resultsPerPage
     function displayBooks() {
         const start = (currentPage - 1) * resultsPerPage;
         const end = start + resultsPerPage;
@@ -116,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         paginatedBooks.forEach(book => {
             const row = document.createElement("tr");
-
             row.innerHTML = `
                 <td>${book.title}</td>
                 <td>${book.author}</td>
@@ -129,13 +106,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     <a href="book_copies.php?isbn=${book.isbn}">View Copies</a>
                 </td>
             `;
-
             tableBody.appendChild(row);
         });
 
         updatePaginationButtons();
     }
 
+    // Function to update pagination buttons based on currentPage and resultsPerPage
     function updatePaginationButtons() {
         const previousButton = document.querySelector(".button_previous");
         const nextButton = document.querySelector(".button_next");
@@ -144,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
         nextButton.disabled = currentPage === Math.ceil(books.length / resultsPerPage);
     }
 
+    // Function to navigate to previous page
     window.previousPage = function() {
         if (currentPage > 1) {
             currentPage--;
@@ -151,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    // Function to navigate to next page
     window.nextPage = function() {
         if (currentPage < Math.ceil(books.length / resultsPerPage)) {
             currentPage++;
@@ -158,11 +137,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    window.changeIconColor = changeIconColor;
-
-    // Initial display
+    // Initial display of books
     displayBooks();
 });
+
+
+
 
 
 
