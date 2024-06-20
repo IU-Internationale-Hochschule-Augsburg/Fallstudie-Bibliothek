@@ -130,6 +130,27 @@ body {
 .active .fa-layer-group {
     color: #656567; 
 }
+/* declare buttons previous and next */
+.button_previous,
+.button_next {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 8px 16px;
+    margin: 5px;
+    bottom: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    margin-top: -5px;
+}
+ 
+.button_next:hover, .button_previous:hover {
+    background-color: #ddd;
+}
 
 /* declare table booklist */
 #table_booklist {

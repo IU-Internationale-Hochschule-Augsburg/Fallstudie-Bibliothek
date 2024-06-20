@@ -28,16 +28,23 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-
-
-
-
-
-// DOMContentLoaded event listener
+// layout_sort fuction and layout 
 document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
-    let resultsPerPage = 15;
+    let resultsPerPage = 14;
     let activeSortButton = 'layer_sortID'; // Initial active sort button
+
+    // Function to update resultsPerPage based on active sort button and available books
+    function updateResultsPerPage() {
+        const whiteSquareSize = 15; // Assume white square size, adjust as necessary
+        const availableBooks = books.length;
+
+        if (activeSortButton === 'layer_sortID') {
+            resultsPerPage = Math.min(whiteSquareSize - 1, availableBooks); // Adjusted to be two less than whiteSquareSize
+        } else {
+            resultsPerPage = availableBooks;
+        }
+    }
 
     // Function to handle color change and active state toggle for sort buttons
     function toggleSortButtons(buttonId) {
@@ -74,15 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Function to update resultsPerPage based on active sort button
-    function updateResultsPerPage() {
-        if (activeSortButton === 'layer_sortID') {
-            resultsPerPage = 15;
-        } else {
-            resultsPerPage = books.length;
-        }
-    }
-
     // Function to display books based on currentPage and resultsPerPage
     function displayBooks() {
         const start = (currentPage - 1) * resultsPerPage;
@@ -110,6 +108,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         updatePaginationButtons();
+
+        // Dynamic adjustment of table height based on the height of the White Square
+        const whiteSquareHeight = document.querySelector('.white-square').clientHeight;
+        const tableContainer = document.querySelector("#table_booklist-container");
+        const desiredTableHeight = whiteSquareHeight - 30; // 30px spacing (15px top + 15px bottom)
+
+        tableContainer.style.maxHeight = `${desiredTableHeight}px`;
     }
 
     // Function to update pagination buttons based on currentPage and resultsPerPage
@@ -141,6 +146,22 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBooks();
 });
 
+
+
+
+
+// Function to dynamically adjust table height based on screen size
+function adjustTableHeight() {
+    const screenHeight = window.innerHeight;
+    const desiredTableHeight = screenHeight - 30; // 30px less than screen height
+
+    const tableContainer = document.querySelector("#table_booklist-container");
+    tableContainer.style.maxHeight = `${desiredTableHeight}px`;
+}
+
+// Call adjustTableHeight initially and on window resize
+window.addEventListener('resize', adjustTableHeight);
+adjustTableHeight(); // Initial call when the DOM is loaded
 
 
 
