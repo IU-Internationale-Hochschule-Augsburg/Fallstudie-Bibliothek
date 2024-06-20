@@ -42,7 +42,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-        <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
+        <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'">
                 <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_equals"onclick="toggleMenu()">
@@ -67,7 +67,7 @@
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="overduebooks"onclick="window.location.href='fe_overduebooks.php'">Overdue</a></li>
