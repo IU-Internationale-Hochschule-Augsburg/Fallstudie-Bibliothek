@@ -68,6 +68,7 @@ body {
 /* declare white square */
 .white-square {
     background-color: rgb(235, 235, 235);
+    overflow-y: scroll;
     width: 90%;  
     height: 80%;
     margin: 10px;
@@ -78,7 +79,6 @@ body {
     left: 50%; 
     transform: translateX(-50%);
     position: absolute;
-    overflow: hidden;
 }
 
 /* declare info box */
