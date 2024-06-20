@@ -8,7 +8,7 @@
 
     // Count total number of loans
     $totalLoansQuery = "SELECT COUNT(*) AS total_loans FROM NEW_loans";
-    $totalLoansResult = $conn->query($totalLoansQuery);
+    //$totalLoansResult = $conn->query($totalLoansQuery);
     $totalLoans = $totalLoansResult->fetch_assoc()['total_loans'];
 
     $openLoansQuery = "SELECT COUNT(*) AS open_Loans FROM NEW_loans WHERE status = 'open'";
