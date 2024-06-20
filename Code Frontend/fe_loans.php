@@ -24,7 +24,7 @@
                     <p>Here you can see and manage the list of loaned books.</p>  
                 </div>
                 <?php
-                    include "../Code Backend/NEW_be_loan_overview.php";
+                    include "../Code Backend/be_loan_list.php";
                 ?>
             </div>
         </div>
