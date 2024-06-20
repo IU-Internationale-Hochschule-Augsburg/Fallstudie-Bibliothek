@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// function for button layer_sort
+// function for button 
 document.addEventListener("DOMContentLoaded", function() {
     let currentPage = 1;
     let resultsPerPage = 15;
@@ -91,10 +91,17 @@ document.addEventListener("DOMContentLoaded", function() {
             icon.style.color = '#656567';
         }
 
-        // Check if layer_sort button has the specific color
+        // Check if layer_sort button is blue
         var layerSortButton = document.getElementById('layer_sortID');
         var layerSortIcon = layerSortButton.querySelector('i');
-        resultsPerPage = (layerSortIcon.style.color === 'rgb(101, 101, 103)' || layerSortIcon.style.color === 'rgb(101,101,103)' || layerSortIcon.style.color === '') ? 15 : books.length;
+        var isBlue = layerSortIcon.style.color === 'rgb(73, 73, 105)' || layerSortIcon.style.color === 'rgb(73,73,105)';
+
+        if (isBlue) {
+            resultsPerPage = 15;
+        } else {
+            resultsPerPage = books.length;
+        }
+
         currentPage = 1; // Reset to first page
         displayBooks();
     }
@@ -116,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 <td>${book.isbn}</td>
                 <td>${book.genre}</td>
                 <td>${book.copies}</td>
-                <td>${book.available_copies == 0 ? "All Copies on Loan" : book.available_copies + (book.available_copies == 1 ? " Copy available " : " Copies available ")}</td>
+                <td>${book.available_copies === 0 ? "All Copies on Loan" : `${book.available_copies} ${book.available_copies === 1 ? "Copy available" : "Copies available"}`}</td>
                 <td>
-                    <a href="book_edit.php?isbn=${book.isbn}">Edit </a> |
+                    <a href="book_edit.php?isbn=${book.isbn}">Edit</a> |
                     <a href="book_copies.php?isbn=${book.isbn}">View Copies</a>
                 </td>
             `;
