@@ -28,13 +28,7 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-
-
-
-
-
-
-
+// Layout_sort function and layout 
 document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let resultsPerPage = 14;
@@ -50,23 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             resultsPerPage = availableBooks;
         }
-
-        // Toggle pagination buttons based on activeSortButton
-        togglePaginationButtons();
-    }
-
-    // Function to toggle pagination buttons visibility based on activeSortButton
-    function togglePaginationButtons() {
-        const paginationButtons = document.querySelectorAll(".button_previous, .button_next");
-        if (activeSortButton !== 'layer_sortID') {
-            paginationButtons.forEach(button => {
-                button.style.display = 'none';
-            });
-        } else {
-            paginationButtons.forEach(button => {
-                button.style.display = 'block';
-            });
-        }
     }
 
     // Function to handle color change and active state toggle for sort buttons
@@ -79,11 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         inactiveButton.querySelector('i').style.color = '#656567'; // Make inactive button blue
 
         activeSortButton = buttonId; // Update active sort button
-
-        // Update results per page and display books
-        currentPage = 1; // Reset to first page
-        updateResultsPerPage();
-        displayBooks();
     }
 
     // Initial setup: layer_sort is active by default
@@ -93,21 +65,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('layer_sortID').addEventListener('click', function() {
         if (activeSortButton !== 'layer_sortID') {
             toggleSortButtons('layer_sortID');
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
 
     // Event listener for vertical_sort button
     document.getElementById('vertical_sortID').addEventListener('click', function() {
-        // Check if vertical_sortID is already active
         if (activeSortButton !== 'vertical_sortID') {
-            // Toggle active state and hide pagination buttons
             toggleSortButtons('vertical_sortID');
-
-            // Hide pagination buttons for vertical_sortID
-            const paginationButtons = document.querySelectorAll(".button_previous, .button_next");
-            paginationButtons.forEach(button => {
-                button.style.display = 'none';
-            });
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
 
@@ -176,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBooks();
 });
 
+
+
+
 // Funktion zur Anpassung der Tabellenhöhe basierend auf der White Square Höhe
 function adjustTableHeight() {
     var whiteSquare = document.querySelector('.white-square');
@@ -193,15 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listener für Resize-Events (falls das White Square sich ändert)
     window.addEventListener('resize', adjustTableHeight);
 });
-
-
-
-
-
-
-
-
-
 
 
 

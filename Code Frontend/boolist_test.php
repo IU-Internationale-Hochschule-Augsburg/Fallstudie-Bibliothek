@@ -106,7 +106,7 @@
             <button class="button_settings">
                 <i class="fa-solid fa-gear" style="color: #000000;"></i> <!-- adding fontawesome icon -->
             </button>
-        </div> 
+        </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
