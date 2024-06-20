@@ -17,11 +17,11 @@ body {
     transition: left 0.3s ease, width 0.3s ease;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; 
 }
  
 /* declare buttons back to dashboard, add book and add member, button_back_to_booklist */
-.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist {
+.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist{
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
@@ -68,6 +68,7 @@ body {
 /* declare white square */
 .white-square {
     background-color: rgb(235, 235, 235);
+    overflow-y: scroll;
     width: 90%;  
     height: 80%;
     margin: 10px;
@@ -130,15 +131,40 @@ body {
 .active .fa-layer-group {
     color: #656567; 
 }
+/* declare buttons previous and next */
+.button_previous,
+.button_next {
+    border: none;
+    border-radius: 10px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    padding: 12px 17px;
+    margin: 10px;
+    bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: -5px;
+}
+ 
+.button_next:hover, .button_previous:hover {
+    background-color: #ddd;
+}
+
+#table_booklist-container {
+    max-height: calc(100% - 30px); /* Höhe des White Squares abzüglich des Abstands */
+    overflow-y: auto; /* Scrollleiste bei Bedarf anzeigen */
+}
 
 /* declare table booklist */
 #table_booklist {
     border-collapse: collapse;
     width: 97%; 
+    max-height: 100%;
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
     user-select: none;
+    overflow-y: hidden;
 }
 
 #table_booklist th,
@@ -158,6 +184,10 @@ body {
 
 #table_booklist tr:hover {
     background-color: #ddd; 
+}
+
+#table_booklist.active-scroll {
+    overflow-y: auto; 
 }
 
 /* declare table memberlist */
@@ -190,35 +220,35 @@ body {
 }
 
 /* declare bookdetails site */
-.form-container-bookdetails {
+.form-container-bookdetails .form-container-memberdetails {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
 }
 
-.form-container-bookdetails h2 {
+.form-container-bookdetails .form-container-memberdetails h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.form-group-bookdetails {
+.form-group-bookdetails .form-container-memberdetails{
     margin-bottom: 15px;
 }
 
-.form-group-bookdetails label {
+.form-group-bookdetails .form-container-memberdetails label {
     display: block;
     margin-bottom: 5px;
 }
 
-.form-group-bookdetails input {
+.form-group-bookdetails .form-container-memberdetails input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-.form-group-bookdetails button {
+.form-group-bookdetails .form-container-memberdetails button {
     width: 100%;
     padding: 10px;
     background-color: #cacaca;

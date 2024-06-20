@@ -1,7 +1,6 @@
 <?php
     include "../Code Backend/be_db_conn.php";
 
-    $results_per_page = 15;
     $query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
             SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
             SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
@@ -13,41 +12,14 @@
 
     $result = $conn->query($query);
 
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
-            }
+    $books = array();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $books[] = $row;
         }
-
-        // Book Table only shows 15 books per page
-        $total_books = count($books);
-        $total_pages = ceil($total_books / $results_per_page);
-
-        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-            $current_page = (int)$_GET['page'];
-        } else {
-            $current_page = 1;
-        }
-
-        if ($current_page > $total_pages) {
-            $current_page = $total_pages;
-        }
-        if ($current_page < 1) {
-            $current_page = 1;
-        }
-
-        $start_from = ($current_page - 1) * $results_per_page;
-
-        $query .= " LIMIT $start_from, $results_per_page";
-        $result = $conn->query($query);
-
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
-            }
-        }
+    }
+    
+    
     $conn->close();
 ?>
 
@@ -62,7 +34,7 @@
     <title>LIBRIOFACT - Booklist</title>
 </head>
 <body>
-    <div class="background">
+<div class="background">
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='dashboard.php'">Back to Dashboard</button>          
             <form action="book_search_results.php" method="get">
@@ -75,14 +47,14 @@
                     <div class="info-box">
                         <h1>Booklist</h1>
                         <p>Here you can see and manage the list of books.</p>
-                        <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
+                        <button class="layer_sort" id="layer_sortID" onclick="changeIconColor('layer_sortID')">
                             <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
                         </button>
-                        <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
+                        <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor('vertical_sortID')">
                             <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
                         </button>
                     </div>
-                        <table id="table_booklist">
+                    <table id="table_booklist">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -122,13 +94,8 @@
                             </tbody>
                         </table>
                     <div class="pagination">
-                        <?php if ($current_page > 1): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>" class="button_previous">Previous</a>
-                        <?php endif; ?>
-
-                        <?php if ($current_page < $total_pages): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>" class="button_next">Next</a>
-                        <?php endif; ?>
+                        <button class="button_previous" onclick="previousPage()">Previous</button>
+                        <button class="button_next" onclick="nextPage()">Next</button>
                     </div>  
                 </div>
         </div>
@@ -141,7 +108,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-            <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'">
+            <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
                 <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_equals"onclick="toggleMenu()">
@@ -166,12 +133,15 @@
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="overduebooks"onclick="window.location.href='fe_overduebooks.php'">Overdue</a></li>
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.php'">Loans</a></li>
         </ul>
     </div>
+    <script>
+        const books = <?php echo json_encode($books); ?>;
+    </script>
 </body>
 </html>

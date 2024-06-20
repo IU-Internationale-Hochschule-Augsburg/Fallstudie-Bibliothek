@@ -66,6 +66,8 @@
                         <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
                     </button>                   
                 </div>
+                
+               
                 <table id="table_booklist">
         <thead>
             <tr>

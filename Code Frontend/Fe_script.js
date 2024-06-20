@@ -28,53 +28,149 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-// changeIconColorfunction for sort buttons
-function changeIconColor(buttonId) {
-    var icon = document.querySelector(`#${buttonId} i`);
-    var isGray = icon.style.color === 'rgb(101, 101, 103)' || icon.style.color === 'rgb(101,101,103)' || icon.style.color === '';
-
-    if (isGray) {
-        icon.style.color = '#494969';
-    } else {
-        icon.style.color = '#656567';
-    }
-}
-
-// DOMContentLoaded event listener
+// Layout_sort function and layout 
 document.addEventListener('DOMContentLoaded', function() {
-    var layerSortButton = document.getElementById('layer_sortID');
-    var verticalSortButton = document.getElementById('vertical_sortID');
-    
-    // Initial selection: layer_sort is active by default
-    layerSortButton.classList.add('active');
-    changeIconColor('layer_sortID');
+    let currentPage = 1;
+    let resultsPerPage = 14;
+    let activeSortButton = 'layer_sortID'; // Initial active sort button
 
-    // Function to toggle active state and colors
-    function toggleButton(button) {
-        if (!button.classList.contains('active')) {
-            button.classList.add('active');
-            changeIconColor(button.id);
+    // Function to update resultsPerPage based on active sort button and available books
+    function updateResultsPerPage() {
+        const whiteSquareSize = 15; // Assume white square size, adjust as necessary
+        const availableBooks = books.length;
+
+        if (activeSortButton === 'layer_sortID') {
+            resultsPerPage = Math.min(whiteSquareSize - 1, availableBooks); // Adjusted to be two less than whiteSquareSize
+        } else {
+            resultsPerPage = availableBooks;
         }
     }
 
+    // Function to handle color change and active state toggle for sort buttons
+    function toggleSortButtons(buttonId) {
+        const activeButton = document.getElementById(buttonId);
+        const inactiveButtonId = buttonId === 'layer_sortID' ? 'vertical_sortID' : 'layer_sortID';
+        const inactiveButton = document.getElementById(inactiveButtonId);
+
+        activeButton.querySelector('i').style.color = '#494969'; // Make active button gray
+        inactiveButton.querySelector('i').style.color = '#656567'; // Make inactive button blue
+
+        activeSortButton = buttonId; // Update active sort button
+    }
+
+    // Initial setup: layer_sort is active by default
+    toggleSortButtons(activeSortButton);
+
     // Event listener for layer_sort button
-    layerSortButton.addEventListener('click', function() {
-        if (!layerSortButton.classList.contains('active')) {
-            toggleButton(layerSortButton); // Toggle active state
-            verticalSortButton.classList.remove('active'); // Remove active from vertical_sort
-            changeIconColor('vertical_sortID'); // Reset color of vertical_sort button
+    document.getElementById('layer_sortID').addEventListener('click', function() {
+        if (activeSortButton !== 'layer_sortID') {
+            toggleSortButtons('layer_sortID');
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
 
     // Event listener for vertical_sort button
-    verticalSortButton.addEventListener('click', function() {
-        if (!verticalSortButton.classList.contains('active')) {
-            toggleButton(verticalSortButton); // Toggle active state
-            layerSortButton.classList.remove('active'); // Remove active from layer_sort
-            changeIconColor('layer_sortID'); // Reset color of layer_sort button
+    document.getElementById('vertical_sortID').addEventListener('click', function() {
+        if (activeSortButton !== 'vertical_sortID') {
+            toggleSortButtons('vertical_sortID');
+            currentPage = 1; // Reset to first page
+            updateResultsPerPage();
+            displayBooks();
         }
     });
+
+    // Function to display books based on currentPage and resultsPerPage
+    function displayBooks() {
+        const start = (currentPage - 1) * resultsPerPage;
+        const end = start + resultsPerPage;
+        const paginatedBooks = books.slice(start, end);
+
+        const tableBody = document.querySelector("#table_booklist tbody");
+        tableBody.innerHTML = "";
+
+        paginatedBooks.forEach(book => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.isbn}</td>
+                <td>${book.genre}</td>
+                <td>${book.copies}</td>
+                <td>${book.available_copies === 0 ? "All Copies on Loan" : `${book.available_copies} ${book.available_copies === 1 ? "Copy available" : "Copies available"}`}</td>
+                <td>
+                    <a href="book_edit.php?isbn=${book.isbn}">Edit</a> |
+                    <a href="book_copies.php?isbn=${book.isbn}">View Copies</a>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        updatePaginationButtons();
+
+        // Dynamic adjustment of table height based on the height of the White Square
+        const whiteSquareHeight = document.querySelector('.white-square').clientHeight;
+        const tableContainer = document.querySelector("#table_booklist-container");
+        const desiredTableHeight = whiteSquareHeight - 30; // 30px spacing (15px top + 15px bottom)
+
+        tableContainer.style.maxHeight = `${desiredTableHeight}px`;
+    }
+
+    // Function to update pagination buttons based on currentPage and resultsPerPage
+    function updatePaginationButtons() {
+        const previousButton = document.querySelector(".button_previous");
+        const nextButton = document.querySelector(".button_next");
+
+        previousButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === Math.ceil(books.length / resultsPerPage);
+    }
+
+    // Function to navigate to previous page
+    window.previousPage = function() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayBooks();
+        }
+    };
+
+    // Function to navigate to next page
+    window.nextPage = function() {
+        if (currentPage < Math.ceil(books.length / resultsPerPage)) {
+            currentPage++;
+            displayBooks();
+        }
+    };
+
+    // Initial display of books
+    displayBooks();
 });
+
+
+
+
+// Funktion zur Anpassung der Tabellenhöhe basierend auf der White Square Höhe
+function adjustTableHeight() {
+    var whiteSquare = document.querySelector('.white-square');
+    var tableContainer = document.getElementById('table_booklist-container');
+    var whiteSquareHeight = whiteSquare.clientHeight;
+    var desiredTableHeight = whiteSquareHeight - 30; // 30px Abstand (15px oben + 15px unten)
+
+    tableContainer.style.maxHeight = desiredTableHeight + 'px';
+}
+
+// Event Listener beim Laden der Seite hinzufügen
+document.addEventListener('DOMContentLoaded', function() {
+    adjustTableHeight(); // Initial aufrufen
+
+    // Event Listener für Resize-Events (falls das White Square sich ändert)
+    window.addEventListener('resize', adjustTableHeight);
+});
+
+
+
+
+
 
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {
@@ -99,7 +195,7 @@ function setupHoverEffect(itemId, iconId) {
     icon.addEventListener("click", changeSize);
 }
 
-// Call the function once the document is loaded
+// Call the function for hover effects once the document is loaded
 document.addEventListener("DOMContentLoaded", function() {
     setupHoverEffect("Dashboard", "button_houseID");
     setupHoverEffect("Booklist", "button_booklistID");
@@ -122,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// function not first child
+// Event listener for clicking on rows in the member list table
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('#table_memberlist tr:not(:first-child)');
     rows.forEach(row => {
@@ -131,13 +227,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const rows = document.querySelectorAll('#table_booklist tr[data-href]');
-    rows.forEach(row => {
-        row.addEventListener('click', function() {
-            window.location.href = this.dataset.href;
-        });
-    });
-});
-
