@@ -133,17 +133,14 @@ body {
 /* declare buttons previous and next */
 .button_previous,
 .button_next {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 8px 16px;
-    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    padding: 12px 17px;
+    margin: 10px;
     bottom: 20px;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 15px;
     transition: background-color 0.3s ease;
     margin-top: -5px;
 }

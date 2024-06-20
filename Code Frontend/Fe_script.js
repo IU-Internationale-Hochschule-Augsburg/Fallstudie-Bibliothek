@@ -28,7 +28,7 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-// layout_sort fuction and layout 
+// Layout_sort function and layout 
 document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let resultsPerPage = 14;
@@ -146,33 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBooks();
 });
 
-
-
-
-
-// Function to dynamically adjust table height based on screen size
-function adjustTableHeight() {
-    const screenHeight = window.innerHeight;
-    const desiredTableHeight = screenHeight - 30; // 30px less than screen height
-
-    const tableContainer = document.querySelector("#table_booklist-container");
-    tableContainer.style.maxHeight = `${desiredTableHeight}px`;
-}
-
-// Call adjustTableHeight initially and on window resize
-window.addEventListener('resize', adjustTableHeight);
-adjustTableHeight(); // Initial call when the DOM is loaded
-
-
-
-
-
-
-
-
-
-
-
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {
     var item = document.getElementById(itemId);
@@ -196,7 +169,7 @@ function setupHoverEffect(itemId, iconId) {
     icon.addEventListener("click", changeSize);
 }
 
-// Call the function once the document is loaded
+// Call the function for hover effects once the document is loaded
 document.addEventListener("DOMContentLoaded", function() {
     setupHoverEffect("Dashboard", "button_houseID");
     setupHoverEffect("Booklist", "button_booklistID");
@@ -219,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// function not first child
+// Event listener for clicking on rows in the member list table
 document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('#table_memberlist tr:not(:first-child)');
     rows.forEach(row => {
@@ -228,13 +201,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const rows = document.querySelectorAll('#table_booklist tr[data-href]');
-    rows.forEach(row => {
-        row.addEventListener('click', function() {
-            window.location.href = this.dataset.href;
-        });
-    });
-});
-
