@@ -21,7 +21,7 @@ body {
 }
  
 /* declare buttons back to dashboard, add book and add member, button_back_to_booklist */
-.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist {
+.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist{
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
@@ -220,35 +220,35 @@ body {
 }
 
 /* declare bookdetails site */
-.form-container-bookdetails {
+.form-container-bookdetails .form-container-memberdetails {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
 }
 
-.form-container-bookdetails h2 {
+.form-container-bookdetails .form-container-memberdetails h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.form-group-bookdetails {
+.form-group-bookdetails .form-container-memberdetails{
     margin-bottom: 15px;
 }
 
-.form-group-bookdetails label {
+.form-group-bookdetails .form-container-memberdetails label {
     display: block;
     margin-bottom: 5px;
 }
 
-.form-group-bookdetails input {
+.form-group-bookdetails .form-container-memberdetails input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-.form-group-bookdetails button {
+.form-group-bookdetails .form-container-memberdetails button {
     width: 100%;
     padding: 10px;
     background-color: #cacaca;

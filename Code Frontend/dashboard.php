@@ -8,11 +8,11 @@
 
     // Count total number of loans
 
-    $totalLoansQuery = "SELECT COUNT(*) AS total_loans FROM NEW_loans";
+    $totalLoansQuery = "SELECT COUNT(*) AS total_loans FROM loans";
     $totalLoansResult = $conn->query($totalLoansQuery);
     $totalLoans = $totalLoansResult->fetch_assoc()['total_loans'];
 
-    $openLoansQuery = "SELECT COUNT(*) AS open_Loans FROM NEW_loans WHERE status = 'open'";
+    $openLoansQuery = "SELECT COUNT(*) AS open_Loans FROM loans WHERE status = 'open'";
     $openLoansResult = $conn->query($openLoansQuery);
     $openLoans = $openLoansResult->fetch_assoc()['open_Loans'];
 
@@ -23,6 +23,10 @@
     $totalMembersQuery = "SELECT COUNT(*) AS total_members FROM members";
     $totalMembersResult = $conn->query($totalMembersQuery);
     $totalMembers = $totalMembersResult->fetch_assoc()['total_members'];
+
+    // Query to fetch all members
+    $membersQuery = "SELECT member_id, first_name, last_name, email, phone FROM members";
+    $membersResult = $conn->query($membersQuery);
     ?>
     
 <!DOCTYPE html> 
@@ -72,6 +76,31 @@
             echo "</div>";
             ?>
             </div>
+            <?php
+                    // Check if the query was successful and if there are any rows returned
+                    if ($membersResult !== false && $membersResult->num_rows > 0) {
+                        // Display the table header and iterate through the fetched results
+                        echo "<table id='table_memberlist'>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
+                        while ($row = $membersResult->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["member_id"] . "</td>";
+                            echo "<td>" . $row["first_name"] . "</td>";
+                            echo "<td>" . $row["last_name"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td>" . $row["phone"] . "</td>";
+                            echo "<td><a href='member_edit.php?member_id=" . $row["member_id"] . "'>Edit</a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    } else {
+                        // If no members are found, display a message
+                        echo "No members found.";
+                    }
+
+                    // Close the database connection
+                    $conn->close();
+                ?>
         </div>
     </div>
     <div class="logo"> <!-- add logo -->
@@ -82,7 +111,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-        <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
+        <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'">
                 <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_equals"onclick="toggleMenu()">
@@ -107,7 +136,7 @@
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='fe_dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
             <li><a href="#" id="Booklist"onclick="window.location.href='fe_booklist.php'">Books</a></li>
             <li><a href="#" id="Memberlist"onclick="window.location.href='fe_memberlist.php'">Members</a></li>
             <li><a href="#" id="overduebooks"onclick="window.location.href='fe_overduebooks.php'">Overdue</a></li>

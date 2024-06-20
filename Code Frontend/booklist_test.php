@@ -54,22 +54,6 @@
                             <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
                         </button>
                     </div>
-                    <table id="table_booklist">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Genre</th>
-                                <th>Copies</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Books will be populated by JavaScript -->
-                        </tbody>
-                    </table>
                     <div class="pagination">
                         <button class="button_previous" onclick="previousPage()">Previous</button>
                         <button class="button_next" onclick="nextPage()">Next</button>
