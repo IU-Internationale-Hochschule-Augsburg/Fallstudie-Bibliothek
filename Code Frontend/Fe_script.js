@@ -146,9 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBooks();
 });
 
-
-
-
 // Funktion zur Anpassung der Tabellenhöhe basierend auf der White Square Höhe
 function adjustTableHeight() {
     var whiteSquare = document.querySelector('.white-square');
@@ -166,6 +163,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listener für Resize-Events (falls das White Square sich ändert)
     window.addEventListener('resize', adjustTableHeight);
 });
+
+
+
+
+
+
+
+// JavaScript Funktion, um den Scrollbalken zu entfernen
+function removeScrollBar() {
+    document.body.style.overflow = 'hidden';
+}
+
+// Funktion sofort aufrufen, um den Scrollbalken zu entfernen
+removeScrollBar();
+
+
+
+
+
+
+
 
 
 
