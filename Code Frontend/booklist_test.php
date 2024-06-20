@@ -54,6 +54,45 @@
                             <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
                         </button>
                     </div>
+                    <table id="table_booklist">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>ISBN</th>
+                                    <th>Genre</th>
+                                    <th>Copies</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <?php foreach ($books as $book) : ?>
+                                <tr>
+                                    <td><?php echo $book['title']; ?></td>
+                                    <td><?php echo $book['author']; ?></td>
+                                    <td><?php echo $book['isbn']; ?></td>
+                                    <td><?php echo $book['genre']; ?></td>
+                                    <td><?php echo $book['copies']; ?></td>
+                                    <td>
+                                        <?php
+                                            if ($book['available_copies'] == 0) {
+                                                echo "All Copies on Loan";
+                                            } elseif ($book['available_copies'] == 1) {
+                                                echo $book['available_copies'] . " Copy available ";
+                                            } else {
+                                                echo $book['available_copies'] . " Copies available ";
+                                            }
+                                            ?>
+                                    </td>
+                                    <td>
+                                        <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
+                                        <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
+                                    </td>
+                                </tr>
+                                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     <div class="pagination">
                         <button class="button_previous" onclick="previousPage()">Previous</button>
                         <button class="button_next" onclick="nextPage()">Next</button>
