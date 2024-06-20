@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 
 // Perform a query to fetch all books from the database
 $sql = "
-    SELECT loans.loan_id, books.title, book_copies.copy_id, members.first_name, members.last_name, loans.borrow_date,loans.return_date, loans.status 
+    SELECT loans.loan_id, books.title, book_copies.copy_id, members.first_name, members.last_name, loans.borrow_date, loans.return_date, loans.status 
     FROM loans 
     INNER JOIN book_copies ON loans.book_id = book_copies.book_id
     INNER JOIN books ON book_copies.book_id = books.book_id
@@ -35,7 +35,7 @@ if ($result !== false && $result->num_rows > 0) {
     }
     echo "</table>";
 } else {
-    echo "No issues found.";
+    echo "No loans found.";
 }
 ?>
 </body>
