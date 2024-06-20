@@ -17,7 +17,7 @@ body {
     transition: left 0.3s ease, width 0.3s ease;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; 
 }
  
 /* declare buttons back to dashboard, add book and add member, button_back_to_booklist */

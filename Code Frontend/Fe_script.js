@@ -76,6 +76,95 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// function for button layer_sort
+document.addEventListener("DOMContentLoaded", function() {
+    let currentPage = 1;
+    let resultsPerPage = 15;
+
+    function changeIconColor(buttonId) {
+        var icon = document.querySelector(`#${buttonId} i`);
+        var isGray = icon.style.color === 'rgb(101, 101, 103)' || icon.style.color === 'rgb(101,101,103)' || icon.style.color === '';
+
+        if (isGray) {
+            icon.style.color = '#494969';
+        } else {
+            icon.style.color = '#656567';
+        }
+
+        // Check if layer_sort button has the specific color
+        var layerSortButton = document.getElementById('layer_sortID');
+        var layerSortIcon = layerSortButton.querySelector('i');
+        resultsPerPage = (layerSortIcon.style.color === 'rgb(101, 101, 103)' || layerSortIcon.style.color === 'rgb(101,101,103)' || layerSortIcon.style.color === '') ? 15 : books.length;
+        currentPage = 1; // Reset to first page
+        displayBooks();
+    }
+
+    function displayBooks() {
+        const start = (currentPage - 1) * resultsPerPage;
+        const end = start + resultsPerPage;
+        const paginatedBooks = books.slice(start, end);
+
+        const tableBody = document.querySelector("#table_booklist tbody");
+        tableBody.innerHTML = "";
+
+        paginatedBooks.forEach(book => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.isbn}</td>
+                <td>${book.genre}</td>
+                <td>${book.copies}</td>
+                <td>${book.available_copies == 0 ? "All Copies on Loan" : book.available_copies + (book.available_copies == 1 ? " Copy available " : " Copies available ")}</td>
+                <td>
+                    <a href="book_edit.php?isbn=${book.isbn}">Edit </a> |
+                    <a href="book_copies.php?isbn=${book.isbn}">View Copies</a>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+        updatePaginationButtons();
+    }
+
+    function updatePaginationButtons() {
+        const previousButton = document.querySelector(".button_previous");
+        const nextButton = document.querySelector(".button_next");
+
+        previousButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === Math.ceil(books.length / resultsPerPage);
+    }
+
+    window.previousPage = function() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayBooks();
+        }
+    };
+
+    window.nextPage = function() {
+        if (currentPage < Math.ceil(books.length / resultsPerPage)) {
+            currentPage++;
+            displayBooks();
+        }
+    };
+
+    window.changeIconColor = changeIconColor;
+
+    // Initial display
+    displayBooks();
+});
+
+
+
+
+
+
+
+
+
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {
     var item = document.getElementById(itemId);
