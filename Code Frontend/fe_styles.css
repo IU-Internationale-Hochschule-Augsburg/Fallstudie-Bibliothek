@@ -78,6 +78,7 @@ body {
     left: 50%; 
     transform: translateX(-50%);
     position: absolute;
+    overflow: hidden;
 }
 
 /* declare info box */
@@ -149,14 +150,21 @@ body {
     background-color: #ddd;
 }
 
+#table_booklist-container {
+    max-height: calc(100% - 30px); /* Höhe des White Squares abzüglich des Abstands */
+    overflow-y: auto; /* Scrollleiste bei Bedarf anzeigen */
+}
+
 /* declare table booklist */
 #table_booklist {
     border-collapse: collapse;
     width: 97%; 
+    max-height: 100%;
     border: 1px solid #cacaca; 
     margin: 0 auto; 
     background-color: #cacaca;
     user-select: none;
+    overflow-y: hidden;
 }
 
 #table_booklist th,
@@ -176,6 +184,10 @@ body {
 
 #table_booklist tr:hover {
     background-color: #ddd; 
+}
+
+#table_booklist.active-scroll {
+    overflow-y: auto; 
 }
 
 /* declare table memberlist */

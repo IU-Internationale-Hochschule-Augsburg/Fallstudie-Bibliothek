@@ -146,6 +146,32 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBooks();
 });
 
+
+
+
+// Funktion zur Anpassung der Tabellenhöhe basierend auf der White Square Höhe
+function adjustTableHeight() {
+    var whiteSquare = document.querySelector('.white-square');
+    var tableContainer = document.getElementById('table_booklist-container');
+    var whiteSquareHeight = whiteSquare.clientHeight;
+    var desiredTableHeight = whiteSquareHeight - 30; // 30px Abstand (15px oben + 15px unten)
+
+    tableContainer.style.maxHeight = desiredTableHeight + 'px';
+}
+
+// Event Listener beim Laden der Seite hinzufügen
+document.addEventListener('DOMContentLoaded', function() {
+    adjustTableHeight(); // Initial aufrufen
+
+    // Event Listener für Resize-Events (falls das White Square sich ändert)
+    window.addEventListener('resize', adjustTableHeight);
+});
+
+
+
+
+
+
 // General function for hover effects
 function setupHoverEffect(itemId, iconId) {
     var item = document.getElementById(itemId);
