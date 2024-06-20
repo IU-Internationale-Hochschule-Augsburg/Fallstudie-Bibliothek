@@ -169,6 +169,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// Execute the function when the page loads
+window.onload = checkAndMoveButtons;
+
+// Add event listener for when the state of the button changes
+document.getElementById('verticalLayerButton').addEventListener('click', checkAndMoveButtons);
+
+
+
+
+// Execute the function when the page loads
+window.onload = checkAndMoveButtons;
+
+// Add event listener for when the state of the button changes
+document.getElementById('verticalLayerButton').addEventListener('click', checkAndMoveButtons);
+
 
 
 
