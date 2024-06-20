@@ -6,7 +6,18 @@
     <link rel="stylesheet" type="text/css" href="fe_styles.css">
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
-    <title>LIBRIOFACT - Booklist</title>
+    <title>LIBRIOFACT - Memberlist</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.clickable-row'); // choose all lines with clickable-row
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const memberId = this.dataset.memberId; // get ID from a line
+                    window.location.href = `member_details.php?member_id=${memberId}`; // redirekting
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="background">  <!-- adding background -->  
@@ -41,7 +52,7 @@
                         echo "<table id='table_memberlist'>";
                         echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
+                            echo "<tr class='clickable-row' data-member-id='{$row["member_id"]}'>";
                             echo "<td>" . $row["member_id"] . "</td>";
                             echo "<td>" . $row["first_name"] . "</td>";
                             echo "<td>" . $row["last_name"] . "</td>";
