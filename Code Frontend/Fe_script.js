@@ -169,22 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Add function move buttons
-function checkAndMoveButtons() {
-    // Get the "vertical layer" button
-    var verticalLayerButton = document.getElementById('verticalLayerButton');
-    
-    // Check if the "vertical layer" button has the color #494969
-    if (window.getComputedStyle(verticalLayerButton).backgroundColor === 'rgb(73, 73, 105)') {
-        // Get the "previous" and "next" buttons
-        var previousButton = document.getElementById('previousButton');
-        var nextButton = document.getElementById('nextButton');
-        
-        // Shift the buttons 300px to the right
-        previousButton.style.transform = 'translateX(300px)';
-        nextButton.style.transform = 'translateX(300px)';
-    }
-}
 
 // Execute the function when the page loads
 window.onload = checkAndMoveButtons;
