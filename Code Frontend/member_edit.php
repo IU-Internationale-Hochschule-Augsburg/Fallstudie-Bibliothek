@@ -1,6 +1,8 @@
 <?php
+// Backend: Einbindung der Datenbankverbindung
 include "../Code Backend/be_db_conn.php";
 
+// Initialisierung der Variablen
 $member_id = "";
 $first_name = "";
 $last_name = "";
@@ -14,12 +16,14 @@ $success = "";
 if (isset($_GET['member_id'])) {
     $member_id = $_GET['member_id'];
 
+    // SQL-Anfrage vorbereiten
     $query = "SELECT * FROM members WHERE member_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $member_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // Wenn das Mitglied gefunden wird, Daten in Variablen speichern
     if ($result && $result->num_rows > 0) {
         $member = $result->fetch_assoc();
         $first_name = $member['first_name'];
@@ -27,22 +31,24 @@ if (isset($_GET['member_id'])) {
         $email = $member['email'];
         $phone = $member['phone'];
     } else {
+        // Wenn kein Mitglied gefunden wird, zur Mitgliederliste umleiten
         header("Location: fe_memberlist.php");
         exit();
     }
 }
 
-// Update member details
+// Mitgliedsdaten aktualisieren
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
+    // SQL-Update-Anfrage vorbereiten
     $update_query = "UPDATE members SET first_name = ?, last_name = ?, email = ?, phone = ? WHERE member_id = ?";
     $stmt = $conn->prepare($update_query);
     $stmt->bind_param("sssii", $first_name, $last_name, $email, $phone, $member_id);
-
+    // Erfolgs- oder Fehlermeldung setzen
     if ($stmt->execute()) {
         $success = "Member details updated successfully.";
     } else {
@@ -50,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
+<!--FRONTEND-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
