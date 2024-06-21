@@ -81,7 +81,7 @@
             }
 
             // Perform a query to fetch all members from the database
-            $sql = "SELECT member_id, first_name, last_name, email, phone FROM members";
+            $sql = "SELECT member_id, first_name, last_name, email, phone FROM members LIMIT 5";
             $result = $conn->query($sql);
 
             // Check if the query was successful and if there are any rows returned
