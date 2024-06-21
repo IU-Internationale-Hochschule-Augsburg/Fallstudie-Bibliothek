@@ -88,6 +88,14 @@
                             $cover_url = $book['cover']['medium'] ?? null;
 
                             echo "<h2>Book Details</h2>";
+
+                            // Display cover image if available
+                            if ($cover_url) {
+                                echo "<img src='$cover_url' alt='Cover Image'><br>";
+                            } else {
+                                echo "No cover image available.<br>";
+                            }
+
                             // Form To add Book
                             echo '<form action="bookaddbe.php" method="post">';
 

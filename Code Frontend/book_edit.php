@@ -117,22 +117,22 @@
                 </button>                
             </div>
                 <div class="detail-content">
-                    <div class="form-container-bookdetails">
+                    <div class="form-container-addbook">
                         <form method="post">
                             <input type="hidden" name="book_id" value="<?php echo htmlspecialchars($book_id); ?>">
-                                <div class="form-group-bookdetails">
+                                <div class="form-group-addbook">
                                     <label for="title">Title:</label>
                                     <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($title); ?>" required>
                                 </div>
-                                <div class="form-group-bookdetails">
+                                <div class="form-group-addbook">
                                     <label for="author">Author:</label>
                                     <input type="text" id="author" name="author" value="<?php echo htmlspecialchars($author); ?>" required>
                                 </div>
-                                <div class="form-group-bookdetails">
+                                <div class="form-group-addbook">
                                     <label for="isbn">ISBN:</label>
                                     <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($isbn); ?>" required>
                                 </div>
-                                <div class="form-group-bookdetails">
+                                <div class="form-group-addbook">
                                     <label for="genre">Genre:</label>
                                     <select id="genre" name="genre">
                                         <?php foreach ($genres as $g): ?>
@@ -142,7 +142,7 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="form-group-bookdetails">
+                                <div class="form-group-addbook">
                                     <button type="submit">Edit</button>
                                 </div>
                                 <div id="confirmation-message">
