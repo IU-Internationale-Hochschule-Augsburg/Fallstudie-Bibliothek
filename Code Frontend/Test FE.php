@@ -14,11 +14,11 @@
 
     $results_per_page = 15;
 
-    $order_by = 'books.title'; // default sorting column
-    $order_dir = 'ASC'; // default sorting order
+    $order_by = 'books.title'; // Standard-Sortierspalte
+    $order_dir = 'ASC'; // Standard-Sortierreihenfolge
 
-    if (isset($_GET['order_by']) && in_array($_GET['order_by'], ['title', 'author', 'isbn', 'genre', 'copies', 'status'])) {
-        $order_by = 'books.' . $_GET['order_by'];
+    if (isset($_GET['order_by']) && in_array($_GET['order_by'], ['title', 'author', 'isbn', 'genre', 'copies'])) {
+        $order_by = $_GET['order_by'] == 'genre' ? 'genre.name' : 'books.' . $_GET['order_by'];
     }
     
     if (isset($_GET['order_dir']) && in_array($_GET['order_dir'], ['ASC', 'DESC'])) {
@@ -32,7 +32,7 @@
             INNER JOIN genre ON books.genre_id = genre.id
             LEFT JOIN book_copies ON books.book_id = book_copies.book_id
             GROUP BY books.book_id
-            ORDER BY $order_by $order_dir"; // Order by dynamic column and direction
+            ORDER BY $order_by $order_dir";
 
     $result = $conn->query($query);
 
@@ -73,7 +73,6 @@
     $conn->close();
 ?>
 
-
 <body>
     <div class="background">
         <div class="background_content">
@@ -98,17 +97,17 @@
                         <table id="table_booklist">
                             <thead>
                                 <tr>
-                                    <th><a href="?order_by=title&order_dir=<?php echo $order_dir == 'ASC' ? 'DESC' : 'ASC'; ?>">Title</a></th>
-                                    <th><a href="?order_by=author&order_dir=<?php echo $order_dir == 'ASC' ? 'DESC' : 'ASC'; ?>">Author</a></th>
-                                    <th><a href="?order_by=isbn&order_dir=<?php echo $order_dir == 'ASC' ? 'DESC' : 'ASC'; ?>">ISBN</a></th>
-                                    <th><a href="?order_by=genre&order_dir=<?php echo $order_dir == 'ASC' ? 'DESC' : 'ASC'; ?>">Genre</a></th>
-                                    <th><a href="?order_by=copies&order_dir=<?php echo $order_dir == 'ASC' ? 'DESC' : 'ASC'; ?>">Copies</a></th>
+                                    <th><a href="?order_by=title&order_dir=<?php echo ($order_by == 'books.title' && $order_dir == 'ASC') ? 'DESC' : 'ASC'; ?>">Title</a></th>
+                                    <th><a href="?order_by=author&order_dir=<?php echo ($order_by == 'books.author' && $order_dir == 'ASC') ? 'DESC' : 'ASC'; ?>">Author</a></th>
+                                    <th><a href="?order_by=isbn&order_dir=<?php echo ($order_by == 'books.isbn' && $order_dir == 'ASC') ? 'DESC' : 'ASC'; ?>">ISBN</a></th>
+                                    <th><a href="?order_by=genre&order_dir=<?php echo ($order_by == 'genre.name' && $order_dir == 'ASC') ? 'DESC' : 'ASC'; ?>">Genre</a></th>
+                                    <th><a href="?order_by=copies&order_dir=<?php echo ($order_by == 'books.copies' && $order_dir == 'ASC') ? 'DESC' : 'ASC'; ?>">Copies</a></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    <?php foreach ($books as $book) : ?>
+                                <?php foreach ($books as $book) : ?>
                                 <tr>
                                     <td><?php echo $book['title']; ?></td>
                                     <td><?php echo $book['author']; ?></td>
@@ -124,23 +123,23 @@
                                             } else {
                                                 echo $book['available_copies'] . " Copies available ";
                                             }
-                                            ?>
+                                        ?>
                                     </td>
                                     <td>
                                         <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
                                         <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
                                     </td>
                                 </tr>
-                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     <div class="pagination">
                         <?php if ($current_page > 1): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>" class="button_previous">Previous</a>
+                            <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>&order_by=<?php echo $_GET['order_by']; ?>&order_dir=<?php echo $_GET['order_dir']; ?>" class="button_previous">Previous</a>
                         <?php endif; ?>
 
                         <?php if ($current_page < $total_pages): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>" class="button_next">Next</a>
+                            <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>&order_by=<?php echo $_GET['order_by']; ?>&order_dir=<?php echo $_GET['order_dir']; ?>" class="button_next">Next</a>
                         <?php endif; ?>
                     </div>  
                 </div>
