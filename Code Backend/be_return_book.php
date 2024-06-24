@@ -24,13 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
                 if ($result->num_rows > 0) {
                     // Book has been issued, proceed with return
-                    $updateIssueStatusQuery = "UPDATE loans SET status = 'Returned' WHERE book_id = ? AND status = 'open'";
-                    $stmt = $conn->prepare($updateIssueStatusQuery);
-                    $stmt->bind_param("i", $book_id);
 
                     $updateReturnDate = "UPDATE loans SET return_date = CURRENT_DATE WHERE book_id = ? AND status = 'open'";
                     $stmt = $conn->prepare($updateReturnDate);
                     $stmt->bind_param("i", $book_id);
+                    $stmt->execute();
+                    
+                    $updateIssueStatusQuery = "UPDATE loans SET status = 'Returned' WHERE book_id = ? AND status = 'open'";
+                    $stmt = $conn->prepare($updateIssueStatusQuery);
+                    $stmt->bind_param("i", $book_id);
+                    $stmt->execute();
+
+                   
         
                     if ($stmt->execute()) {
                         // Update book status to 'available'
