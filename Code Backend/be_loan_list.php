@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 $sql = "
     SELECT loans.loan_id, books.title, book_copies.copy_id, members.first_name, members.last_name, loans.borrow_date, loans.return_date, loans.status 
     FROM loans 
-    INNER JOIN book_copies ON loans.book_id = book_copies.book_id
+    INNER JOIN book_copies ON loans.book_id = book_copies.copy_id
     INNER JOIN books ON book_copies.book_id = books.book_id
     INNER JOIN members ON loans.member_id = members.member_id
     ORDER BY loans.loan_id DESC";
