@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
         $currentDate = time();
         $daysPassed = floor(($currentDate - $borrowDate) / (60 * 60 * 24));
 
-        if ($daysPassed >= 14) {
+        if ($daysPassed > 14) {
             $updateLoanStatus = $conn->prepare("UPDATE loans SET status = 'Overdue' WHERE loan_id = ?");
             $updateLoanStatus->bind_param("i", $row['loan_id']);
             $updateLoanStatus->execute();
