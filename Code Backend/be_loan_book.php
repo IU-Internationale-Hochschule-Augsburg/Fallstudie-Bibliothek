@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $member_id = $_POST["member_id"];
     $book_ids = $_POST["book_id"]; // This is an array of book IDs
     $issue_date = date("Y-m-d");
-    $return_date = date("Y-m-d", strtotime("+14 days"));
     $status = 'open'; // Set initial status to 'open';
 
     if (!empty($member_id) && !empty($book_ids)) {
