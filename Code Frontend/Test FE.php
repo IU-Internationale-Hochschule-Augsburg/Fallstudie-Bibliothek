@@ -13,41 +13,49 @@
 
     $result = $conn->query($query);
 
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
+    $books = array();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $books[] = $row;
+        }
+    }
+
+    // Sort array if sort request is present
+    if (isset($_GET['sort']) && isset($_GET['order'])) {
+        $sort = $_GET['sort'];
+        $order = $_GET['order'];
+
+        usort($books, function ($a, $b) use ($sort, $order) {
+            if ($order == 'asc') {
+                return strcmp($a[$sort], $b[$sort]);
+            } else {
+                return strcmp($b[$sort], $a[$sort]);
             }
-        }
+        });
+    }
 
-        // Book Table only shows 15 books per page
-        $total_books = count($books);
-        $total_pages = ceil($total_books / $results_per_page);
+    // Book Table only shows 15 books per page
+    $total_books = count($books);
+    $total_pages = ceil($total_books / $results_per_page);
 
-        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-            $current_page = (int)$_GET['page'];
-        } else {
-            $current_page = 1;
-        }
+    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+        $current_page = (int)$_GET['page'];
+    } else {
+        $current_page = 1;
+    }
 
-        if ($current_page > $total_pages) {
-            $current_page = $total_pages;
-        }
-        if ($current_page < 1) {
-            $current_page = 1;
-        }
+    if ($current_page > $total_pages) {
+        $current_page = $total_pages;
+    }
+    if ($current_page < 1) {
+        $current_page = 1;
+    }
 
-        $start_from = ($current_page - 1) * $results_per_page;
+    $start_from = ($current_page - 1) * $results_per_page;
 
-        $query .= " LIMIT $start_from, $results_per_page";
-        $result = $conn->query($query);
+    // Slice the array for pagination
+    $paginated_books = array_slice($books, $start_from, $results_per_page);
 
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
-            }
-        }
     $conn->close();
 ?>
 
@@ -60,20 +68,39 @@
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
+    <style>
+        th.sorted-asc, th.sorted-desc {
+            background-color: #f0f0f0;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+            const getSortParams = (th) => {
+                const column = th.dataset.column;
+                const order = th.classList.contains('sorted-asc') ? 'desc' : 'asc';
+                return { column, order };
+            };
 
-            const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
-                v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-                )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+            document.querySelectorAll('th').forEach(th => {
+                th.addEventListener('click', () => {
+                    const sortParams = getSortParams(th);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('sort', sortParams.column);
+                    urlParams.set('order', sortParams.order);
+                    window.location.search = urlParams.toString();
+                });
+            });
 
-            document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-                let table = th.closest('table');
-                Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
-                    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-                    .forEach(tr => table.appendChild(tr) );
-            })));
+            // Highlight the sorted column
+            const urlParams = new URLSearchParams(window.location.search);
+            const sortedColumn = urlParams.get('sort');
+            const sortedOrder = urlParams.get('order');
+            if (sortedColumn && sortedOrder) {
+                const th = document.querySelector(`th[data-column='${sortedColumn}']`);
+                if (th) {
+                    th.classList.add(`sorted-${sortedOrder}`);
+                }
+            }
         });
     </script>
 </head>
@@ -101,17 +128,17 @@
                         <table id="table_booklist">
                             <thead>
                                 <tr>
-                                    <th>Title <i class="fa-solid fa-sort"></i></th>
-                                    <th>Author <i class="fa-solid fa-sort"></i></th>
-                                    <th>ISBN <i class="fa-solid fa-sort"></i></th>
-                                    <th>Genre <i class="fa-solid fa-sort"></i></th>
-                                    <th>Copies <i class="fa-solid fa-sort"></i></th>
-                                    <th>Status <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="title">Title <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="author">Author <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="isbn">ISBN <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="genre">Genre <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="copies">Copies <i class="fa-solid fa-sort"></i></th>
+                                    <th data-column="available_copies">Status <i class="fa-solid fa-sort"></i></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    <?php foreach ($books as $book) : ?>
+                                <?php foreach ($paginated_books as $book) : ?>
                                 <tr>
                                     <td><?php echo $book['title']; ?></td>
                                     <td><?php echo $book['author']; ?></td>
@@ -134,7 +161,7 @@
                                         <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
                                     </td>
                                 </tr>
-                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     <div class="pagination">
