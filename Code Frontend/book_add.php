@@ -128,6 +128,8 @@ $error = "";
                                 <option value="Science Fiction">Science Fiction</option>
                                 <option value="Science">Science</option>
                                 <option value="Sport">Sport</option>
+                                <option value="Fiction">Fiction</option>
+                                
                             </select>
                         </div>
                     

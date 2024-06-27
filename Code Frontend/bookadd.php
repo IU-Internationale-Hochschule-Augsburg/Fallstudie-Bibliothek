@@ -123,6 +123,7 @@
                             echo '<option value="Science Fiction">Science Fiction</option>';
                             echo '<option value="Science">Science</option>';
                             echo '<option value="Sport">Sport</option>';
+                            echo '<option value="Fiction">Fiction</option>';
                             echo '</select>';
                             echo '</div>';
 
@@ -160,6 +161,7 @@
                             echo '<option value="Science Fiction">Science Fiction</option>';
                             echo '<option value="Science">Science</option>';
                             echo '<option value="Sport">Sport</option>';
+                            echo '<option value="Fiction">Fiction</option>';
                             echo '</select>';
                             echo '</div>';
 
