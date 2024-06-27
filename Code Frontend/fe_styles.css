@@ -44,6 +44,14 @@ body {
 .button_add_book, .button_add_member {
     right: 3.69%;
 }
+/* The .scrollable-book-list class creates a fixed-height container with vertical scrolling for the book list,
+ensuring only the book list section is scrollable. */
+.scrollable-book-list, .scrollable-member-list, .scrollable-overdue-list, .scrollable-loan-list{
+    height: 150px; /* Anpassen nach Bedarf */
+    overflow-y: auto;
+}
+
+
 
  /* declare search */
 .search-bar {
@@ -68,7 +76,6 @@ body {
 /* declare white square */
 .white-square {
     background-color: rgb(235, 235, 235);
-    overflow-y: scroll;
     width: 90%;  
     height: 80%;
     margin: 10px;
@@ -97,6 +104,13 @@ body {
     margin-bottom: 0px;
     text-align: center;
     font-size: 25px;
+}
+
+.info-box h2 {
+    margin-top: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .info-box p {

@@ -1,3 +1,4 @@
+<!-- Frontend Code: Struktur und Navigations-Buttons der Seite sowie Site Layout generell -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

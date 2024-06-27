@@ -24,7 +24,58 @@
     $totalMembersResult = $conn->query($totalMembersQuery);
     $totalMembers = $totalMembersResult->fetch_assoc()['total_members'];
     ?>
-    
+<?php
+    include "../Code Backend/be_db_conn.php";
+
+    $results_per_page = 15;
+    $query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
+            SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
+            SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
+            FROM books
+            INNER JOIN genre ON books.genre_id = genre.id
+            LEFT JOIN book_copies ON books.book_id = book_copies.book_id
+            GROUP BY books.book_id
+            ORDER BY books.title"; //Alphabetical Order 
+
+    $result = $conn->query($query);
+
+        $books = array();
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $books[] = $row;
+            }
+        }
+
+        // Book Table only shows 15 books per page
+        $total_books = count($books);
+        $total_pages = ceil($total_books / $results_per_page);
+
+        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+            $current_page = (int)$_GET['page'];
+        } else {
+            $current_page = 1;
+        }
+
+        if ($current_page > $total_pages) {
+            $current_page = $total_pages;
+        }
+        if ($current_page < 1) {
+            $current_page = 1;
+        }
+
+        $start_from = ($current_page - 1) * $results_per_page;
+
+        $query .= " LIMIT $start_from, $results_per_page";
+        $result = $conn->query($query);
+
+        $books = array();
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $books[] = $row;
+            }
+        }
+    $conn->close();
+?>
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -71,44 +122,109 @@
             echo "</div>";
             ?>
 
+            <div class="scrollable-book-list">
+            <table id="table_booklist">
+            <div class="info-box">
+                    <h2>Booklist</h2>
+                </div>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>ISBN</th>
+                                    <th>Genre</th>
+                                    <th>Copies</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <?php foreach ($books as $book) : ?>
+                                <tr>
+                                    <td><?php echo $book['title']; ?></td>
+                                    <td><?php echo $book['author']; ?></td>
+                                    <td><?php echo $book['isbn']; ?></td>
+                                    <td><?php echo $book['genre']; ?></td>
+                                    <td><?php echo $book['copies']; ?></td>
+                                    <td>
+                                        <?php
+                                            if ($book['available_copies'] == 0) {
+                                                echo "All Copies on Loan";
+                                            } elseif ($book['available_copies'] == 1) {
+                                                echo $book['available_copies'] . " Copy available ";
+                                            } else {
+                                                echo $book['available_copies'] . " Copies available ";
+                                            }
+                                            ?>
+                                    </td>
+                                    <td>
+                                        <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
+                                        <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
+                                    </td>
+                                </tr>
+                                    <?php endforeach; ?>
+                            </tbody>
+                        </table> 
+        </div>
+                             
+        <div class="scrollable-member-list">
+        <table id="table_memberlist">
+        <div class="info-box">
+                    <h2>Memberlist</h2>
+                </div>
             <?php
-            include "../Code Backend/be_db_conn.php";
+                    include "../Code Backend/be_db_conn.php";
                     
-                    
-            // Check if the connection to the database is successful
-            if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
+                    // Perform a query to fetch all members from the database
+                    $sql = "SELECT member_id, first_name, last_name, email, phone FROM members LIMIT 5";
+                    $result = $conn->query($sql);
 
-            // Perform a query to fetch all members from the database
-            $sql = "SELECT member_id, first_name, last_name, email, phone FROM members LIMIT 5";
-            $result = $conn->query($sql);
-
-            // Check if the query was successful and if there are any rows returned
-            if ($result !== false && $result->num_rows > 0) {
-            // Display the table header and iterate through the fetched results
-            echo "<table id='table_memberlist'>";
-            echo "<tr><th>Member ID</th><th>First Name</th><th><Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
-            while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["member_id"] . "</td>";
-            echo "<td>" . $row["first_name"] . "</td>";
-            echo "<td>" . $row["last_name"] . "</td>";
-            echo "<td>" . $row["email"] . "</td>";
-            echo "<td>" . $row["phone"] . "</td>";
-            echo "<td><a href='member_edit.php?member_id=" . $row["member_id"] . "'>Edit</a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
-            echo "</tr>";
-            }
-            echo "</table>";
-                } 
-                    else {
-                        // If no members are found, display a message
-                    echo "No members found.";
+                    // Check if the query was successful and if there are any rows returned
+                    if ($result !== false && $result->num_rows > 0) {
+                        // Display the table header and iterate through the fetched results
+                        echo "<table id='table_memberlist'>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["member_id"] . "</td>";
+                            echo "<td>" . $row["first_name"] . "</td>";
+                            echo "<td>" . $row["last_name"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td>" . $row["phone"] . "</td>";
+                            echo "<td><a href='member_edit.php?member_id=" . $row["member_id"] . "'>Edit</a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
+                            echo "</tr>";
                         }
+                        echo "</table>";
+                    } else {
+                        echo "No members found.";
+                    }
 
                     // Close the database connection
                     $conn->close();
                 ?>
+        </div>
+
+        <div class="scrollable-loan-list">
+        <table id="table_loanlist">
+        <div class="info-box">
+                    <h2>Loanlist</h2>
+                </div>        
+            <?php
+                include "../Code Backend/be_overdue_status.php";
+                include "../Code Backend/be_loan_list.php";
+            ?>
+        </div>
+        
+        <div class="scrollable-overdue-list">
+        <table id="table_overduelist">
+        <div class="info-box">
+                    <h2>Overdue Booklist</h2>
+                </div>        
+            <?php
+                    include "../Code Backend/be_overdue_list.php";
+            ?>
+        </div>
+            
 
         </div>
     </div>
