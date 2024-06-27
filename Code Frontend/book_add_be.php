@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Store messages in session and redirect back to bookadd.php
     $_SESSION['messages'] = $messages;
-    header("Location: bookadd.php");
+    header("Location: book_add.php");
     exit();
 }
 ?>
