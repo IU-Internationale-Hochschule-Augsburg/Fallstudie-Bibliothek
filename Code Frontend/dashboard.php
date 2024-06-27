@@ -133,9 +133,7 @@
                                     <th>Author</th>
                                     <th>ISBN</th>
                                     <th>Genre</th>
-                                    <th>Copies</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,22 +143,7 @@
                                     <td><?php echo $book['author']; ?></td>
                                     <td><?php echo $book['isbn']; ?></td>
                                     <td><?php echo $book['genre']; ?></td>
-                                    <td><?php echo $book['copies']; ?></td>
-                                    <td>
-                                        <?php
-                                            if ($book['available_copies'] == 0) {
-                                                echo "All Copies on Loan";
-                                            } elseif ($book['available_copies'] == 1) {
-                                                echo $book['available_copies'] . " Copy available ";
-                                            } else {
-                                                echo $book['available_copies'] . " Copies available ";
-                                            }
-                                            ?>
-                                    </td>
-                                    <td>
-                                        <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
-                                        <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
-                                    </td>
+                                    
                                 </tr>
                                     <?php endforeach; ?>
                             </tbody>
@@ -183,16 +166,14 @@
                     if ($result !== false && $result->num_rows > 0) {
                         // Display the table header and iterate through the fetched results
                         echo "<table id='table_memberlist'>";
-                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>";
+                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td>" . $row["member_id"] . "</td>";
                             echo "<td>" . $row["first_name"] . "</td>";
                             echo "<td>" . $row["last_name"] . "</td>";
                             echo "<td>" . $row["email"] . "</td>";
-                            echo "<td>" . $row["phone"] . "</td>";
-                            echo "<td><a href='member_edit.php?member_id=" . $row["member_id"] . "'>Edit</a> | <a href='member_delete.php?member_id=" . $row["member_id"] . "'>Delete</a></td>";
-                            echo "</tr>";
+                            
                         }
                         echo "</table>";
                     } else {

@@ -40,7 +40,7 @@
     </div>
     <div class="sidebar"> <!-- adding sidebar, buttons and links -->
         <div class="buttons">
-        <button class="button_house"id="button_houseID"onclick="window.location.href='fe_dashboard.php'">
+        <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'">
                 <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
             </button>
             <button class="button_equals"onclick="toggleMenu()">
