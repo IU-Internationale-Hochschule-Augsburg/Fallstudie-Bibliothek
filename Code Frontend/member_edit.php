@@ -33,7 +33,7 @@
                         
                         $update_sql = "UPDATE members SET first_name = ?, last_name = ?, email = ?, phone = ? WHERE member_id = ?";
                         $update_stmt = $conn->prepare($update_sql);
-                        $update_stmt->bind_param("sssii", $first_name, $last_name, $email, $phone, $member_id);
+                        $update_stmt->bind_param("ssssi", $first_name, $last_name, $email, $phone, $member_id);
 
                         if ($update_stmt->execute()) {
                             $message = "Daten sind aktualisiert"; // Success message
