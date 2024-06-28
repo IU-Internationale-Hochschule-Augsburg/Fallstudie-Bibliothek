@@ -48,7 +48,11 @@
                     }
                     $stmt->close();
 
-                    // SQL-Abfrage zur Abfrage der ausgeliehenen Bücher inklusive Buchname mit LEFT JOIN
+                    //
+                    //
+                    //
+                    //
+                    // SQL-Abfrage zur Abfrage der ausgeliehenen Bücher aus loans Tabelle inklusive Buchname und ID aus books Tabelle mit LEFT JOIN
                     $loans_sql = "SELECT loans.book_id, loans.borrow_date, loans.return_date, loans.status, books.title 
                                   FROM loans 
                                   LEFT JOIN books ON loans.book_id = books.book_id 
@@ -59,7 +63,7 @@
                     $loans_result = $stmt_loans->get_result();
                     $loan_count = $loans_result->num_rows; // Anzahl der ausgeliehenen Bücher
 
-                    // Initialisierung des Statuszählers
+                    // Initialisierung des Statuszählers und dann hier werden alle Buchstatus durchgegangen und gezählt
                     $status_counts = array();
 
                     while ($loan = $loans_result->fetch_assoc()) {
@@ -79,13 +83,14 @@
                     foreach ($status_counts as $status => $count) {
                         $status_info .= "$status: $count, ";
                     }
-                    // Entfernen des letzten Kommas und Leerzeichens
+                    // Entfernen des letzten Kommas und Leerzeichens sodass bleibt nicht etwas wie Returned: 40, Overdue: 6, open: 2 ,
                     $status_info = rtrim($status_info, ', ');
 
                     // Anzeige der Status-Information
                     echo "<h2>" . $status_info . "</h2>";
 
-                    // Zurücksetzen des Ergebniszeigers und erneutes Abrufen der Ergebnisse
+                    // Hierdurch wird sichergestellt, dass die ausgeliehenen Bücher in einer Tabelle dargestellt werden
+                    // Die Tabelle ist scrollbar, wenn enthält mehr Bücher als in 400px angezeigt kann werden.
                     $loans_result->data_seek(0);
 
                     if ($loan_count > 0) {
