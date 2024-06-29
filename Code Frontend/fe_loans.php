@@ -7,6 +7,12 @@
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Loanlist</title>
+    <style>
+        .white-square {
+            height: 800px; /* oder eine andere geeignete Höhe */
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="background">  
