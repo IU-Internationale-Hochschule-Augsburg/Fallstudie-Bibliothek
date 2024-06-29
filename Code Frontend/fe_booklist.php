@@ -1,7 +1,6 @@
 <?php
     include "../Code Backend/be_db_conn.php";
 
-    $results_per_page = 15;
     $query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
             SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
             SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
@@ -9,48 +8,33 @@
             INNER JOIN genre ON books.genre_id = genre.id
             LEFT JOIN book_copies ON books.book_id = book_copies.book_id
             GROUP BY books.book_id
-            ORDER BY books.title"; //Alphabetical Order 
+            ORDER BY books.title"; // Alphabetical Order 
 
     $result = $conn->query($query);
 
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
+    $books = array();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $books[] = $row;
+        }
+    }
+
+    // Sort array if sort request is present
+    if (isset($_GET['sort']) && isset($_GET['order'])) {
+        $sort = $_GET['sort'];
+        $order = $_GET['order'];
+
+        usort($books, function ($a, $b) use ($sort, $order) {
+            if ($order == 'asc') {
+                return strcmp($a[$sort], $b[$sort]);
+            } else {
+                return strcmp($b[$sort], $a[$sort]);
             }
-        }
+        });
+    }
 
-        // Book Table only shows 15 books per page
-        $total_books = count($books);
-        $total_pages = ceil($total_books / $results_per_page);
-
-        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-            $current_page = (int)$_GET['page'];
-        } else {
-            $current_page = 1;
-        }
-
-        if ($current_page > $total_pages) {
-            $current_page = $total_pages;
-        }
-        if ($current_page < 1) {
-            $current_page = 1;
-        }
-
-        $start_from = ($current_page - 1) * $results_per_page;
-
-        $query .= " LIMIT $start_from, $results_per_page";
-        $result = $conn->query($query);
-
-        $books = array();
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $books[] = $row;
-            }
-        }
     $conn->close();
 ?>
-
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -60,6 +44,45 @@
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
+    <style>
+        th.sorted-asc, th.sorted-desc {
+            background-color: #f0f0f0;
+        }
+        .table-container {
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const getSortParams = (th) => {
+                const column = th.dataset.column;
+                const order = th.classList.contains('sorted-asc') ? 'desc' : 'asc';
+                return { column, order };
+            };
+
+            document.querySelectorAll('th').forEach(th => {
+                th.addEventListener('click', () => {
+                    const sortParams = getSortParams(th);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('sort', sortParams.column);
+                    urlParams.set('order', sortParams.order);
+                    window.location.search = urlParams.toString();
+                });
+            });
+
+            // Highlight the sorted column
+            const urlParams = new URLSearchParams(window.location.search);
+            const sortedColumn = urlParams.get('sort');
+            const sortedOrder = urlParams.get('order');
+            if (sortedColumn && sortedOrder) {
+                const th = document.querySelector(`th[data-column='${sortedColumn}']`);
+                if (th) {
+                    th.classList.add(`sorted-${sortedOrder}`);
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="background">
@@ -71,66 +94,53 @@
                 </div>
             </form>  
             <button class="button_add_book" onclick="window.location.href='book_add.php'">Add new Book</button>
-                <div class="white-square" id="white-squareID">
-                    <div class="info-box">
-                        <h1>Booklist</h1>
-                        <p>Here you can see and manage the list of books.</p>
-                        <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
-                            <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
-                        </button>
-                        <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
-                            <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
-                        </button>
-                    </div>
-                        <table id="table_booklist">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>ISBN</th>
-                                    <th>Genre</th>
-                                    <th>Copies</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <?php foreach ($books as $book) : ?>
-                                <tr>
-                                    <td><?php echo $book['title']; ?></td>
-                                    <td><?php echo $book['author']; ?></td>
-                                    <td><?php echo $book['isbn']; ?></td>
-                                    <td><?php echo $book['genre']; ?></td>
-                                    <td><?php echo $book['copies']; ?></td>
-                                    <td>
-                                        <?php
-                                            if ($book['available_copies'] == 0) {
-                                                echo "All Copies on Loan";
-                                            } elseif ($book['available_copies'] == 1) {
-                                                echo $book['available_copies'] . " Copy available ";
-                                            } else {
-                                                echo $book['available_copies'] . " Copies available ";
-                                            }
-                                            ?>
-                                    </td>
-                                    <td>
-                                        <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
-                                        <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
-                                    </td>
-                                </tr>
-                                    <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <div class="pagination">
-                        <?php if ($current_page > 1): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page - 1; ?>" class="button_previous">Previous</a>
-                        <?php endif; ?>
-
-                        <?php if ($current_page < $total_pages): ?>
-                            <a href="fe_booklist.php?page=<?php echo $current_page + 1; ?>" class="button_next">Next</a>
-                        <?php endif; ?>
-                    </div>  
+            <div class="white-square" id="white-squareID">
+                <div class="info-box">
+                    <h1>Booklist</h1>
+                    <p>Here you can see and manage the list of books.</p>
                 </div>
+                <div class="table-container">
+                    <table id="table_booklist">
+                        <thead>
+                            <tr>
+                                <th data-column="title">Title <i class="fa-solid fa-sort"></i></th>
+                                <th data-column="author">Author <i class="fa-solid fa-sort"></i></th>
+                                <th data-column="isbn">ISBN <i class="fa-solid fa-sort"></i></th>
+                                <th data-column="genre">Genre <i class="fa-solid fa-sort"></i></th>
+                                <th data-column="copies">Copies <i class="fa-solid fa-sort"></i></th>
+                                <th data-column="available_copies">Status <i class="fa-solid fa-sort"></i></th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($books as $book) : ?>
+                            <tr>
+                                <td><?php echo $book['title']; ?></td>
+                                <td><?php echo $book['author']; ?></td>
+                                <td><?php echo $book['isbn']; ?></td>
+                                <td><?php echo $book['genre']; ?></td>
+                                <td><?php echo $book['copies']; ?></td>
+                                <td>
+                                    <?php
+                                        if ($book['available_copies'] == 0) {
+                                            echo "All Copies on Loan";
+                                        } elseif ($book['available_copies'] == 1) {
+                                            echo $book['available_copies'] . " Copy available ";
+                                        } else {
+                                            echo $book['available_copies'] . " Copies available ";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="book_edit.php?isbn=<?php echo $book['isbn']; ?>">Edit </a> |
+                                    <a href="book_copies.php?isbn=<?php echo $book['isbn']; ?>">View Copies</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
         </div>
     </div>
     <div class="logo">
