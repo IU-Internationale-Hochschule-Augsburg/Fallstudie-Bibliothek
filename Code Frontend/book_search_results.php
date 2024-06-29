@@ -21,6 +21,11 @@
         box-sizing: border-box; /* Include padding and border in element's total width and height */
         overflow: auto; /* Add a scrollbar if the content is too big */
     }
+
+    .search-content{
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
  
     table {
         border-collapse: collapse;
