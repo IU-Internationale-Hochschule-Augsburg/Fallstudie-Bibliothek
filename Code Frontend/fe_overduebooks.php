@@ -8,6 +8,12 @@
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
+    <style>
+        .table-container {
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="background">  <!-- adding background -->  
@@ -25,10 +31,12 @@
                     <p>Here you can see and manage the list of overdue books.</p>
                 </div>
 
-
-               <?php
+                
+            <div class="table-container">    
+                <?php
                     include "../Code Backend/be_overdue_list.php";
                ?>
+            </div>
 
         
             </div>
