@@ -8,8 +8,8 @@
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Loanlist</title>
     <style>
-        .white-square {
-            height: 800px; /* oder eine andere geeignete Höhe */
+        .table-container {
+            max-height: 600px; /* Adjust height as needed */
             overflow-y: auto;
         }
     </style>
@@ -29,10 +29,12 @@
                     <h1>Loanlist</h1>
                     <p>Here you can see and manage the list of loaned books.</p>  
                 </div>
+            <div class="table-container">    
                 <?php
                     include "../Code Backend/be_overdue_status.php";
                     include "../Code Backend/be_loan_list.php";
                 ?>
+            </div>
             </div>
         </div>
     </div>
