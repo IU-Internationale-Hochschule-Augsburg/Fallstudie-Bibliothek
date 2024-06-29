@@ -44,6 +44,12 @@
     <script src="fe_script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
+
+    .table-container {
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+
 </head>
 <body>
     <div class="background">
@@ -58,17 +64,11 @@
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
                     <h1>Book Copies</h1>
-                    <p>Here you can see and manage the copies of a book.</p>
-                    <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
-                        <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
-                    </button>
-                    <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
-                        <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
-                    </button>                   
+                    <p>Here you can see and manage the copies of a book.</p>                 
                 </div>
                 
-               
-                <table id="table_booklist">
+               <div class="table-container">    
+               <table id="table_booklist">
         <thead>
             <tr>
                 <th>Copy ID</th>
@@ -97,7 +97,10 @@
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>              
+    </table>    
+            </div>
+
+                          
             </div>
         </div>
     </div>
