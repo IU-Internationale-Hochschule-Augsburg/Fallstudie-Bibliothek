@@ -19,6 +19,12 @@
             });
         });
     </script>
+     <style>
+        .table-container {
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="background">  <!-- adding background -->  
@@ -35,6 +41,9 @@
                     <h1>Memberlist</h1>
                     <p>Here you can see and manage the list of members.</p>
                 </div>
+
+                <div class="table-container">    
+                
                 <?php
                     include "../Code Backend/be_db_conn.php";
 
@@ -71,6 +80,9 @@
                     // Close the database connection
                     $conn->close();
                 ?>
+
+            </div>
+
             </div>
         </div>
     </div>
