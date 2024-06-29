@@ -9,8 +9,7 @@
     <title>LIBRIOFACT - Loanlist</title>
     <style>
         .table-container {
-            max-height: 600px; /* Adjust height as needed */
-            overflow-y: auto;
+          overflow-y: auto;
         }
     </style>
 </head>
@@ -29,12 +28,12 @@
                     <h1>Loanlist</h1>
                     <p>Here you can see and manage the list of loaned books.</p>  
                 </div>
-            <div class="table-container">    
-                <?php
-                    include "../Code Backend/be_overdue_status.php";
-                    include "../Code Backend/be_loan_list.php";
-                ?>
-            </div>
+                <div class="table-container">    
+                    <?php
+                        include "../Code Backend/be_overdue_status.php";
+                        include "../Code Backend/be_loan_list.php";
+                    ?>
+                </div>
             </div>
         </div>
     </div>
@@ -80,5 +79,17 @@
             <li><a href="#" id="Loans"onclick="window.location.href='fe_loans.php'">Loans</a></li>
         </ul>
     </div>
+    <script>
+        function adjustTableContainerHeight() {
+            const tableContainer = document.querySelector('.table-container');
+            const windowHeight = window.innerHeight;
+            const containerHeight = windowHeight * 0.6; // 60% der Fensterhöhe
+            tableContainer.style.maxHeight = containerHeight + 'px';
+        }
+
+        window.addEventListener('resize', adjustTableContainerHeight);
+        window.addEventListener('load', adjustTableContainerHeight); // Höhe beim initialen Laden anpassen
+        document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Höhe anpassen, wenn DOM geladen ist
+    </script>
 </body>
 </html>
