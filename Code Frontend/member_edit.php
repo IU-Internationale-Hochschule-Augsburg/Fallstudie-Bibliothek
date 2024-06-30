@@ -105,7 +105,6 @@
         <button class="button_memberlist" id="button_memberlistID" onclick="window.location.href='fe_memberlist.php'"><i class="fa-solid fa-users" style="color: #000000;"></i></button>
         <button class="button_overduebooks" id="button_overduebooksID" onclick="window.location.href='fe_overduebooks.php'"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i></button>
         <button class="button_loans" id="button_loansID" onclick="window.location.href='fe_loans.php'"><i class="fa-solid fa-right-long"></i></button>
-        <button class="button_settings"><i class="fa-solid fa-gear" style="color: #000000;"></i></button>
         </div>
     </div>
     <div class="menu">

@@ -436,19 +436,6 @@ h2 {
         position: absolute;
     }
 
-    .button_settings {
-        background-color: #888888;
-        background-repeat: no-repeat;
-        font-size: 36px;
-        margin: 13px;
-        margin-left: -5px;
-        display: block;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        bottom: 35px;
-    }
-
 /* declare a logout button of topebar */
     .button_logout {
         position: fixed;

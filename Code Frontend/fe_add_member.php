@@ -185,9 +185,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="button_loans"id="button_loansID"onclick="window.location.href='fe_loans.php'">
                 <i class="fa-solid fa-right-long"></i> <!-- adding fontawesome icon -->
             </button>
-            <button class="button_settings">
-                <i class="fa-solid fa-gear" style="color: #000000;"></i> <!-- adding fontawesome icon -->
-            </button>
         </div>
     </div>
     <div class="menu" id="menu"> <!-- adding menu with bullet points -->
