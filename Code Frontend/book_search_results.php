@@ -10,20 +10,6 @@
 </head>
 
 <style>
-    .white-box {
-        width: calc(100% - 2*20px); /* Subtract the left and right margins */
-        height: calc(100% - 2*20px); /* Subtract the top and bottom margins */
-        background-color: white;
-        position: absolute;
-        top: 20px; /* Add margin at the top */
-        left: 20px; /* Add margin at the left */
-        right: 20px; /* Add margin at the right */
-        bottom: 20px; /* Add margin at the bottom */
-        padding: 20px; /* Add padding inside the div */
-        box-sizing: border-box; /* Include padding and border in element's total width and height */
-        overflow: auto; /* Add a scrollbar if the content is too big */
-    }
-
     .search-content{
             max-height: 600px; /* Adjust height as needed */
             overflow-y: auto;
@@ -35,7 +21,6 @@
         border: 1px solid #cacaca; 
         margin: 0 auto; 
         background-color: #cacaca;
-        border-radius: 10px; 
         user-select: none;
     }
 

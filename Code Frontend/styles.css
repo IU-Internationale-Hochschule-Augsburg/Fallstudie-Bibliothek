@@ -55,7 +55,7 @@ ensuring only the book list section is scrollable. */
 
  /* declare search */
 .search-bar {
-    position: relative; 
+    position: relative;  
     display: inline-block;
 }
 
