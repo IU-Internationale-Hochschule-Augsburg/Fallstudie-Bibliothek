@@ -91,7 +91,7 @@
                             }
 
                             // Form To add Book
-                            echo '<form action="book_add_be.php" method="post">';
+                            echo '<form action="../Code Backend/book_add.php" method="post">';
 
                             echo '<div class="form-group-addbook">';
                             echo '<label for="title">Title:</label>';

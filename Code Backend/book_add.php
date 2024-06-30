@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Code Backend/be_db_conn.php";
+include "be_db_conn.php";
 
 $title = "";
 $author = "";
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Store messages in session and redirect back to bookadd.php
     $_SESSION['messages'] = $messages;
-    header("Location: book_add.php");
+    header("Location: ../Code Frontend/book_add.php");
     exit();
 }
 ?>
