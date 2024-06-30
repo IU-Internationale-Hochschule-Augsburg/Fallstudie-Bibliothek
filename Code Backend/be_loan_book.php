@@ -64,6 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 
-header("Location: ../Code Frontend/fe_loan_book.php");
+header("Location: ../Code Frontend/loan_book.php");
 exit();
 ?>

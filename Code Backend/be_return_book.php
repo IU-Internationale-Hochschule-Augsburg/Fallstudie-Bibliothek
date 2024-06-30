@@ -71,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         $_SESSION["message"] = implode("<br>", $messages);
-        header('Location: ../Code Frontend/fe_return_book.php'); // redirect back to your page
+        header('Location: ../Code Frontend/return_book.php'); // redirect back to your page
         exit();
     } else {
         $_SESSION["message"] = "Member ID or Book IDs are empty.";
-        header('Location: ../Code Frontend/fe_return_book.php'); // redirect back to your page
+        header('Location: ../Code Frontend/return_book.php'); // redirect back to your page
         exit();
     }
 }
