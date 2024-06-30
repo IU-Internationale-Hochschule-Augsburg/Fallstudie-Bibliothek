@@ -108,13 +108,7 @@
         <div class="white-square" id="white-squareID">
             <div class="info-box">
                 <h1>Edit Book Details</h1>
-                <p>Here you can see and manage the details of a specific book.</p>
-                <button class="layer_sort" id="layer_sortID" onclick="changeIconColor()">
-                    <i class="fa-solid fa-layer-group" style="color: #656567;"></i>
-                </button>
-                <button class="vertical_sort" id="vertical_sortID" onclick="changeIconColor()">
-                    <i class="fa-solid fa-grip-vertical" style="color: #656567;"></i>
-                </button>                
+                <p>Here you can see and manage the details of a specific book.</p>            
             </div>
                 <div class="detail-content">
                     <div class="form-container-addbook">

@@ -120,50 +120,6 @@ ensuring only the book list section is scrollable. */
     font-size: 15px;
 }
 
-/* declare sort buttons */
-.layer_sort, .vertical_sort {
-    background-color: transparent;
-    color: transparent;
-    border: none;
-    border-radius: 5px;
-    position: absolute;
-    font-size: 21px;
-    cursor: pointer;
-}
-
-.layer_sort {
-    margin-top: -21px;
-    right: 1.7%;
-}
-
-.vertical_sort {
-    font-size: 24px;
-    margin-top: -22px;
-    right: calc(1.7% + 35px);
-}
-
-.active .fa-layer-group {
-    color: #656567; 
-}
-/* declare buttons previous and next */
-.button_previous,
-.button_next {
-    border: none;
-    border-radius: 10px;
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    padding: 12px 17px;
-    margin: 10px;
-    bottom: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: -5px;
-}
- 
-.button_next:hover, .button_previous:hover {
-    background-color: #ddd;
-}
-
 #table_booklist-container {
     max-height: calc(100% - 30px); /* Höhe des White Squares abzüglich des Abstands */
     overflow-y: auto; /* Scrollleiste bei Bedarf anzeigen */
