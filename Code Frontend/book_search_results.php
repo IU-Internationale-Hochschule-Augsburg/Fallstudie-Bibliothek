@@ -7,7 +7,7 @@
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Booklist</title>
- 
+
 </head>
 <body>
     <div class="background">  
@@ -22,58 +22,41 @@
             <div class="info-box">
                         <h1>Search Result</h1>
                         <p>Here you can see the result of your search.</p>                      
-                <div id="table_booklist-container">
-                    <table id="table_booklist">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Genre</th>
-                                <th>Copies</th>
-                                <th>Available Copies</th>
-                                <th>On Loan Copies</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            include "../Code Backend/be_db_conn.php";
+            </div>
+                <div class="search-content">               
+                        <?php
+                        include "../Code Backend/be_db_conn.php";
 
-                            $query = "SELECT books.title, books.author, books.isbn, genre.name AS genre, COUNT(book_copies.book_id) AS copies,
-                                    SUM(CASE WHEN book_copies.status = 'Available' THEN 1 ELSE 0 END) AS available_copies,
-                                    SUM(CASE WHEN book_copies.status = 'On Loan' THEN 1 ELSE 0 END) AS on_loan_copies
-                                    FROM books
-                                    INNER JOIN genre ON books.genre_id = genre.id
-                                    LEFT JOIN book_copies ON books.book_id = book_copies.book_id
-                                    GROUP BY books.book_id
-                                    ORDER BY books.title"; // Alphabetical Order 
+                            $query = $_GET['query'];
 
-                            $result = $conn->query($query);
+                            $sql = "SELECT books.*, genre.name AS genre 
+                                    FROM books 
+                                    INNER JOIN genre ON books.genre_id = genre.id 
+                                    WHERE books.title LIKE '%$query%' OR books.author LIKE '%$query%' OR books.isbn LIKE '%$query%' OR genre.name LIKE '%$query%' 
+                                    ORDER BY books.title ASC";
 
-                            $books = array();
-                            if ($result && $result->num_rows > 0) {
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                echo "<table>";
+                                echo "<tr><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Action</th></tr>";
                                 while ($row = $result->fetch_assoc()) {
-                                    $books[] = $row;
+                                    echo "<tr>";
+                                    echo "<td>" . $row["title"] . "</td>";
+                                    echo "<td>" . $row["author"] . "</td>";
+                                    echo "<td>" . $row["isbn"] . "</td>";
+                                    echo "<td>" . $row["genre"] . "</td>";
+                                    echo "<td><a href='book_edit.php?isbn=" . $row["isbn"] . "'>Edit</a> | <a href='book_copies.php?isbn=" . $row["isbn"] . "'>View Copies</a></td>";
+                                    echo "</tr>";
                                 }
+                                echo "</table>";
+                            } else {
+                                echo "No results found";
                             }
-
-                            $conn->close();
-
-                            foreach ($books as $book): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($book['title']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['author']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['isbn']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['genre']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['copies']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['available_copies']); ?></td>
-                                    <td><?php echo htmlspecialchars($book['on_loan_copies']); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>   
-            </div>   
+                    ?>
+                </div>
+        </div>
+        <!-- adding background -->       
     </div>
     <div class="logo"> <!-- add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>
