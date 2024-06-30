@@ -53,36 +53,6 @@
             overflow-y: auto;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const getSortParams = (th) => {
-                const column = th.dataset.column;
-                const order = th.classList.contains('sorted-asc') ? 'desc' : 'asc';
-                return { column, order };
-            };
-
-            document.querySelectorAll('th').forEach(th => {
-                th.addEventListener('click', () => {
-                    const sortParams = getSortParams(th);
-                    const urlParams = new URLSearchParams(window.location.search);
-                    urlParams.set('sort', sortParams.column);
-                    urlParams.set('order', sortParams.order);
-                    window.location.search = urlParams.toString();
-                });
-            });
-
-            // Highlight the sorted column
-            const urlParams = new URLSearchParams(window.location.search);
-            const sortedColumn = urlParams.get('sort');
-            const sortedOrder = urlParams.get('order');
-            if (sortedColumn && sortedOrder) {
-                const th = document.querySelector(`th[data-column='${sortedColumn}']`);
-                if (th) {
-                    th.classList.add(`sorted-${sortedOrder}`);
-                }
-            }
-        });
-    </script>
 </head>
 <body>
     <div class="background">

@@ -90,3 +90,78 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const getSortParams = (th) => {
+                const column = th.dataset.column;
+                const order = th.classList.contains('sorted-asc') ? 'desc' : 'asc';
+                return { column, order };
+            };
+
+            document.querySelectorAll('th').forEach(th => {
+                th.addEventListener('click', () => {
+                    const sortParams = getSortParams(th);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('sort', sortParams.column);
+                    urlParams.set('order', sortParams.order);
+                    window.location.search = urlParams.toString();
+                });
+            });
+
+            // Highlight the sorted column
+            const urlParams = new URLSearchParams(window.location.search);
+            const sortedColumn = urlParams.get('sort');
+            const sortedOrder = urlParams.get('order');
+            if (sortedColumn && sortedOrder) {
+                const th = document.querySelector(`th[data-column='${sortedColumn}']`);
+                if (th) {
+                    th.classList.add(`sorted-${sortedOrder}`);
+                }
+            }
+        });
+
+
+        
+        
+        function addBookField() {
+            const container = document.getElementById('bookFieldsContainer');
+            if (container.children.length < 5) {
+                const index = container.children.length + 1;
+                const newField = document.createElement('div');
+                newField.className = 'form-group-addbook book-field';
+                newField.innerHTML = `
+                    <label for="book_id_${index}">Book-ID</label>
+                    <input type="text" id="book_id_${index}" name="book_id[]">
+                `;
+                container.appendChild(newField);
+            } else {
+                alert("You can only add up to 5 books at a time.");
+            }
+        }
+
+        function removeBookField() {
+            const container = document.getElementById('bookFieldsContainer');
+            if (container.children.length > 1) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+
+
+
+        function adjustTableContainerHeight() {
+            const tableContainer = document.querySelector('.table-container');
+            const windowHeight = window.innerHeight;
+            const containerHeight = windowHeight * 0.6; // 60% der Fensterhöhe
+            tableContainer.style.maxHeight = containerHeight + 'px';
+        }
+
+        window.addEventListener('resize', adjustTableContainerHeight);
+        window.addEventListener('load', adjustTableContainerHeight); // Höhe beim initialen Laden anpassen
+        document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Höhe anpassen, wenn DOM geladen ist
+
+
+    

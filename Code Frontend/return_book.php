@@ -150,30 +150,5 @@ session_start();
             <li><a href="#" id="Loans"onclick="window.location.href='loans.php'">Loans</a></li>
         </ul>
     </div>
-
-    <script>
-        function addBookField() {
-            const container = document.getElementById('bookFieldsContainer');
-            if (container.children.length < 5) {
-                const index = container.children.length + 1;
-                const newField = document.createElement('div');
-                newField.className = 'form-group-addbook book-field';
-                newField.innerHTML = `
-                    <label for="book-id-${index}">Book-ID</label>
-                    <input type="text" id="book_id_${index}" name="book_id[]">
-                `;
-                container.appendChild(newField);
-            } else {
-                alert("You can only add up to 5 books at a time.");
-            }
-        }
-
-        function removeBookField() {
-            const container = document.getElementById('bookFieldsContainer');
-            if (container.children.length > 1) {
-                container.removeChild(container.lastChild);
-            }
-        }
-    </script>
 </body>
 </html>

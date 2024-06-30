@@ -76,17 +76,5 @@
             <li><a href="#" id="Loans"onclick="window.location.href='loans.php'">Loans</a></li>
         </ul>
     </div>
-    <script>
-        function adjustTableContainerHeight() {
-            const tableContainer = document.querySelector('.table-container');
-            const windowHeight = window.innerHeight;
-            const containerHeight = windowHeight * 0.6; // 60% der Fensterhöhe
-            tableContainer.style.maxHeight = containerHeight + 'px';
-        }
-
-        window.addEventListener('resize', adjustTableContainerHeight);
-        window.addEventListener('load', adjustTableContainerHeight); // Höhe beim initialen Laden anpassen
-        document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Höhe anpassen, wenn DOM geladen ist
-    </script>
 </body>
 </html>
