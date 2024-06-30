@@ -1,5 +1,4 @@
-<!-- Session_start nötig, damit die Nachrichten zwischen den beiden Klasssen
- versendet werden können.-->
+<!-- Session_start needed for interaction between the two pages for exchange of messages -->    
 
 <?php
 session_start();

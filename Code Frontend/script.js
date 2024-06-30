@@ -27,11 +27,11 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
 }
 
-// Event Listener beim Laden der Seite hinzufügen
+// Event Listener if the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    adjustTableHeight(); // Initial aufrufen
+    adjustTableHeight(); // Initial Hight Adjustment
 
-    // Event Listener für Resize-Events (falls das White Square sich ändert)
+    // Event Listener for resizing 
     window.addEventListener('resize', adjustTableHeight);
 });
 
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         
-        
+        // adding new field for books if a book is loaned or returned
         function addBookField() {
             const container = document.getElementById('bookFieldsContainer');
             if (container.children.length < 5) {
@@ -155,13 +155,13 @@ document.addEventListener('DOMContentLoaded', function() {
         function adjustTableContainerHeight() {
             const tableContainer = document.querySelector('.table-container');
             const windowHeight = window.innerHeight;
-            const containerHeight = windowHeight * 0.6; // 60% der Fensterhöhe
+            const containerHeight = windowHeight * 0.6; // 60% of hight of the window
             tableContainer.style.maxHeight = containerHeight + 'px';
         }
 
         window.addEventListener('resize', adjustTableContainerHeight);
-        window.addEventListener('load', adjustTableContainerHeight); // Höhe beim initialen Laden anpassen
-        document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Höhe anpassen, wenn DOM geladen ist
+        window.addEventListener('load', adjustTableContainerHeight); // initial load changes the hight
+        document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Hif dom is loaded hight is adjusted
 
 
     
