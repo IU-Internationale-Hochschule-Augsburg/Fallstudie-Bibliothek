@@ -118,8 +118,8 @@ ensuring only the book list section is scrollable. */
 }
 
 #table_booklist-container {
-    max-height: calc(100% - 30px); /* Höhe des White Squares abzüglich des Abstands */
-    overflow-y: auto; /* Scrollleiste bei Bedarf anzeigen */
+    max-height: calc(100% - 30px);
+    overflow-y: auto; 
 }
 
 /* declare table booklist */
@@ -225,6 +225,7 @@ ensuring only the book list section is scrollable. */
     font-size: 16px;
 }
 
+/* declare addbook site */
 .form-container-addbook {
     width: 80%;
     margin: 0 auto;
@@ -304,7 +305,7 @@ h2 {
     top: 0px;
     width: 35px;
     height: 100%; 
-    background-color: #888888; /* gray background */
+    background-color: #888888; 
     z-index: 10;
     padding: 20px;
     transition: transform 0.3s ease;

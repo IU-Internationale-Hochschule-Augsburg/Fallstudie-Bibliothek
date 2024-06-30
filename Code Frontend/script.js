@@ -17,7 +17,6 @@ if (sidebar.classList.contains("active")) {
     background.style.width = 'calc(100% - 75px)';
 }
 
-
     // White Square function
     var whiteSquare = document.getElementById("white-squareID");
     whiteSquare.style.width = '90%';  
@@ -26,16 +25,6 @@ if (sidebar.classList.contains("active")) {
     whiteSquare.style.left = '50%';
     whiteSquare.style.transform = 'translateX(-50%)';
     whiteSquare.style.transition = 'width 0.6s, height 0.6s';
-}
-
-// Funktion zur Anpassung der Tabellenhöhe basierend auf der White Square Höhe
-function adjustTableHeight() {
-    var whiteSquare = document.querySelector('.white-square');
-    var tableContainer = document.getElementById('table_booklist-container');
-    var whiteSquareHeight = whiteSquare.clientHeight;
-    var desiredTableHeight = whiteSquareHeight - 30; // 30px Abstand (15px oben + 15px unten)
-
-    tableContainer.style.maxHeight = desiredTableHeight + 'px';
 }
 
 // Event Listener beim Laden der Seite hinzufügen
