@@ -170,7 +170,7 @@
                 }
                 ?>
             </div>
-        </div> <!-- adding background -->      
+        </div>  
     </div>
     <div class="logo"> <!-- add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>

@@ -103,7 +103,7 @@
 </head>
 <body>
     <div class="background">
-        <button class="button_back_to_booklist" onclick="window.location.href='booklist.php'">Back to Book List</button>
+        <button class="button_back_to_booklist" onclick="window.location.href='booklist.php'">Back to Booklist</button>
         <button class="button_add_book" onclick="window.location.href='book_copies.php?isbn=<?php echo $isbn; ?>'">View Copies</button>
         <div class="white-square" id="white-squareID">
             <div class="info-box">
