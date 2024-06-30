@@ -21,7 +21,7 @@
         border: 1px solid #cacaca; 
         margin: 0 auto; 
         background-color: #cacaca;
-        user-select: none;
+        user-select: none; 
     }
 
     table th,

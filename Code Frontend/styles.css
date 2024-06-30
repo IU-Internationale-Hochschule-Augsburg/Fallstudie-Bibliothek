@@ -51,8 +51,6 @@ ensuring only the book list section is scrollable. */
     overflow-y: auto;
 }
 
-
-
  /* declare search */
 .search-bar {
     position: relative;  
@@ -71,7 +69,6 @@ ensuring only the book list section is scrollable. */
     font-size: 18px;
     cursor: text;
 }
-
 
 /* declare white square */
 .white-square {
