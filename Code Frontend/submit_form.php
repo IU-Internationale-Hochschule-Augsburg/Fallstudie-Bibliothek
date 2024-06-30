@@ -32,7 +32,7 @@ exit();
     $conn->close();
 } else {
     // If the form wasn't submitted, redirect back to the book list
-    header("Location: fe_booklist.php");
+    header("Location: booklist.php");
     exit();
 }
 ?>

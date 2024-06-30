@@ -38,7 +38,7 @@ if (isset($_GET['copy_id']) && isset($_GET['isbn'])) {
         $conn->commit();
         
         // Redirect back to the book list page with a success message
-        header("Location: fe_booklist.php?message=Book copy deleted successfully.");
+        header("Location: booklist.php?message=Book copy deleted successfully.");
         exit();
     } catch (Exception $e) {
         // Rollback the transaction if something went wrong
@@ -47,7 +47,7 @@ if (isset($_GET['copy_id']) && isset($_GET['isbn'])) {
     }
 } else {
     // If no copy_id or isbn is provided, redirect back to the booklist page
-    header("Location: fe_booklist.php");
+    header("Location: booklist.php");
     exit();
 }
 ?>

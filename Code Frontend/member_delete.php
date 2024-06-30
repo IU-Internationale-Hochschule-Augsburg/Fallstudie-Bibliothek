@@ -8,7 +8,7 @@ if (isset($_GET['member_id'])) {
     
     if ($stmt->execute()) {
         // Redirect back to the list of participants after successful deletion
-        header("Location: fe_memberlist.php");
+        header("Location: memberlist.php");
         exit();
     } else {
         echo "Error deleting record: " . $stmt->error;
@@ -16,7 +16,7 @@ if (isset($_GET['member_id'])) {
     $stmt->close();
 } else {
     // If no participant ID is provided, redirect back to the list of participants
-    header("Location: fe_memberlist.php");
+    header("Location: memberlist.php");
     exit();
 }
 
