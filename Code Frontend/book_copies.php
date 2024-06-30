@@ -62,40 +62,40 @@
                 </div>
                 
                <div class="table-container">    
-               <table id="table_booklist">
-        <thead>
-            <tr>
-                <th>Copy ID</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>ISBN</th>
-                <th>Genre</th>
-                <th>Total Copies</th>
-                <th>Copy Number</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($copies as $copy) : ?>
-            <tr>
-                <td><?php echo $copy['copy_id']; ?></td>
-                <td><?php echo $book['title']; ?></td>
-                <td><?php echo $book['author']; ?></td>
-                <td><?php echo $book['isbn']; ?></td>
-                <td><?php echo $book['name']; ?></td>
-                <td><?php echo $book['copies']; ?></td>
-                <td><?php echo $copy['copy_number']; ?></td>
-                <td><?php echo $copy['status']; ?></td>
-                <td><a href="book_delete.php?copy_id=<?php echo $copy['copy_id']; ?>&isbn=<?php echo $isbn; ?>">Delete</a></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>    
+                    <table id="table_booklist">
+                        <thead>
+                            <tr>
+                                <th>Copy ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Genre</th>
+                                <th>Total Copies</th>
+                                <th>Copy Number</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($copies as $copy) : ?>
+                            <tr>
+                                <td><?php echo $copy['copy_id']; ?></td>
+                                <td><?php echo $book['title']; ?></td>
+                                <td><?php echo $book['author']; ?></td>
+                                <td><?php echo $book['isbn']; ?></td>
+                                <td><?php echo $book['name']; ?></td>
+                                <td><?php echo $book['copies']; ?></td>
+                                <td><?php echo $copy['copy_number']; ?></td>
+                                <td><?php echo $copy['status']; ?></td>
+                                <td><a href="book_delete.php?copy_id=<?php echo $copy['copy_id']; ?>&isbn=<?php echo $isbn; ?>">Delete</a></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                </table>    
             </div>
 
                           
-            </div>
+        </div>
         </div>
     </div>
     <div class="logo">
