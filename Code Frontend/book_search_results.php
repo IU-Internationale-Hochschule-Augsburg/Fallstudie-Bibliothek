@@ -61,7 +61,7 @@
                         <h1>Search Result</h1>
                         <p>Here you can see the result of your search.</p>                      
             </div>
-                <div class="search-content">               
+                <div class="table-container">               
                         <?php
                         include "../Code Backend/be_db_conn.php";
 

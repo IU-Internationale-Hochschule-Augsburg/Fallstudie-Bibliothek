@@ -17,9 +17,9 @@
     <div class="background">  
         <div class="background_content">
             <button class="button_back_to_dashboard" onclick="window.location.href='return_book.php'">Return Book</button>          
-            <form action="book_search_results.php" method="get">
+            <form action="loan_search_results.php" method="get">
                 <div class="search-bar">
-                    <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
+                    <input type="search" name="query" class="search-input" placeholder="Search Book ID..."> 
                 </div>
             </form> 
             <button class="button_add_book" onclick="window.location.href='loan_book.php'">Loan Book</button>
