@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Wenn alles erfolgreich verläuft, wird eine Erfolgsmeldung gesetzt.
             $success = "Mitglied erfolgreich hinzugefügt.";
             // JavaScript für die Weiterleitung zur Mitgliederliste nach erfolgreichem Hinzufügen
-            echo "<script type='text/javascript'>document.location.href='add_member.php';</script>";
+            echo "<script type='text/javascript'>document.location.href='member_add.php';</script>";
             exit();
         } else {
             // Wenn die Abfrage fehlschlägt, wird eine Fehlermeldung gesetzt.

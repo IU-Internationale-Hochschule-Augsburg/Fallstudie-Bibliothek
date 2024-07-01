@@ -106,10 +106,7 @@
 <body>
     <div class="background">
     <div class="background_content">
-        <form action="book_search_results.php" method="get">
-            <div class="search-bar">
-                <input type="search" name="query" class="search-input" placeholder="Search Book ..."> 
-            </div>
+       
         </form> 
 
         <div class="white-square" id="white-squareID">
