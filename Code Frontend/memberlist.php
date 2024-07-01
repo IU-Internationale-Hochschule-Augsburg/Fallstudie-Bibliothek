@@ -35,7 +35,7 @@
                     <input type="search" name="query" class="search-input" placeholder="Search Member ..."> 
                 </div>
             </form> 
-            <button class="button_add_member" onclick="window.location.href='add_member.php'">Add new Member</button>
+            <button class="button_add_member" onclick="window.location.href='member_add.php'">Add new Member</button>
             <div class="white-square" id="white-squareID">
                 <div class="info-box">
                     <h1>Memberlist</h1>
