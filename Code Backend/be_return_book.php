@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $checkStatusQuery->bind_param("i", $book_id);
                 $checkStatusQuery->execute();
                 $result = $checkStatusQuery->get_result();
-    
+
                 if ($result->num_rows > 0) {
                 
                     // Book has been issued, proceed with return
@@ -31,38 +31,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $checkMemberId->execute();
                     $result = $checkMemberId->get_result();
 
-                    if($result ->num_rows > 0){
+                    if ($result->num_rows > 0) {
                         $row = $result->fetch_assoc();
                         $loaned_member_id = $row['member_id'];
 
-                        if($loaned_member_id == $member_id)
-                    
-                        $updateReturnDate = "UPDATE loans SET return_date = CURRENT_DATE WHERE book_id = ? AND (status = 'open' OR status = 'Overdue')";
-                        $stmt = $conn->prepare($updateReturnDate);
-                        $stmt->bind_param("i", $book_id);
-                        $stmt->execute();
-                    
-                        $updateIssueStatusQuery = "UPDATE loans SET status = 'Returned' WHERE book_id = ? AND (status = 'open' OR status = 'Overdue')";
-                        $stmt = $conn->prepare($updateIssueStatusQuery);
-                        $stmt->bind_param("i", $book_id);
-                        $stmt->execute();
-                    
-                        if ($stmt->execute()) {
-                            // Update book status to 'available'
-                            $updateBookStatusQuery = "UPDATE book_copies SET status = 'Available' WHERE copy_id = ?";
-                            $stmt = $conn->prepare($updateBookStatusQuery);
+                        // Debugging output
+                        echo "Expected member_id: $member_id<br>";
+                        echo "Actual loaned_member_id: $loaned_member_id<br>";
+
+                        if ($loaned_member_id == $member_id) {
+                            $updateReturnDate = "UPDATE loans SET return_date = CURRENT_DATE WHERE book_id = ? AND (status = 'open' OR status = 'Overdue')";
+                            $stmt = $conn->prepare($updateReturnDate);
                             $stmt->bind_param("i", $book_id);
-                    
+                            $stmt->execute();
+                        
+                            $updateIssueStatusQuery = "UPDATE loans SET status = 'Returned' WHERE book_id = ? AND (status = 'open' OR status = 'Overdue')";
+                            $stmt = $conn->prepare($updateIssueStatusQuery);
+                            $stmt->bind_param("i", $book_id);
+                            $stmt->execute();
+                        
                             if ($stmt->execute()) {
-                                $messages[] = "Book $book_id returned successfully!";
+                                // Update book status to 'available'
+                                $updateBookStatusQuery = "UPDATE book_copies SET status = 'Available' WHERE copy_id = ?";
+                                $stmt = $conn->prepare($updateBookStatusQuery);
+                                $stmt->bind_param("i", $book_id);
+                        
+                                if ($stmt->execute()) {
+                                    $messages[] = "Book $book_id returned successfully!";
+                                } else {
+                                    $messages[] = "Error updating book-status for book $book_id";
+                                }
                             } else {
-                                $messages[] = "Error updating book-status for book $book_id";
+                                $messages[] = "Error updating loan-status for book $book_id";
                             }
                         } else {
-                            $messages[] = "Error updating loan-status for book $book_id";
+                            $messages[] = "The Book $book_id is not loaned by member $member_id";
                         }
                     } else {
-                        $messages[] = "The Book $book_id is not loaned by member $member_id";
+                        $messages[] = "No active loan found for Book $book_id";
                     }
                         
                 } else {
@@ -79,8 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
-
 
 $conn->close();
 ?>

@@ -22,6 +22,10 @@ session_start();
             border-radius: 10px;
         }
 
+        .table-container {
+            overflow-y: auto;
+        }
+
         .form-container-addbook h2 {
             text-align: center;
             margin-bottom: 20px;
@@ -67,6 +71,36 @@ session_start();
         h2 {
             text-align: center;
         }
+
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: none;
+            align-items: center;
+            border-color: #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .message-success {
+            border-color: #c3e6cb;
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .message-error {
+            border-color: #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .message i {
+            margin-right: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -82,13 +116,30 @@ session_start();
             <!--Dieser PHP-Code wird benötigt, um die Nachricht anzuzeigen, 
             dass ein Buch erfolgreich ausgeliehen wurde. Muss evtl. noch an eine andere Stelle 
             geschoben werden -- Absprache mit Flo! -->
-    
+            <div class="table-container">  
             <?php
-            if (isset($_SESSION["message"])) {
-                echo '<p>' . $_SESSION["message"] . '</p>';
-                unset($_SESSION["message"]); // remove it after displaying
-            }
-            ?>
+                if (isset($_SESSION["message"])) {
+                    $messages = explode("<br>", $_SESSION["message"]);
+                    foreach ($messages as $message) {
+                        $messageClass = 'message-error';
+                        $icon = '<i class="fa fa-times"></i>';
+
+                        if (strpos($message, 'currently') !== false ||
+                            strpos($message, 'member') !== false ||
+                            strpos($message, 'loan-status') !== false ||
+                            strpos($message, 'book-status') !== false) {
+                            $messageClass = 'message-error';
+                            $icon = '<i class="fa fa-times"></i>';
+                        } elseif (strpos($message, 'successfully') !== false) {
+                            $messageClass = 'message-success';
+                            $icon = '<i class="fa fa-check"></i>';
+                        }
+
+                        echo '<p class="message ' . $messageClass . '">' . $icon . $message . '</p>';
+                    }
+                    unset($_SESSION["message"]);
+                }
+                ?>
 
             <div class="form-container-addbook">  
                 <form action="../Code Backend/be_loan_book.php" method="POST">
@@ -110,7 +161,9 @@ session_start();
                         <button type="submit" name="submit">Loan Book(s)</button>
                     </div>
                 </form>
+                <div id="messageContainer" class="message"></div>
             </div>   
+            </div>  
         </div>      
     </div>
     <div class="logo">
@@ -154,3 +207,4 @@ session_start();
     </div>
 </body>
 </html>
+

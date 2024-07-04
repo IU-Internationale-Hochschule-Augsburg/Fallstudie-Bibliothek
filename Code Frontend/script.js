@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // adding new field for books if a book is loaned or returned
         function addBookField() {
             const container = document.getElementById('bookFieldsContainer');
-            if (container.children.length < 5) {
+            const messageContainer = document.getElementById('messageContainer');
+
+            if (container.children.length < 10) {
                 const index = container.children.length + 1;
                 const newField = document.createElement('div');
                 newField.className = 'form-group-addbook book-field';
@@ -137,18 +139,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     <input type="text" id="book_id_${index}" name="book_id[]">
                 `;
                 container.appendChild(newField);
+                messageContainer.textContent = ''; // Clear any previous message
+                messageContainer.style.display = 'none'; // Hide the message container
             } else {
-                alert("You can only add up to 5 books at a time.");
+                messageContainer.textContent = "You can only add up to 10 books at a time.";
+                messageContainer.style.display = 'block'; // Show the message container
             }
         }
+        
 
         function removeBookField() {
             const container = document.getElementById('bookFieldsContainer');
+            const messageContainer = document.getElementById('messageContainer');
+        
             if (container.children.length > 1) {
                 container.removeChild(container.lastChild);
+                messageContainer.textContent = ''; // Clear the message
+                messageContainer.style.display = 'none'; // Hide the message container
             }
         }
-
 
 
 
@@ -162,6 +171,5 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('resize', adjustTableContainerHeight);
         window.addEventListener('load', adjustTableContainerHeight); // initial load changes the hight
         document.addEventListener('DOMContentLoaded', adjustTableContainerHeight); // Hif dom is loaded hight is adjusted
-
 
     
