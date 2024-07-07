@@ -122,13 +122,17 @@
 
                 <br>
 
+                <!-- Container for the Booklist section -->
                 <div class="info-box">
+                    <!-- Heading for the Booklist -->
                     <h2>Booklist</h2>
                 </div>
                 <div class="scrollable-book-list">
+                    <!-- Table for displaying the book list -->
                     <table id="table_booklist">
                         <thead>
                             <tr>
+                                <!-- Table headers for book details -->
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>ISBN</th>
@@ -136,6 +140,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Loop through the books array and display each book's details in a table row -->
                             <?php foreach ($books as $book) : ?>
                                 <tr>
                                     <td><?php echo $book['title']; ?></td>
@@ -145,7 +150,7 @@
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
                    
                 <br>
