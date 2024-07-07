@@ -1,6 +1,6 @@
-<!-- Backend Code: Funktionen und ihre Logik -->
+<!-- Backend Code: Functions and their logic -->
 <?php
-// Einbinden der Datei, die die Verbindung zur Datenbank herstellt.
+// Include the file that establishes the connection to the database.
 include "../Code Backend/be_db_conn.php";
 
 // Deklarieren und Initialisieren von Variablen zum Speichern der Benutzerdaten.
@@ -9,35 +9,35 @@ $last_name = "";
 $email = "";
 $phone = "";
 
-// Variablen für die Speicherung von Erfolgs- oder Fehlermeldungen.
+// Variables for storing success or error messages.
 $success = "";  
 $error = "";
 
-// Überprüfen, ob die Anfrage mit der POST-Methode gesendet wurde.
+// Check if the request was sent using the POST method.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Auslesen der Daten, die aus dem Formular gesendet wurden, und Speichern in Variablen.
+    // Read the data sent from the form and store it in variables.
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    // Überprüfen, ob alle Felder gefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt.
+    // Check if all fields are filled. If not, an error message is displayed.
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone)) {
         $error = "Alle Felder sind erforderlich";
     } else {
-        // Erstellen einer SQL-Abfrage, um Daten in die Datenbank einzufügen.
+        // Create a SQL query to insert data into the database.
         $q = "INSERT INTO `members`(`first_name`, `last_name`, `email`, `phone`) 
         VALUES ('$first_name', '$last_name', '$email', '$phone')";
-        // Ausführen der SQL-Abfrage und Überprüfen des Erfolgs.
+        // Execute the SQL query and check for success.
         $result = $conn->query($q);
         if ($result) {
-            // Wenn alles erfolgreich verläuft, wird eine Erfolgsmeldung gesetzt.
+            // If everything goes successfully, a success message is set.
             $success = "Mitglied erfolgreich hinzugefügt.";
-            // JavaScript für die Weiterleitung zur Mitgliederliste nach erfolgreichem Hinzufügen
+            // JavaScript for redirecting to the member list after successful addition
             echo "<script type='text/javascript'>document.location.href='member_add.php';</script>";
             exit();
         } else {
-            // Wenn die Abfrage fehlschlägt, wird eine Fehlermeldung gesetzt.
+            // If the query fails, an error message is set.
             $error = "Ungültige Anfrage: " . $conn->error;
         }
     }
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
-<!-- Frontend Code: Struktur und Navigations-Buttons der Seite sowie Site Layout generell -->
+<!-- Frontend Code: Structure and navigation buttons of the page as well as site layout in general -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

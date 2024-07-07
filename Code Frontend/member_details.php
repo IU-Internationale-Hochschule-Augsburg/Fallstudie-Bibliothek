@@ -8,10 +8,10 @@
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Member Details</title>
     <style>
-        /* CSS für die Scroll-Funktion der Tabelle */
+        /* CSS for the scrolling function of the table */
         .scrollable-table {
-            max-height: 400px; /* Maximale Höhe der Tabelle */
-            overflow-y: scroll; /* Vertikales Scrollen erlauben */
+            max-height: 400px; /* Maximum height of the table */
+            overflow-y: scroll; /* Allow vertical scrolling */
         }
     </style>
 </head>
@@ -24,18 +24,18 @@
                     <h1>Member Details</h1>
                 </div>
                 <?php
-                // Backend-Code zur Verbindung mit der Datenbank und Abfrage der Mitgliederdaten
+                // Backend code to connect to the database and query member data
                 include "../Code Backend/be_db_conn.php";
                 if (isset($_GET['member_id']) && is_numeric($_GET['member_id'])) {
                     $member_id = $_GET['member_id'];
-                    // SQL-Abfrage zur Abfrage der Mitgliederdaten
+                    // SQL query to query member data
                     $sql = "SELECT * FROM members WHERE member_id = ?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("i", $member_id);
                     $stmt->execute();
                     $result = $stmt->get_result();
                     if ($member = $result->fetch_assoc()) {
-                        // Ausgabe der Mitgliederdaten in einer Tabelle
+                        // Output of member data in a table
                         echo "<table id='table_booklist'>";
                         echo "<tr><th>Mitglieds-ID</th><td>" . $member['member_id'] . "</td></tr>";
                         echo "<tr><th>Vorname</th><td>" . $member['first_name'] . "</td></tr>";
@@ -52,7 +52,7 @@
                     //
                     //
                     //
-                    // SQL-Abfrage zur Abfrage der ausgeliehenen Bücher aus loans Tabelle inklusive Buchname und ID aus books Tabelle mit LEFT JOIN
+                    // SQL query to query the borrowed books from loans table including book name and ID from books table with LEFT JOIN
                     $loans_sql = "SELECT loans.book_id, loans.borrow_date, loans.return_date, loans.status, books.title 
                                   FROM loans 
                                   LEFT JOIN books ON loans.book_id = books.book_id 
@@ -61,9 +61,9 @@
                     $stmt_loans->bind_param("i", $member_id);
                     $stmt_loans->execute();
                     $loans_result = $stmt_loans->get_result();
-                    $loan_count = $loans_result->num_rows; // Anzahl der ausgeliehenen Bücher
+                    $loan_count = $loans_result->num_rows; // Number of books borrowed
 
-                    // Initialisierung des Statuszählers und dann hier werden alle Buchstatus durchgegangen und gezählt
+                    // Initialization of the status counter and then all book statuses are checked and counted
                     $status_counts = array();
 
                     while ($loan = $loans_result->fetch_assoc()) {
@@ -75,38 +75,38 @@
                         }
                     }
 
-                    // Immer die Überschrift anzeigen
+                    // Always show the heading
                     echo "<h2>Anzahl der ausgeliehenen Bücher gesamt: " . $loan_count . "</h2>";
 
-                    // Erstellung der Status-Information in einer Zeile
+                    // Creation of status information in one line
                     $status_info = "";
                     foreach ($status_counts as $status => $count) {
                         $status_info .= "$status: $count, ";
                     }
-                    // Entfernen des letzten Kommas und Leerzeichens sodass bleibt nicht etwas wie Returned: 40, Overdue: 6, open: 2 ,
+                    // Remove the last comma and space so that you don't end up with something like Returned: 40, Overdue: 6, open: 2 ,
                     $status_info = rtrim($status_info, ', ');
 
-                    // Anzeige der Status-Information
+                    // Display status information
                     echo "<h2>" . $status_info . "</h2>";
 
-                    // Hierdurch wird sichergestellt, dass die ausgeliehenen Bücher in einer Tabelle dargestellt werden
-                    // Die Tabelle ist scrollbar, wenn enthält mehr Bücher als in 400px angezeigt kann werden.
+                    // This ensures that the borrowed books are displayed in a table
+                    // The table is scrollable if it contains more books than can be displayed in 400px.
                     $loans_result->data_seek(0);
 
                     if ($loan_count > 0) {
-                        // Ausgabe der ausgeliehenen Bücher in einer Tabelle mit Scroll-Funktion
+                       // Display of borrowed books in a table with scroll function
                         echo "<div class='scrollable-table'>"; // Scroll-Container
                         echo "<table id='table_booklist'>";
                         echo "<tr><th>#</th><th>Buch-ID</th><th>Ausleihdatum</th><th>Rückgabedatum</th><th>Status</th><th>Buchtitel</th></tr>";
                         $counter = 1;
                         while ($loan = $loans_result->fetch_assoc()) {
-                            // Überprüfen, ob der Titel leer ist und entsprechend ersetzen
+                            // Check if the title is empty and replace accordingly
                             $title = $loan['title'] ? $loan['title'] : 'Unbekannter Titel';
                             echo "<tr><td>" . $counter . "</td><td>" . $loan['book_id'] . "</td><td>" . $loan['borrow_date'] . "</td><td>" . $loan['return_date'] . "</td><td>" . $loan['status'] . "</td><td>" . $title . "</td></tr>";
                             $counter++;
                         }
                         echo "</table>";
-                        echo "</div>"; // Ende des Scroll-Containers
+                        echo "</div>"; // End of scroll container
                     }
                     $stmt_loans->close();
                 } else {
