@@ -105,159 +105,156 @@
 </head>
 <body>
     <div class="background">
-    <div class="background_content">
-       
-        </form> 
+        <div class="background_content">
+            <!-- Form end tag, likely misplaced, could be removed -->
+            </form> 
 
-        <div class="white-square_dashboard" id="white-squareID">
-            <?php
-            echo "<div class='info-stat-container'>";
-            echo "<div class='info-stat'>Total Loans: " . $totalLoans . "</div>";
-            echo "<div class='info-stat'>Open Loans: " .  $openLoans . "</div>";
-            echo "<div class='info-stat'>Total Books: " . $totalBooks . "</div>";
-            echo "<div class='info-stat'>Total Members: " . $totalMembers . "</div>";
-            echo "</div>";
-            ?>
+            <div class="white-square_dashboard" id="white-squareID">
+                <?php
+                // Display statistics
+                echo "<div class='info-stat-container'>";
+                echo "<div class='info-stat'>Total Loans: " . $totalLoans . "</div>";
+                echo "<div class='info-stat'>Open Loans: " .  $openLoans . "</div>";
+                echo "<div class='info-stat'>Total Books: " . $totalBooks . "</div>";
+                echo "<div class='info-stat'>Total Members: " . $totalMembers . "</div>";
+                echo "</div>";
+                ?>
 
-            <br>
+                <br>
 
-           
-            <div class="info-box">
+                <div class="info-box">
                     <h2>Booklist</h2>
                 </div>
                 <div class="scrollable-book-list">
-                <table id="table_booklist">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>ISBN</th>
-                                    <th>Genre</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <?php foreach ($books as $book) : ?>
+                    <table id="table_booklist">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Genre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($books as $book) : ?>
                                 <tr>
                                     <td><?php echo $book['title']; ?></td>
                                     <td><?php echo $book['author']; ?></td>
                                     <td><?php echo $book['isbn']; ?></td>
                                     <td><?php echo $book['genre']; ?></td>
-                                    
                                 </tr>
-                                    <?php endforeach; ?>
-                            </tbody>
-                        </table> 
-        </div>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table> 
+                </div>
                    
-        <br>
+                <br>
 
-        
-        <div class="info-box">
+                <div class="info-box">
                     <h2>Memberlist</h2>
                 </div>
-            
-            <div class="scrollable-member-list">
-            <table id="table_memberlist">
-            <?php
-                    include "../Code Backend/be_db_conn.php";
-                    
-                    // Perform a query to fetch all members from the database
-                    $sql = "SELECT member_id, first_name, last_name, email, phone FROM members LIMIT 5";
-                    $result = $conn->query($sql);
+                
+                <div class="scrollable-member-list">
+                    <table id="table_memberlist">
+                        <?php
+                        // Include the database connection
+                        include "../Code Backend/be_db_conn.php";
+                        
+                        // Perform a query to fetch all members from the database
+                        $sql = "SELECT member_id, first_name, last_name, email, phone FROM members LIMIT 5";
+                        $result = $conn->query($sql);
 
-                    // Check if the query was successful and if there are any rows returned
-                    if ($result !== false && $result->num_rows > 0) {
-                        // Display the table header and iterate through the fetched results
-                        echo "<table id='table_memberlist'>";
-                        echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["member_id"] . "</td>";
-                            echo "<td>" . $row["first_name"] . "</td>";
-                            echo "<td>" . $row["last_name"] . "</td>";
-                            echo "<td>" . $row["email"] . "</td>";
-                            
+                        // Check if the query was successful and if there are any rows returned
+                        if ($result !== false && $result->num_rows > 0) {
+                            // Display the table header and iterate through the fetched results
+                            echo "<table id='table_memberlist'>";
+                            echo "<tr><th>Member ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["member_id"] . "</td>";
+                                echo "<td>" . $row["first_name"] . "</td>";
+                                echo "<td>" . $row["last_name"] . "</td>";
+                                echo "<td>" . $row["email"] . "</td>";
+                            }
+                            echo "</table>";
+                        } else {
+                            echo "No members found.";
                         }
-                        echo "</table>";
-                    } else {
-                        echo "No members found.";
-                    }
 
-                    // Close the database connection
-                    $conn->close();
-                ?>
-        </div>
+                        // Close the database connection
+                        $conn->close();
+                        ?>
+                    </table>
+                </div>
 
-        <br>
+                <br>
 
-        
-        <div class="info-box">
+                <div class="info-box">
                     <h2>Loanlist</h2>
                 </div> 
 
-            <div class="scrollable-loan-list">
-            <table id="table_loanlist"> 
-            <?php
-                include "../Code Backend/be_overdue_status.php";
-                include "../Code Backend/be_loan_list.php";
-            ?>
-        </div>
-        
-        <br>
+                <div class="scrollable-loan-list">
+                    <table id="table_loanlist"> 
+                        <?php
+                        // Include overdue status and loan list scripts
+                        include "../Code Backend/be_overdue_status.php";
+                        include "../Code Backend/be_loan_list.php";
+                        ?>
+                    </table>
+                </div>
+                
+                <br>
 
-        
-        <div class="info-box">
+                <div class="info-box">
                     <h2>Overdue Booklist</h2>
                 </div>        
-            <div class="scrollable-overdue-list">
-            <table id="table_overduelist">
-            <?php
-                    include "../Code Backend/be_overdue_list.php";
-            ?>
-        </div>
-            
-
+                <div class="scrollable-overdue-list">
+                    <table id="table_overduelist">
+                        <?php
+                        // Include overdue list script
+                        include "../Code Backend/be_overdue_list.php";
+                        ?>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
 
-    
-    <div class="logo"> <!-- add logo -->
+    <div class="logo"> <!-- Add logo -->
         <div class="logo_name"><p>LibrioFact</p></div>
     </div>
-    <div class="topbar"><!-- adding topbar,logout button -->
-        <div> <button class="button_logout"onclick="window.location.href='../Code Backend/'">Logout</button></div>
+    <div class="topbar"> <!-- Add topbar and logout button -->
+        <div> <button class="button_logout" onclick="window.location.href='../Code Backend/'">Logout</button></div>
     </div>
-    <div class="sidebar"> <!-- adding sidebar, buttons and links -->
+    <div class="sidebar"> <!-- Add sidebar, buttons, and links -->
         <div class="buttons">
-        <button class="button_house"id="button_houseID"onclick="window.location.href='dashboard.php'">
-                <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- adding fontawesome icon -->
+            <button class="button_house" id="button_houseID" onclick="window.location.href='dashboard.php'">
+                <i class="fa-solid fa-house" style="color: #0f0f0f;"></i> <!-- Add FontAwesome icon -->
             </button>
-            <button class="button_equals"onclick="toggleMenu()">
-                <i class="fa-solid fa-bars"></i> <!-- adding fontawesome icon -->
+            <button class="button_equals" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i> <!-- Add FontAwesome icon -->
             </button>
-            <button class="button_booklist"id="button_booklistID"onclick="window.location.href='booklist.php'">
-                <i class="fa-solid fa-book-bookmark" style="color: #030303;"></i> <!-- adding fontawesome icon -->
+            <button class="button_booklist" id="button_booklistID" onclick="window.location.href='booklist.php'">
+                <i class="fa-solid fa-book-bookmark" style="color: #030303;"></i> <!-- Add FontAwesome icon -->
             </button>
-            <button class="button_memberlist"id="button_memberlistID"onclick="window.location.href='memberlist.php'">
-                <i class="fa-solid fa-users" style="color: #000000;"></i> <!-- adding fontawesome icon -->
+            <button class="button_memberlist" id="button_memberlistID" onclick="window.location.href='memberlist.php'">
+                <i class="fa-solid fa-users" style="color: #000000;"></i> <!-- Add FontAwesome icon -->
             </button>
-            <button class="button_overduebooks"id="button_overduebooksID"onclick="window.location.href='overduebooks.php'">
-                <i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> <!-- adding fontawesome icon -->
+            <button class="button_overduebooks" id="button_overduebooksID" onclick="window.location.href='overduebooks.php'">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> <!-- Add FontAwesome icon -->
             </button>
-            <button class="button_loans"id="button_loansID"onclick="window.location.href='loans.php'">
-                <i class="fa-solid fa-right-long"></i> <!-- adding fontawesome icon -->
+            <button class="button_loans" id="button_loansID" onclick="window.location.href='loans.php'">
+                <i class="fa-solid fa-right-long"></i> <!-- Add FontAwesome icon -->
             </button>
         </div>
     </div>
-    <div class="menu" id="menu"> <!-- adding menu with bullet points -->
+    <div class="menu" id="menu"> <!-- Add menu with bullet points -->
         <ul>
-            <li><a href="#" id="Dashboard"onclick="window.location.href='dashboard.php'">Dashboard</a></li>
-            <li><a href="#" id="Booklist"onclick="window.location.href='booklist.php'">Books</a></li>
-            <li><a href="#" id="Memberlist"onclick="window.location.href='memberlist.php'">Members</a></li>
-            <li><a href="#" id="overduebooks"onclick="window.location.href='overduebooks.php'">Overdue</a></li>
-            <li><a href="#" id="Loans"onclick="window.location.href='loans.php'">Loans</a></li>
+            <li><a href="#" id="Dashboard" onclick="window.location.href='dashboard.php'">Dashboard</a></li>
+            <li><a href="#" id="Booklist" onclick="window.location.href='booklist.php'">Books</a></li>
+            <li><a href="#" id="Memberlist" onclick="window.location.href='memberlist.php'">Members</a></li>
+            <li><a href="#" id="overduebooks" onclick="window.location.href='overduebooks.php'">Overdue</a></li>
+            <li><a href="#" id="Loans" onclick="window.location.href='loans.php'">Loans</a></li>
         </ul>
     </div>
 </body>

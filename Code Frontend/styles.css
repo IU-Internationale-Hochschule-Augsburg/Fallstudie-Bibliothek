@@ -85,6 +85,7 @@ ensuring only the book list section is scrollable. */
     position: absolute;
 }
 
+/* declare white square for dashboard with scrollbar*/
 .white-square_dashboard {
     background-color: rgb(235, 235, 235);
     width: 90%;  
