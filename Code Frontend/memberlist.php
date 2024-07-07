@@ -8,9 +8,6 @@
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Memberlist</title>
-    <script>
-        
-    </script>
      <style>
         .table-container {
             max-height: 600px; /* Adjust height as needed */
