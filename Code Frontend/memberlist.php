@@ -9,15 +9,7 @@
     <script src="https://kit.fontawesome.com/821c8cbb42.js" crossorigin="anonymous"></script>
     <title>LIBRIOFACT - Memberlist</title>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const rows = document.querySelectorAll('.clickable-row'); // choose all lines with clickable-row
-            rows.forEach(row => {
-                row.addEventListener('click', function() {
-                    const memberId = this.dataset.memberId; // get ID from a line
-                    window.location.href = `member_details.php?member_id=${memberId}`; // redirekting
-                });
-            });
-        });
+        
     </script>
      <style>
         .table-container {
