@@ -119,11 +119,14 @@
             echo "</div>";
             ?>
 
-            <div class="scrollable-book-list">
-            <table id="table_booklist">
+            <br>
+
+           
             <div class="info-box">
                     <h2>Booklist</h2>
                 </div>
+                <div class="scrollable-book-list">
+                <table id="table_booklist">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -146,12 +149,16 @@
                             </tbody>
                         </table> 
         </div>
-                             
-        <div class="scrollable-member-list">
-        <table id="table_memberlist">
+                   
+        <br>
+
+        
         <div class="info-box">
                     <h2>Memberlist</h2>
                 </div>
+            
+            <div class="scrollable-member-list">
+            <table id="table_memberlist">
             <?php
                     include "../Code Backend/be_db_conn.php";
                     
@@ -182,22 +189,29 @@
                 ?>
         </div>
 
-        <div class="scrollable-loan-list">
-        <table id="table_loanlist">
+        <br>
+
+        
         <div class="info-box">
                     <h2>Loanlist</h2>
-                </div>        
+                </div> 
+
+            <div class="scrollable-loan-list">
+            <table id="table_loanlist"> 
             <?php
                 include "../Code Backend/be_overdue_status.php";
                 include "../Code Backend/be_loan_list.php";
             ?>
         </div>
         
-        <div class="scrollable-overdue-list">
-        <table id="table_overduelist">
+        <br>
+
+        
         <div class="info-box">
                     <h2>Overdue Booklist</h2>
                 </div>        
+            <div class="scrollable-overdue-list">
+            <table id="table_overduelist">
             <?php
                     include "../Code Backend/be_overdue_list.php";
             ?>

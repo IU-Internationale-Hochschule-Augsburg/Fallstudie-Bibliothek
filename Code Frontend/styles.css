@@ -47,7 +47,7 @@ body {
 /* The .scrollable-book-list class creates a fixed-height container with vertical scrolling for the book list,
 ensuring only the book list section is scrollable. */
 .scrollable-book-list, .scrollable-member-list, .scrollable-overdue-list, .scrollable-loan-list{
-    height: 150px; /* Anpassen nach Bedarf */
+    height: 70px; /* Anpassen nach Bedarf */
     overflow-y: auto;
 }
 
@@ -83,6 +83,7 @@ ensuring only the book list section is scrollable. */
     left: 50%; 
     transform: translateX(-50%);
     position: absolute;
+    overflow-y: scroll;
 }
 
 /* declare info box */
