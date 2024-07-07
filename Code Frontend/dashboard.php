@@ -109,7 +109,7 @@
        
         </form> 
 
-        <div class="white-square" id="white-squareID">
+        <div class="white-square_dashboard" id="white-squareID">
             <?php
             echo "<div class='info-stat-container'>";
             echo "<div class='info-stat'>Total Loans: " . $totalLoans . "</div>";

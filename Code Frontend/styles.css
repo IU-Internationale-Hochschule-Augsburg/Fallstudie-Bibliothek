@@ -83,6 +83,20 @@ ensuring only the book list section is scrollable. */
     left: 50%; 
     transform: translateX(-50%);
     position: absolute;
+}
+
+.white-square_dashboard {
+    background-color: rgb(235, 235, 235);
+    width: 90%;  
+    height: 80%;
+    margin: 10px;
+    position: absolute;
+    top: 100px;
+    border-radius: 15px;
+    right: 10%;
+    left: 50%; 
+    transform: translateX(-50%);
+    position: absolute;
     overflow-y: scroll;
 }
 
