@@ -37,11 +37,11 @@
                     if ($member = $result->fetch_assoc()) {
                         // Output of member data in a table
                         echo "<table id='table_booklist'>";
-                        echo "<tr><th>Mitglieds-ID</th><td>" . $member['member_id'] . "</td></tr>";
-                        echo "<tr><th>Vorname</th><td>" . $member['first_name'] . "</td></tr>";
-                        echo "<tr><th>Nachname</th><td>" . $member['last_name'] . "</td></tr>";
-                        echo "<tr><th>E-Mail</th><td>" . $member['email'] . "</td></tr>";
-                        echo "<tr><th>Telefon</th><td>" . $member['phone'] . "</td></tr>";
+                        echo "<tr><th>Member-ID</th><td>" . $member['member_id'] . "</td></tr>";
+                        echo "<tr><th>First Name</th><td>" . $member['first_name'] . "</td></tr>";
+                        echo "<tr><th>Last Name</th><td>" . $member['last_name'] . "</td></tr>";
+                        echo "<tr><th>Email</th><td>" . $member['email'] . "</td></tr>";
+                        echo "<tr><th>Phone</th><td>" . $member['phone'] . "</td></tr>";
                         echo "</table>";
                     } else {
                         echo "<p>Mitglied nicht gefunden.</p>";
@@ -97,7 +97,7 @@
                        // Display of borrowed books in a table with scroll function
                         echo "<div class='scrollable-table'>"; // Scroll-Container
                         echo "<table id='table_booklist'>";
-                        echo "<tr><th>#</th><th>Buch-ID</th><th>Ausleihdatum</th><th>Rückgabedatum</th><th>Status</th><th>Buchtitel</th></tr>";
+                        echo "<tr><th>#</th><th>Book-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th><th>Title</th></tr>";
                         $counter = 1;
                         while ($loan = $loans_result->fetch_assoc()) {
                             // Check if the title is empty and replace accordingly
