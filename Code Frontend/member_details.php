@@ -10,7 +10,7 @@
     <style>
         /* CSS for the scrolling function of the table */
         .scrollable-table {
-            max-height: 400px; /* Maximum height of the table */
+            max-height: 210px; /* Maximum height of the table */
             overflow-y: scroll; /* Allow vertical scrolling */
         }
     </style>
