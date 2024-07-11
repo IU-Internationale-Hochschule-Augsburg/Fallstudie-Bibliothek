@@ -1,12 +1,13 @@
 <?php
-include "be_db_conn.php";
+//This script is included in ../Code Frontend/loans.php
 
-// Check if the connection to the database is successful
+include "be_db_conn.php"; // Connection to Database
+
 if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 }
 
-// Perform a query to fetch all books from the database
+// Perform a query to fetch all necessary data from the database
 $sql = "
     SELECT loans.loan_id, books.title, book_copies.copy_id, members.member_id, loans.borrow_date, loans.return_date, loans.status 
     FROM loans 
@@ -16,9 +17,10 @@ $sql = "
     ORDER BY loans.loan_id DESC";
 $result = $conn->query($sql);
 
-// Check if the query was successful and if there are any rows returned
-if ($result !== false && $result->num_rows > 0) {
-    // Display the table header and iterate through the fetched results
+// Check if there are any loans in the database
+if ($result->num_rows > 0) {
+
+    // Display all loans in a table
     echo "<table id='table_booklist'>";
     echo "<tr><th>Loan-ID</th><th>Book-Title</th><th>Book-ID</th><th>Member-ID</th><th>Borrow-Date</th><th>Return-Date</th><th>Status</th></tr>";
 
