@@ -1,0 +1,17 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "redhat.telemetry.enabled": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "githubPullRequests.pullBranch": "never",
+    "workbench.editorAssociations": {
+        "*.php": "default"
+    },
+    "scm.showOutgoingChanges": "never",
+    "scm.showIncomingChanges": "never",
+    "git.confirmSync": false,
+    "liveServer.settings.donotVerifyTags": true,
+    "php.validate.executablePath": "",
+}

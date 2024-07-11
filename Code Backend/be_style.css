@@ -1,0 +1,70 @@
+
+body {
+    display: flex;
+    justify-content: center; /* Componenten werden Rechts und Links Mittig plaziert*/
+    align-items: center; /* Componenten werden Oben und Unten Mittig plaziert*/
+    height: 100vh;
+    margin: 0; /* Zuständig für die Abstände von Rand*/
+    overflow: hidden; /* Verhindert das Scrollen der Seite */
+    background-color: #444; /* Dunkelgraue Hintergrundfarbe */
+    position: relative; /* Relative Positionierung für das Overlay */
+}
+.container {
+    text-align: center; /* Der Text wird in der Mitte der Seite angezeigt*/
+    position: relative; /* Relative Positionierung für das Overlay */
+    z-index: 1; /* Stellt sicher, dass der Inhalt über dem Overlay liegt */
+    color: #000000; /* Textfarbe auf schwarz setzen */
+    width: 500px;
+    border: 2px solid #ccc;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+}
+.button {
+    padding: 15px; /*Größe des Buttons*/
+    margin-top: 10px; /*Abstand zum Vorherigen Element*/
+}
+input {
+    padding: 6px; /*Größe des Input Felds*/
+}
+.fit-picture {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Das Bild als Blockelement anzeigen */
+    margin: 0 auto; /* Das Bild zentrieren */
+}
+.stacked {
+    display: flex;
+    flex-direction: column; /*Die Input Boxen werden übereinander angezeigt*/
+    align-items: center; /*Die Input Boxen werden in der Mitte angezeigt*/
+    gap: 15px; /*Die Input Boxen haben einen Abstand voneinander*/
+}
+.login-text {
+    font-size: 40px; /* Größere Schriftgröße für den Log In Text */
+    position: Start; /* Absolute Positionierung für den Log In Text */
+    top: -15%; /* 10% Abstand zum oberen Rand */
+    left: 50%; /* Links mittig positionieren */
+    transform: translateX(-50%); /* Text horizontal zentrieren */
+    padding: 10px;
+}
+.overlay {
+    position: absolute;
+    top: 50px; /* Abstand zum oberen Rand */
+    left: 50px; /* Abstand zum linken Rand */
+    width: calc(100% - 100px); /* Breite abzüglich des doppelten Abstands */
+    height: calc(100% - 100px); /* Höhe abzüglich des doppelten Abstands */
+    background-color: #bdbdbd; /* Hellgraue Hintergrundfarbe */
+    z-index: 0; /* Stellt sicher, dass das Overlay hinter dem Inhalt liegt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error  {
+    background: #F2DEDE;
+    color: #A94442;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}

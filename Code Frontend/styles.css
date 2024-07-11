@@ -1,0 +1,505 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #404040;
+    font-family: Arial, sans-serif;
+}
+ 
+.background {
+    background-color: #404040;
+    position: absolute;
+    top: 50px;
+    left: 75px;
+    width: calc(100% - 75px);
+    height: calc(100% - 50px);
+    z-index: -1;
+    transition: left 0.3s ease, width 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+ 
+/* declare buttons back to dashboard, add book and add member, button_back_to_booklist */
+.button_back_to_dashboard, .button_add_book, .button_add_member, .button_back_to_booklist{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    position: absolute;
+    top: 25px;
+    color: #000000;
+    cursor: pointer;
+    z-index: 999;
+}
+ 
+.button_back_to_dashboard, .button_back_to_booklist {
+    left: 5%;
+}
+ 
+.button_add_book, .button_add_member {
+    right: 3.69%;
+}
+/* The .scrollable-book-list class creates a fixed-height container with vertical scrolling for the book list,
+ensuring only the book list section is scrollable. */
+.scrollable-book-list, .scrollable-member-list, .scrollable-overdue-list, .scrollable-loan-list{
+    height: 70px; /* Anpassen nach Bedarf */
+    overflow-y: auto;
+}
+
+ /* declare search */
+.search-bar {
+    position: relative;  
+    display: inline-block;
+}
+
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 400px;
+    margin: 40px;
+    font-size: 18px;
+    cursor: text;
+}
+
+/* declare white square */
+.white-square {
+    background-color: rgb(235, 235, 235);
+    width: 90%;  
+    height: 80%;
+    margin: 10px;
+    position: absolute;
+    top: 100px;
+    border-radius: 15px;
+    right: 10%;
+    left: 50%; 
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+/* declare white square for dashboard with scrollbar*/
+.white-square_dashboard {
+    background-color: rgb(235, 235, 235);
+    width: 90%;  
+    height: 80%;
+    margin: 10px;
+    position: absolute;
+    top: 100px;
+    border-radius: 15px;
+    right: 10%;
+    left: 50%; 
+    transform: translateX(-50%);
+    position: absolute;
+    overflow-y: scroll;
+}
+
+/* declare info box */
+.info-box {
+    background-color: #cacaca; 
+    border-radius: 5px; 
+    padding: 10px; 
+    margin-bottom: 20px; 
+    margin-top: 15px;  
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+}
+
+.info-box h1 {
+    margin-top: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.info-box h2 {
+    margin-top: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.info-box p {
+    margin-bottom: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 15px;
+}
+
+#table_booklist-container {
+    max-height: calc(100% - 30px);
+    overflow-y: auto; 
+}
+
+/* declare table booklist */
+#table_booklist {
+    border-collapse: collapse;
+    width: 97%; 
+    max-height: 100%;
+    border: 1px solid #cacaca; 
+    margin: 0 auto; 
+    background-color: #cacaca;
+    user-select: none;
+    overflow-y: hidden;
+}
+
+#table_booklist th,
+#table_booklist td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+#table_booklist tr {
+    cursor: pointer;
+}
+
+#table_booklist tr:first-child {
+    cursor: default; 
+}
+
+#table_booklist tr:hover {
+    background-color: #ddd; 
+}
+
+#table_booklist.active-scroll {
+    overflow-y: auto; 
+}
+
+/* declare table memberlist */
+#table_memberlist {
+    border-collapse: collapse;
+    width: 97%; 
+    border: 1px solid #cacaca; 
+    margin: 0 auto; 
+    background-color: #cacaca;
+    user-select: none;
+}
+
+#table_memberlist th,
+#table_memberlist td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+#table_memberlist tr {
+    cursor: pointer;
+}
+
+#table_memberlist tr:first-child {
+    cursor: default; 
+}
+
+#table_memberlist tr:hover {
+    background-color: #ddd; 
+}
+
+/* declare bookdetails site */
+.form-container-bookdetails .form-container-memberdetails {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.form-container-bookdetails .form-container-memberdetails h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group-bookdetails .form-container-memberdetails{
+    margin-bottom: 15px;
+}
+
+.form-group-bookdetails .form-container-memberdetails label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group-bookdetails .form-container-memberdetails input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-group-bookdetails .form-container-memberdetails button {
+    width: 100%;
+    padding: 10px;
+    background-color: #cacaca;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* declare addbook site */
+.form-container-addbook {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.form-container-addbook h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group-addbook {
+    margin-bottom: 15px;
+}
+
+.form-group-addbook label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group-addbook input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group-addbook button {
+    width: 100%;
+    padding: 10px;
+    background-color: #cacaca;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* declare topbar */
+.topbar { 
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 10px;
+    background-color: #888888; /* gray background */
+    z-index: 1;
+    padding: 20px;
+}
+
+.logo { /* declare logo */
+    z-index: 1000;
+}
+
+.logo_name { /* declare logo name */
+    font-size: 18px; 
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 25px; 
+    transform: translateY(-50%); 
+    left: 79px;
+    z-index: 1000;
+    cursor: default;
+}
+
+.sidebar { /* declare sidebar */
+    position: absolute;
+    top: 0px;
+    width: 35px;
+    height: 100%; 
+    background-color: #888888; 
+    z-index: 10;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* declare all buttons of sidebar */
+.button_house {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 32px;
+        top: 38px;
+        margin: 13px;
+        margin-left: -5px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .button_equals {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 25px;
+        top: 0px;
+        margin: 13px;
+        margin-left: 0px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute; 
+    }
+
+    .button_booklist {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 33px;
+        top: 95px;
+        margin: 13px;
+        margin-left: -2px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .button_memberlist {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 30px;
+        top: 150.7px;
+        margin: 13px;
+        margin-left: -5px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .button_overduebooks {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 30px;
+        top: 204px;
+        margin: 13px;
+        margin-left: -2px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .button_loans {
+        background-color: #888888;
+        background-repeat: no-repeat;
+        font-size: 36px;
+        top: 254.2px;
+        margin: 13px;
+        margin-left: -5px;
+        display: block;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+/* declare a logout button of topebar */
+    .button_logout {
+        position: fixed;
+        top: 7px;
+        right: 20px; 
+        padding: 10px 40px; 
+        border: none; 
+        border-radius: 20px; 
+        background-color: #cacaca;
+        color: #000000; 
+        cursor: pointer; 
+        z-index: 999; 
+    }
+
+/* Enlarge buttons by 10% on hover */
+    .button_equals:hover {
+        transform: scale(1.1); 
+    }
+
+    .button_settings:hover {
+        transform: scale(1.1); 
+    }
+
+ /* Increase the width of the sidebar by 150px */   
+ .sidebar.active {
+    width: calc(30px + 150px); 
+}
+
+ /* Increase the width of the sidebar by 150px */  
+.background-active {
+    left: 210px; /* Adjust as needed when sidebar is active */
+    width: calc(100% - 210px); 
+}
+
+/* adding a menu */ 
+.menu {
+    position: absolute;
+    top: 0;
+    left:70px;
+    width: 150px; 
+    background-color: #888888; 
+    z-index: 999;
+    display: none;
+}
+
+/* remove distance and bullet points */ 
+.menu ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+/* design of list items */ 
+.menu ul li {
+    padding: 10px;
+    margin-bottom: -20px;
+}
+
+/* adding bullet points */ 
+.menu ul li a {
+    color: #000000;
+    text-decoration: none; 
+    display: block; 
+    padding-top: 36px;
+}
+
+/* Displaying the menu bar */
+.menu.active {
+    display: block;
+}
+
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination a.active {
+    background-color: #cacaca;
+    color: #000;
+}
+
+
+
+
