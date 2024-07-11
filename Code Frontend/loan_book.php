@@ -78,7 +78,6 @@ session_start();
             border: 1px solid transparent;
             border-radius: 5px;
             box-sizing: border-box;
-            display: none;
             align-items: center;
             border-color: #f5c6cb;
             background-color: #f8d7da;
@@ -113,9 +112,6 @@ session_start();
                 <p>Here you can loan new books for the Member</p>
             </div>
 
-            <!--Dieser PHP-Code wird benötigt, um die Nachricht anzuzeigen, 
-            dass ein Buch erfolgreich ausgeliehen wurde. Muss evtl. noch an eine andere Stelle 
-            geschoben werden -- Absprache mit Flo! -->
             <div class="table-container">  
             <?php
                 if (isset($_SESSION["message"])) {

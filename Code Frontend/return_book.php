@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-// Überprüfen, von welcher Seite der Benutzer gekommen ist
+// check for which page the user came from
 $referer = $_SERVER['HTTP_REFERER'];
 
-// Definieren der Zielseiten, von denen aus der Benutzer kommen kann
+// define the sides the user can go to
 $valid_referers = array('overduebooks.php', 'loans.php');
 
-// Wenn der Referer gültig ist, setze ihn als Ziel für den Zurück-Button
-$back_url = 'loans.php'; // Standardseite
+// if referer is valid make it the back url
+$back_url = 'loans.php'; // default page
 
 if (in_array($referer, $valid_referers)) {
     $back_url = $referer;
@@ -99,7 +99,6 @@ if (in_array($referer, $valid_referers)) {
             border: 1px solid transparent;
             border-radius: 5px;
             box-sizing: border-box;
-            display: none;
             align-items: center;
             border-color: #f5c6cb;
             background-color: #f8d7da;
